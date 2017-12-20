@@ -2,10 +2,10 @@ package template.android.com.domain;
 
 import org.junit.Test;
 
-public final class DomainKotlinInvokerTest {
+public final class DomainJavaInvokerTest {
 
     @Test
     public void testKotlinInvoker() throws Exception {
-        new DomainKotlinInvoker().invoke();
+        new DomainJavaInvoker().invoke();
     }
 }
