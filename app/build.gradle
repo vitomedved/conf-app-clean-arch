@@ -3,17 +3,24 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:' + $retrolambdaVersion
+    }
+}
+
 android {
 
     compileSdkVersion $compileSdkVersion
 
-    signingConfigs {
-        debug {
-            keyAlias 'debug'
-            keyPassword '00000000'
-            storeFile file('keystore/debug-keystore.jks')
-            storePassword '00000000'
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
@@ -43,6 +50,15 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'debug'
+            keyPassword '00000000'
+            storeFile file('keystore/debug-keystore.jks')
+            storePassword '00000000'
+        }
+    }
 }
 
 dependencies {
@@ -52,6 +68,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:' + $supportLibVersion
 
     implementation 'com.android.support.constraint:constraint-layout:' + $constraintLayoutVersion
+
+    compile 'com.google.dagger:dagger:' + $daggerVersion
+    kapt 'com.google.dagger:dagger-compiler:' + $daggerVersion
 
     implementation 'com.google.firebase:firebase-core:' + $firebaseVersion
     implementation 'com.google.firebase:firebase-database:' + $firebaseVersion
