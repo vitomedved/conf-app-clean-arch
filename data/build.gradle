@@ -50,7 +50,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':domain')
+    // We're putting this to be 'api' because we want 'domain' module to be visible in 'app' module as transitive dependency.
+    api project(':domain')
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:' + $kotlin_version
     implementation 'com.android.support:appcompat-v7:' + $supportLibVersion
