@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="min_touchable_width">56dp</dimen>
+    <dimen name="min_touchable_height">56dp</dimen>
+    <dimen name="baseline_distance">4dp</dimen>
+    <dimen name="content_area_distance">8dp</dimen>
+    <dimen name="screen_edge_distance">16dp</dimen>
+
+    <!-- Common layouts -->
+    <dimen name="common_root_card_view_layout_margin_start">@dimen/content_area_distance</dimen>
+    <dimen name="common_root_card_view_layout_margin_top">@dimen/baseline_distance</dimen>
+    <dimen name="common_root_card_view_layout_margin_end">@dimen/content_area_distance</dimen>
+    <dimen name="common_root_card_view_layout_margin_bottom">@dimen/baseline_distance</dimen>
+    <dimen name="common_root_card_view_corner_radius">8dp</dimen>
+    <dimen name="common_root_card_view_elevation">12dp</dimen>
+
+</resources>

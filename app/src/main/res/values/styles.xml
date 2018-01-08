@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CommonRootCardViewStyle">
+        <item name="android:layout_marginStart">@dimen/common_root_card_view_layout_margin_start</item>
+        <item name="android:layout_marginTop">@dimen/common_root_card_view_layout_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/common_root_card_view_layout_margin_end</item>
+        <item name="android:layout_marginBottom">@dimen/common_root_card_view_layout_margin_bottom</item>
+        <item name="cardCornerRadius">@dimen/common_root_card_view_corner_radius</item>
+        <item name="cardElevation">@dimen/common_root_card_view_elevation</item>
+    </style>
+
 </resources>
