@@ -1,7 +1,12 @@
 package com.android.template.injection.application.module;
 
+import android.content.Context;
+
+import com.android.template.injection.ForApplication;
 import com.android.template.ui.ViewModelConverter;
 import com.android.template.ui.ViewModelConverterImpl;
+import com.android.template.utils.StethoInitializer;
+import com.android.template.utils.StethoInitializerImpl;
 import com.android.template.utils.view.ViewUtils;
 import com.android.template.utils.view.ViewUtilsImpl;
 
@@ -47,6 +52,12 @@ public final class UtilsModule {
     @Singleton
     ViewUtils provideViewUtils() {
         return new ViewUtilsImpl();
+    }
+
+    @Provides
+    @Singleton
+    StethoInitializer provideStethoInitializer(@ForApplication final Context context) {
+        return new StethoInitializerImpl(context);
     }
 
     public interface Exposes {
