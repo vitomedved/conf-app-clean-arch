@@ -17,7 +17,8 @@ public final class ExampleClientImpl implements ExampleClient {
 
     @Override
     public Single<Example> getExample() {
-        return apiService.getExample()
-                         .map(apiMapper::mapToExample);
+        return Single.just(new Example(100));
+//        return apiService.getExample()
+//                         .map(apiMapper::mapToExample);
     }
 }

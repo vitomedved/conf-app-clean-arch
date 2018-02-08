@@ -6,6 +6,6 @@ import template.android.com.data.network.model.ApiExample;
 
 public interface ExampleApiService {
 
-    @GET
+    @GET("/")
     Single<ApiExample> getExample();
 }

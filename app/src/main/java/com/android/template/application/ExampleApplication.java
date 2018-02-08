@@ -3,16 +3,20 @@ package com.android.template.application;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.template.BuildConfig;
 import com.android.template.injection.ComponentFactory;
 import com.android.template.injection.application.ApplicationComponent;
 import com.android.template.injection.user.UserComponent;
-import com.facebook.stetho.Stetho;
+import com.android.template.utils.StethoInitializer;
+
+import javax.inject.Inject;
 
 public final class ExampleApplication extends Application {
 
     private ApplicationComponent applicationComponent;
     private UserComponent userComponent;
+
+    @Inject
+    StethoInitializer stethoInitializer;
 
     public static ExampleApplication from(final Context context) {
         return (ExampleApplication) context.getApplicationContext();
@@ -28,9 +32,7 @@ public final class ExampleApplication extends Application {
     }
 
     private void initStetho() {
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this);
-        }
+        stethoInitializer.initialize();
     }
 
     private void initApplicationComponent() {

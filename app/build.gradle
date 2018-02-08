@@ -38,6 +38,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // TODO Release builds should not be signed with debug credentials.
+            signingConfig signingConfigs.debug
         }
 
         debug {
@@ -49,6 +52,7 @@ android {
     }
 
     signingConfigs {
+
         debug {
             keyAlias 'debug'
             keyPassword '00000000'
@@ -85,7 +89,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:' + $glideVersion
     implementation 'io.reactivex:rxandroid:' + $rxAndroidVersion
 
-    implementation 'com.facebook.stetho:stetho:' + $stethoVersion
+    debugImplementation 'com.facebook.stetho:stetho:' + $stethoVersion
 
     testImplementation "junit:junit:" + $jUnitVersion
 
