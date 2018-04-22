@@ -11,8 +11,11 @@ import com.android.template.injection.activity.ActivityComponent;
 import javax.inject.Inject;
 
 import template.android.com.data.DataJavaInvoker;
+import template.android.com.data.DataKotlinInvoker;
 import template.android.com.device.DeviceJavaInvoker;
+import template.android.com.device.DeviceKotlinInvoker;
 import template.android.com.domain.DomainJavaInvoker;
+import template.android.com.domain.DomainKotlinInvoker;
 
 public final class MainActivity extends BaseActivity implements MainContract.View {
 
@@ -26,8 +29,13 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
 
         // To ensure all modules are well connected.
         new DataJavaInvoker().invoke();
+        new DataKotlinInvoker().invoke();
+
         new DeviceJavaInvoker().invoke();
+        new DeviceKotlinInvoker().invoke();
+
         new DomainJavaInvoker().invoke();
+        new DomainKotlinInvoker().invoke();
 
         presenter.init();
     }

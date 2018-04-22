@@ -1,5 +1,5 @@
 apply plugin: 'java-library'
-apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin'
 
 buildscript {
 
@@ -7,15 +7,13 @@ buildscript {
         jcenter()
         mavenCentral()
     }
-
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:' + $retrolambdaVersion
-    }
 }
 
 dependencies {
 
     api fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:' + $kotlin_version
 
     api 'com.annimon:stream:' + $streamVersion
     api 'io.reactivex:rxjava:' + $rxJavaVersion

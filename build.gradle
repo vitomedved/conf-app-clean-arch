@@ -3,7 +3,8 @@
 buildscript {
 
     ext {
-        $tools_gradle_version = "3.0.1"
+        $tools_gradle_version = '3.1.1'
+        $kotlin_version = '1.2.30'
         $google_services_version = '3.1.1'
     }
 
@@ -16,6 +17,7 @@ buildscript {
     // in the individual module build.gradle files
     dependencies {
         classpath 'com.android.tools.build:gradle:' + $tools_gradle_version
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:' + $kotlin_version
         classpath 'com.google.gms:google-services:' + $google_services_version
     }
 }

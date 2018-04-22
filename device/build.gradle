@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 buildscript {
 
     repositories {
         jcenter()
-    }
-
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:' + $retrolambdaVersion
     }
 }
 
@@ -40,6 +38,10 @@ android {
         debug {
 
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
