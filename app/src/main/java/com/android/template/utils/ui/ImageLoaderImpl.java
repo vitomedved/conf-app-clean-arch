@@ -6,7 +6,8 @@ import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import template.android.com.domain.utils.exception.UnimplementedMethodException;
 
 public final class ImageLoaderImpl implements ImageLoader {
 
@@ -20,64 +21,31 @@ public final class ImageLoaderImpl implements ImageLoader {
     public void loadImage(final String url, final ImageView target) {
         Glide.with(context)
              .load(url)
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .fitCenter()
-             .crossFade()
              .into(target);
     }
 
     @Override
     public void loadImageCenterCrop(final String url, final ImageView target) {
-        Glide.with(context)
-             .load(url)
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .centerCrop()
-             .crossFade()
-             .into(target);
+        throw new UnimplementedMethodException();
     }
 
     @Override
     public void loadImage(final String url, final ImageView target, @DrawableRes final int placeholderDrawable, @DrawableRes final int errorDrawable) {
-        Glide.with(context)
-             .load(url)
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .placeholder(placeholderDrawable)
-             .error(errorDrawable)
-             .crossFade()
-             .into(target);
+        throw new UnimplementedMethodException();
     }
 
     @Override
     public void loadImage(final String url, final ImageView target, final Drawable placeholderDrawable, @DrawableRes final int errorDrawable) {
-        Glide.with(context)
-             .load(url)
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .placeholder(placeholderDrawable)
-             .error(errorDrawable)
-             .crossFade()
-             .into(target);
+        throw new UnimplementedMethodException();
     }
 
     @Override
     public void loadImageAsBitmap(final String url, final ImageView target, final Drawable placeholderDrawable, @DrawableRes final int errorDrawable) {
-        Glide.with(context)
-             .load(url)
-             .asBitmap()
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .placeholder(placeholderDrawable)
-             .error(errorDrawable)
-             .into(target);
+        throw new UnimplementedMethodException();
     }
 
     @Override
     public void loadImageForCircularImageView(final String url, final ImageView target, final Drawable placeholderDrawable, @DrawableRes final int errorDrawable) {
-        Glide.with(context)
-             .load(url)
-             .asBitmap()
-             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-             .centerCrop()
-             .placeholder(placeholderDrawable)
-             .error(errorDrawable)
-             .into(target);
+        throw new UnimplementedMethodException();
     }
 }

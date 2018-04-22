@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends DaggerActivity {
 
     @Inject
@@ -23,8 +25,21 @@ public abstract class BaseActivity extends DaggerActivity {
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final Integer layoutResourceId = getLayoutResourceId();
+        if (layoutResourceId != null) {
+            setContentView(layoutResourceId);
+            bindViews();
+        }
+
         startPresenter();
     }
+
+    private void bindViews() {
+        ButterKnife.bind(this);
+    }
+
+    protected abstract Integer getLayoutResourceId();
 
     private void startPresenter() {
         getPresenter().start();
