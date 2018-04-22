@@ -18,7 +18,7 @@ dependencies {
     api 'com.annimon:stream:' + $streamVersion
     api 'io.reactivex:rxjava:' + $rxJavaVersion
 
-    testImplementation "junit:junit:" + $jUnitVersion
+    testImplementation 'junit:junit:' + $jUnitVersion
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
