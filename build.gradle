@@ -42,10 +42,10 @@ ext {
 
     $retrolambdaVersion = '3.2.5'
 
-    $retrofitVersion = '2.3.0'
-    $okhttpVersion = '3.8.0'
+    $retrofitVersion = '2.4.0'
+    $okhttpVersion = '3.10.0'
 
-    $glideVersion = '3.7.0'
+    $glideVersion = '4.7.1'
 
     $firebaseVersion = '11.6.2'
     $googleAnalyticsVersion = $firebaseVersion
