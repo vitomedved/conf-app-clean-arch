@@ -26,11 +26,13 @@ public final class ExampleRepositoryImpl implements ExampleRepository {
 
     @Override
     public Single<Optional<Example>> getExample() {
-        return Single.fromCallable(exampleDao::getExample);
+        // TODO
+        return Single.just(Optional.empty());
     }
 
     @Override
     public Completable saveExample(final Example example) {
-        return Completable.fromAction(() -> exampleDao.saveExample(example));
+        return Completable.complete();
+//        return Completable.fromAction(() -> exampleDao.insert(example));
     }
 }
