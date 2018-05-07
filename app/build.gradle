@@ -45,6 +45,8 @@ android {
         }
 
         debug {
+            applicationIdSuffix = ".debug"
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -59,6 +61,21 @@ android {
             keyPassword '00000000'
             storeFile file('keystore/debug-keystore.jks')
             storePassword '00000000'
+        }
+    }
+
+    def FLAVOR_DIMENSION_ENVIRONMENT = "enviroment"
+
+    flavorDimensions FLAVOR_DIMENSION_ENVIRONMENT
+
+    productFlavors {
+
+        production {
+            dimension = FLAVOR_DIMENSION_ENVIRONMENT
+        }
+
+        staging {
+            dimension = FLAVOR_DIMENSION_ENVIRONMENT
         }
     }
 
