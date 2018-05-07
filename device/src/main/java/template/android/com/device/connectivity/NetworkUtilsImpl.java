@@ -9,6 +9,7 @@ public final class NetworkUtilsImpl implements NetworkUtils {
 
     private static final String EMPTY = "";
     private static final String PING_ADDRESS = "www.google.com";
+
     private final ConnectivityManagerWrapper connectivityManagerWrapper;
 
     public NetworkUtilsImpl(final ConnectivityManagerWrapper connectivityManagerWrapper) {
@@ -17,7 +18,7 @@ public final class NetworkUtilsImpl implements NetworkUtils {
 
     @Override
     public Single<Boolean> isConnectedToInternet() {
-        return Single.fromCallable(() -> (isConnectedToNetwork() && canResolveAddress(PING_ADDRESS)));
+        return Single.fromCallable(() -> isConnectedToNetwork() && canResolveAddress(PING_ADDRESS));
     }
 
     @Override
