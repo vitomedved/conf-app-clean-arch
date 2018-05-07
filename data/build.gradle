@@ -73,8 +73,8 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:' +  $okhttpVersion
     api 'com.squareup.okhttp3:logging-interceptor:' + $okhttpVersion
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:' + $jUnitVersion
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:' + $testRunnerVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + $espressoCoreVersion
 }
