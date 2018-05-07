@@ -1,6 +1,5 @@
 package template.android.com.device.connectivity;
 
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
@@ -8,8 +7,8 @@ public final class ConnectivityManagerWrapperImpl implements ConnectivityManager
 
     private final ConnectivityManager connectivityManager;
 
-    public ConnectivityManagerWrapperImpl(final Context context) {
-        this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public ConnectivityManagerWrapperImpl(final ConnectivityManager connectivityManager) {
+        this.connectivityManager = connectivityManager;
     }
 
     @Override
@@ -21,8 +20,8 @@ public final class ConnectivityManagerWrapperImpl implements ConnectivityManager
     @Override
     public NetworkData getNetworkData() {
         final NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        final boolean hasInternetConnection = (activeNetworkInfo != null && activeNetworkInfo.isConnected());
-        final boolean isMobileConnection = (activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE);
+        final boolean hasInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        final boolean isMobileConnection = activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
 
         return new NetworkData(hasInternetConnection, isMobileConnection);
     }

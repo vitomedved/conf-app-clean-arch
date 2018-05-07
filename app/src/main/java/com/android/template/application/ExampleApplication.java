@@ -10,10 +10,15 @@ import com.android.template.utils.StethoInitializer;
 
 import javax.inject.Inject;
 
+import template.android.com.device.connectivity.ConnectivityReceiver;
+
 public final class ExampleApplication extends MultiDexApplication {
 
     private ApplicationComponent applicationComponent;
     private UserComponent userComponent;
+
+    @Inject
+    ConnectivityReceiver connectivityReceiver;
 
     @Inject
     StethoInitializer stethoInitializer;

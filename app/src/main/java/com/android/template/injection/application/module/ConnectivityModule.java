@@ -1,6 +1,7 @@
 package com.android.template.injection.application.module;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 
 import com.android.template.injection.ForApplication;
 
@@ -22,8 +23,8 @@ public final class ConnectivityModule {
 
     @Provides
     @Singleton
-    ConnectivityManagerWrapper provideConnectivityManagerWrapper(@ForApplication final Context context) {
-        return new ConnectivityManagerWrapperImpl(context);
+    ConnectivityManagerWrapper provideConnectivityManagerWrapper(final ConnectivityManager connectivityManager) {
+        return new ConnectivityManagerWrapperImpl(connectivityManager);
     }
 
     @Provides
