@@ -18,7 +18,7 @@ import template.android.com.data.network.configuration.UrlsImpl;
 import template.android.com.data.network.converter.ApiMapper;
 import template.android.com.data.network.converter.ApiMapperImpl;
 import template.android.com.data.network.service.ExampleApiService;
-import template.android.com.domain.utils.StringUtils;
+import template.android.com.domain.utils.string.StringUtils;
 
 @Module
 public final class ApiModule {
