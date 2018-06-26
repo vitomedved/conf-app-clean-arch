@@ -3,10 +3,11 @@ package template.android.com.domain.utils.string;
 import com.annimon.stream.Stream;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public final class StringUtilsImpl implements StringUtils {
+
+    private static final int MINIMUM_ARRAYLIST_CAPACITY = 1;
 
     private static final String EMPTY = "";
 
@@ -66,6 +67,6 @@ public final class StringUtilsImpl implements StringUtils {
     }
 
     private <T> List<T> getEmptyArrayList() {
-        return new ArrayList<>(1);
+        return new ArrayList<>(MINIMUM_ARRAYLIST_CAPACITY);
     }
 }
