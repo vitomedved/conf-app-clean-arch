@@ -19,7 +19,7 @@ import com.android.template.utils.ui.KeyboardUtilsImpl;
 
 import dagger.Module;
 import dagger.Provides;
-import template.android.com.domain.utils.ListUtils;
+import template.android.com.domain.utils.collection.ListUtils;
 
 @Module
 public final class ActivityModule {
