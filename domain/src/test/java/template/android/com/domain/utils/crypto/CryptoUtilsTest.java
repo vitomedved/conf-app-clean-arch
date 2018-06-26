@@ -3,11 +3,9 @@ package template.android.com.domain.utils.crypto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import hr.asseco.android.tokenbasesdk.dataModel.Pair;
+import template.android.com.domain.model.Pair;
+import template.android.com.domain.utils.byteformat.HEX;
 
-/**
- * Created by lbabic on 16/03/2018.
- */
 public final class CryptoUtilsTest {
 
     @Test
