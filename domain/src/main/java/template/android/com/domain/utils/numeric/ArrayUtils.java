@@ -3,9 +3,6 @@ package template.android.com.domain.utils.numeric;
 import java.util.Arrays;
 import java.util.Objects;
 
-/**
- * Created by lbabic on 19/02/2018.
- */
 public final class ArrayUtils {
 
     private static final byte DEFAULT_BYTE_VALUE = 0;
