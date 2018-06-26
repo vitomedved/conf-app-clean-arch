@@ -1,4 +1,4 @@
-package template.android.com.domain.utils;
+package template.android.com.domain.utils.collection;
 
 import org.junit.Assert;
 import org.junit.Before;
