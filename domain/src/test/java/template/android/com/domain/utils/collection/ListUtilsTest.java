@@ -43,7 +43,9 @@ public final class ListUtilsTest {
     public void testShouldListRemainSameWhenReversingListWithOneItem() {
         final List<String> list = new ArrayList<>(Collections.singletonList(""));
 
-        Assert.assertEquals(Collections.singletonList(""), listUtils.reverse(list));
+        final List<String> result = listUtils.reverse(list);
+
+        Assert.assertSame(list, result);
     }
 
     @Test
