@@ -30,7 +30,7 @@ public final class CharacterConverter {
     }
 
     /**
-     * Convenience method for {@link hr.asseco.android.tokenbasesdk.helpers.CharacterConverter#toBytes(char[], Charset)} with UTF-8 used as charset.
+     * Convenience method for {@link #toBytes(char[], Charset)} with UTF-8 used as charset.
      */
     public static byte[] toBytes(final char[] chars) {
         return toBytes(chars, StandardCharsets.UTF_8);
@@ -98,7 +98,7 @@ public final class CharacterConverter {
     }
 
     /**
-     * Convenience method for {@link hr.asseco.android.tokenbasesdk.helpers.CharacterConverter#toChars(byte[], Charset)} with UTF-8 used as charset.
+     * Convenience method for {@link #toChars(byte[], Charset)} with UTF-8 used as charset.
      */
     public static char[] toChars(final byte[] bytes) {
         return toChars(bytes, StandardCharsets.UTF_8);
