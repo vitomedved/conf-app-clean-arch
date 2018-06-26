@@ -1,9 +1,11 @@
-package template.android.com.domain.utils;
+package template.android.com.domain.utils.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import template.android.com.domain.utils.string.StringUtils;
 
 public final class DateUtilsImpl implements DateUtils {
 

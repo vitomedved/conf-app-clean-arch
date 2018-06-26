@@ -1,4 +1,4 @@
-package template.android.com.domain.utils;
+package template.android.com.domain.utils.date;
 
 import java.util.Date;
 
