@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import com.android.template.R;
 import com.android.template.ui.main.MainActivity;
 
-import template.android.com.domain.utils.ListUtils;
+import template.android.com.domain.utils.collection.ListUtils;
 
 public final class RouterImpl implements Router {
 
