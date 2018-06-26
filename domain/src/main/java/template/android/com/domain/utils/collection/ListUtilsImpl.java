@@ -14,11 +14,17 @@ public final class ListUtilsImpl implements ListUtils {
         this.collectionUtils = collectionUtils;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty(final List<?> list) {
         return collectionUtils.isEmpty(list);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> List<T> reverse(final List<T> list) {
         Objects.requireNonNull(list, "list == null");
@@ -28,15 +34,20 @@ public final class ListUtilsImpl implements ListUtils {
         return list;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> List<T> toList(final Enumeration<T> enumeration) {
         Objects.requireNonNull(enumeration, "enumeration == null");
 
-        final List<T> list = new ArrayList<>();
+        final ArrayList<T> list = new ArrayList<>();
 
         while (enumeration.hasMoreElements()) {
             list.add(enumeration.nextElement());
         }
+
+        list.trimToSize();
 
         return list;
     }
