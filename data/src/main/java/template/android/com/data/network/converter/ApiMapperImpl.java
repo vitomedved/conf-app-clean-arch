@@ -2,7 +2,7 @@ package template.android.com.data.network.converter;
 
 import template.android.com.data.network.model.ApiExample;
 import template.android.com.domain.model.Example;
-import template.android.com.domain.utils.StringUtils;
+import template.android.com.domain.utils.string.StringUtils;
 
 public final class ApiMapperImpl implements ApiMapper {
 
