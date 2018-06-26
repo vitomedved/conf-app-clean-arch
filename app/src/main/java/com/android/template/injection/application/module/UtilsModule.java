@@ -14,12 +14,14 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import template.android.com.domain.utils.DateUtils;
-import template.android.com.domain.utils.DateUtilsImpl;
-import template.android.com.domain.utils.ListUtils;
-import template.android.com.domain.utils.ListUtilsImpl;
-import template.android.com.domain.utils.StringUtils;
-import template.android.com.domain.utils.StringUtilsImpl;
+import template.android.com.domain.utils.collection.CollectionUtils;
+import template.android.com.domain.utils.collection.CollectionUtilsImpl;
+import template.android.com.domain.utils.date.DateUtils;
+import template.android.com.domain.utils.date.DateUtilsImpl;
+import template.android.com.domain.utils.collection.ListUtils;
+import template.android.com.domain.utils.collection.ListUtilsImpl;
+import template.android.com.domain.utils.string.StringUtils;
+import template.android.com.domain.utils.string.StringUtilsImpl;
 
 @Module
 public final class UtilsModule {
@@ -32,8 +34,14 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
-    ListUtils provideListUtils() {
-        return new ListUtilsImpl();
+    CollectionUtils provideCollectionUtils() {
+        return new CollectionUtilsImpl();
+    }
+
+    @Provides
+    @Singleton
+    ListUtils provideListUtils(final CollectionUtils collectionUtils) {
+        return new ListUtilsImpl(collectionUtils);
     }
 
     @Provides
@@ -63,6 +71,8 @@ public final class UtilsModule {
     public interface Exposes {
 
         DateUtils dateUtils();
+
+        CollectionUtils collectionUtils();
 
         ListUtils listUtils();
 
