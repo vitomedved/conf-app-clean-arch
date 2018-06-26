@@ -4,6 +4,9 @@ import java.util.Collection;
 
 public final class CollectionUtilsImpl implements CollectionUtils {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty(final Collection<?> collection) {
         if (collection == null) {
