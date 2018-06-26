@@ -2,7 +2,7 @@ package template.android.com.data.dao.mapper;
 
 import template.android.com.data.dao.model.ExampleDbModel;
 import template.android.com.domain.model.Example;
-import template.android.com.domain.utils.StringUtils;
+import template.android.com.domain.utils.string.StringUtils;
 
 public final class DbMapperImpl implements DbMapper {
 

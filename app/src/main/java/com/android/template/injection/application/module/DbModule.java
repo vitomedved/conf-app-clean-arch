@@ -13,7 +13,7 @@ import template.android.com.data.dao.mapper.DbMapper;
 import template.android.com.data.dao.mapper.DbMapperImpl;
 import template.android.com.data.dao.ExampleDao;
 import template.android.com.data.dao.database.AppDatabase;
-import template.android.com.domain.utils.StringUtils;
+import template.android.com.domain.utils.string.StringUtils;
 
 @Module
 public final class DbModule {
