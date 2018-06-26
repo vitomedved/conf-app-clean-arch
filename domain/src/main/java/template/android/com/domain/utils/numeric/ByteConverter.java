@@ -2,9 +2,6 @@ package template.android.com.domain.utils.numeric;
 
 import java.util.Objects;
 
-/**
- * Created by lbabic on 18/02/2018.
- */
 public final class ByteConverter {
 
     private static final int SHORT_SIZE_IN_BYTES = Short.SIZE >> 3;
