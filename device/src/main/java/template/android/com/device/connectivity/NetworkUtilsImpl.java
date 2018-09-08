@@ -35,9 +35,12 @@ public final class NetworkUtilsImpl implements NetworkUtils {
     }
 
     private boolean pingAddress(final String url) {
+
         try {
             final InetAddress address = InetAddress.getByName(url);
+
             return address != null && !EMPTY.equals(address.getHostAddress());
+
         } catch (final UnknownHostException e) {
             return false;
         }
