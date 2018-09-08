@@ -6,6 +6,7 @@ import com.android.template.injection.application.module.ApplicationModule;
 import com.android.template.injection.application.module.ConnectivityModule;
 import com.android.template.injection.application.module.DataModule;
 import com.android.template.injection.application.module.DbModule;
+import com.android.template.injection.application.module.DeviceModule;
 import com.android.template.injection.application.module.RepositoryModule;
 import com.android.template.injection.application.module.ThreadingModule;
 import com.android.template.injection.application.module.UseCaseModule;
@@ -24,6 +25,7 @@ import dagger.Component;
                 ApiModule.class,
                 ConnectivityModule.class,
                 DbModule.class,
+                DeviceModule.class,
                 DataModule.class,
                 UserRepositoryModule.class,
                 ThreadingModule.class,
