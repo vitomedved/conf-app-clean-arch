@@ -3,7 +3,7 @@
 buildscript {
 
     ext {
-        $tools_gradle_version = '3.1.1'
+        $tools_gradle_version = '3.1.4'
         $kotlin_version = '1.2.30'
         $google_services_version = '3.1.1'
     }
@@ -19,6 +19,14 @@ buildscript {
         classpath 'com.android.tools.build:gradle:' + $tools_gradle_version
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:' + $kotlin_version
         classpath 'com.google.gms:google-services:' + $google_services_version
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
     }
 }
 
@@ -64,13 +72,6 @@ ext {
     $testRunnerVersion = '1.0.2'
     $testRulesVersion = '1.0.2'
     $espressoCoreVersion = '3.0.2'
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
 }
 
 task clean(type: Delete) {
