@@ -6,7 +6,7 @@ public interface DeviceInformation {
 
     boolean isLollipopOrHigher();
 
-    boolean isMarsmallowOrHigher();
+    boolean isMarshmallowOrHigher();
 
     boolean isNougatOrHigher();
 
