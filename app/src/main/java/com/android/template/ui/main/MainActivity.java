@@ -2,7 +2,9 @@ package com.android.template.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.template.R;
 import com.android.template.base.BaseActivity;
@@ -13,6 +15,7 @@ import com.android.template.utils.ui.ImageLoader;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import template.android.com.data.DataJavaInvoker;
 import template.android.com.data.DataKotlinInvoker;
 import template.android.com.device.DeviceJavaInvoker;
@@ -22,8 +25,14 @@ import template.android.com.domain.DomainKotlinInvoker;
 
 public final class MainActivity extends BaseActivity implements MainContract.View {
 
+    @BindView(R.id.activity_main_text_view)
+    TextView textView;
+
     @BindView(R.id.activity_main_image_view)
     ImageView imageView;
+
+    @BindView(R.id.activity_main_edit_text)
+    EditText editText;
 
     @Inject
     MainContract.Presenter presenter;
@@ -45,6 +54,10 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
         new DomainJavaInvoker().invoke();
         new DomainKotlinInvoker().invoke();
 
+        textView.setText("bla");
+
+        editText.setText("bla");
+
         imageLoader.loadImage("http://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg",
                               imageView);
 
@@ -64,5 +77,10 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
     @Override
     protected ScopedPresenter getPresenter() {
         return presenter;
+    }
+
+    @OnClick(R.id.activity_main_text_view)
+    void onTextViewClicked() {
+        textView.setText(editText.getText().toString());
     }
 }
