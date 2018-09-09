@@ -17,7 +17,7 @@ public final class DeviceInformationImpl implements DeviceInformation{
     }
 
     @Override
-    public boolean isMarsmallowOrHigher() {
+    public boolean isMarshmallowOrHigher() {
         return isCurrentVersionHigherThan(Build.VERSION_CODES.M);
     }
 
