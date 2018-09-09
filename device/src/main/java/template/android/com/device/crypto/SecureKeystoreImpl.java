@@ -60,9 +60,8 @@ public final class SecureKeystoreImpl implements SecureKeystore {
     public boolean containsAlias(final String alias) {
         try {
             return keyStore.containsAlias(alias);
-        } catch (final KeyStoreException e) {
-            e.printStackTrace();
 
+        } catch (final KeyStoreException e) {
             throw new SecureKeystoreException(e);
         }
     }
