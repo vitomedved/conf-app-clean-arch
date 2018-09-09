@@ -24,7 +24,7 @@ public final class ExampleApplication extends MultiDexApplication {
     StethoInitializer stethoInitializer;
 
     public static ExampleApplication from(final Context context) {
-        return (ExampleApplication) context.getApplicationContext();
+        return ExampleApplication.class.cast(context.getApplicationContext());
     }
 
     @Override
