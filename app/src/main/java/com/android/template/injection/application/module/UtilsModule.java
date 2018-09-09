@@ -14,17 +14,25 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import template.android.com.device.util.byteformat.AndroidBase64ToolImpl;
+import template.android.com.domain.utils.byteformat.Base64Tool;
 import template.android.com.domain.utils.collection.CollectionUtils;
 import template.android.com.domain.utils.collection.CollectionUtilsImpl;
-import template.android.com.domain.utils.date.DateUtils;
-import template.android.com.domain.utils.date.DateUtilsImpl;
 import template.android.com.domain.utils.collection.ListUtils;
 import template.android.com.domain.utils.collection.ListUtilsImpl;
+import template.android.com.domain.utils.date.DateUtils;
+import template.android.com.domain.utils.date.DateUtilsImpl;
 import template.android.com.domain.utils.string.StringUtils;
 import template.android.com.domain.utils.string.StringUtilsImpl;
 
 @Module
 public final class UtilsModule {
+
+    @Provides
+    @Singleton
+    Base64Tool provideBase64Tool() {
+        return new AndroidBase64ToolImpl();
+    }
 
     @Provides
     @Singleton
@@ -69,6 +77,8 @@ public final class UtilsModule {
     }
 
     public interface Exposes {
+
+        Base64Tool base64Tool();
 
         DateUtils dateUtils();
 
