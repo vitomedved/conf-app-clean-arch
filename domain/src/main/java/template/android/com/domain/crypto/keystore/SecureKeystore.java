@@ -1,7 +1,8 @@
-package template.android.com.domain.crypto;
+package template.android.com.domain.crypto.keystore;
 
-import java.security.Key;
 import java.util.List;
+
+import javax.crypto.SecretKey;
 
 public interface SecureKeystore {
 
@@ -10,10 +11,6 @@ public interface SecureKeystore {
     boolean containsAlias(String alias);
 
     void removeAlias(String alias);
-
-    Key getSecretKeyWithAlias(String alias);
-
-    void createKey();
 
     final class SecureKeystoreException extends RuntimeException {
 
