@@ -2,13 +2,13 @@ package template.android.com.device.crypto.provider;
 
 import android.content.Context;
 import android.security.KeyPairGeneratorSpec;
-import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyProperties;
+import android.support.annotation.NonNull;
+
+import com.annimon.stream.Stream;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
-import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -30,22 +30,29 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
+import template.android.com.domain.crypto.CommonCryptoConstants;
 import template.android.com.domain.crypto.provider.SymmetricKeyProvider;
+import template.android.com.domain.crypto.provider.SymmetricKeyProviderException;
 import template.android.com.domain.utils.numeric.ArrayUtils;
 import template.android.com.domain.utils.time.CurrentTimeProvider;
 
 public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
 
     private static final String ALIAS_NAME_TEMPLATE = "CN=%s";
-    private static final String KEY_ALGORITHM_RSA = "RSA";
-    private static final String KEY_ALGORITHM_AES = "AES";
-    private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
+
+    private static final String KEY_ALGORITHM_AES = CommonCryptoConstants.ALGORITHM_AES;
+    private static final String KEY_ALGORITHM_RSA = CommonCryptoConstants.ALGORITHM_RSA;
+
+    private static final String ANDROID_KEY_STORE = CommonCryptoConstants.ANDROID_KEY_STORE;
+
     private static final String RSA_NO_DIGEST_PKCS_1_PADDING = "RSA/NONE/PKCS1Padding";
 
-    private static final int AES_KEY_SIZE = 1 << 7;
-    private static final int RSA_KEY_SIZE = 2048;
+    private static final int AES_KEY_SIZE = CommonCryptoConstants.AES_128_KEY_SIZE;
+    private static final int RSA_KEY_SIZE = CommonCryptoConstants.RSA_2048_KEY_SIZE;
 
     private static final long RSA_KEY_DURATION_IN_DAYS = 10_000L;
+
+    private final SecureRandom secureRandom = new SecureRandom();
 
     private final Context context;
     private final CurrentTimeProvider currentTimeProvider;
@@ -69,7 +76,7 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
             this.keyStore.load(null);
 
         } catch (final Exception e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
         }
     }
 
@@ -78,52 +85,61 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
     public SecretKey getSymmetricAesCbcPkcs7PaddingKeyForAlias(final String alias) {
 
         if (!symmetricKeyProviderStorage.isKeySavedInStorage(alias)) {
-
-            try {
-                if (keyStore.containsAlias(alias)) {
-                    keyStore.deleteEntry(alias);
-                }
-
-            } catch (final KeyStoreException e) {
-                throw new RuntimeException(e);
-            }
-
+            deleteEntryFromKeystoreIfExists(alias);
             generateKeyInternal(alias);
         }
 
         try {
-            final KeyStore.PrivateKeyEntry privateKeyEntry = KeyStore.PrivateKeyEntry.class.cast(keyStore.getEntry(alias, null));
-
-            final byte[] decryptedKey;
-            synchronized (decryptCipherLock) {
-
-                final byte[] rawKey = symmetricKeyProviderStorage.getKeyFromStorage(alias);
-
-                decryptedKey = getDecryptCipher(privateKeyEntry.getPrivateKey(), rawKey);
-            }
-
-            return new SecretKeySpec(decryptedKey, KEY_ALGORITHM_AES);
+            return getSecretKey(alias);
 
         } catch (final BadPaddingException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final KeyStoreException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final IllegalBlockSizeException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final InvalidKeyException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final NoSuchPaddingException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final UnrecoverableEntryException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
+        }
+    }
+
+    @NonNull
+    private SecretKey getSecretKey(final String alias) throws NoSuchAlgorithmException, UnrecoverableEntryException, KeyStoreException, BadPaddingException,
+                                                              IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException {
+
+        final KeyStore.PrivateKeyEntry privateKeyEntry = KeyStore.PrivateKeyEntry.class.cast(keyStore.getEntry(alias, null));
+
+        final byte[] decryptedKey;
+        synchronized (decryptCipherLock) {
+
+            final byte[] rawKey = symmetricKeyProviderStorage.getKeyFromStorage(alias);
+
+            decryptedKey = getDecryptCipher(privateKeyEntry.getPrivateKey(), rawKey);
+        }
+
+        return new SecretKeySpec(decryptedKey, KEY_ALGORITHM_AES);
+    }
+
+    private void deleteEntryFromKeystoreIfExists(final String alias) {
+        try {
+            if (keyStore.containsAlias(alias)) {
+                keyStore.deleteEntry(alias);
+            }
+
+        } catch (final KeyStoreException e) {
+            throw new SymmetricKeyProviderException(e);
         }
     }
 
@@ -144,40 +160,38 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
             symmetricKeyProviderStorage.saveKeyToPersistentStorage(alias, cryptedKey);
 
         } catch (final BadPaddingException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final IllegalBlockSizeException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final InvalidAlgorithmParameterException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final InvalidKeyException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final KeyStoreException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final NoSuchPaddingException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final NoSuchProviderException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final UnrecoverableEntryException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
         }
     }
 
     private byte[] generateAesKey() {
 
-        final SecureRandom random = new SecureRandom();
-
         final byte[] rawKey = new byte[AES_KEY_SIZE];
-        random.nextBytes(rawKey);
+        secureRandom.nextBytes(rawKey);
 
         return rawKey;
     }

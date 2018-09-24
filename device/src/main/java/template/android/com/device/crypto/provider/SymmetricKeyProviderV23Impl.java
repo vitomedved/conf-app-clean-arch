@@ -14,12 +14,14 @@ import java.security.UnrecoverableEntryException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import template.android.com.domain.crypto.CommonCryptoConstants;
 import template.android.com.domain.crypto.provider.SymmetricKeyProvider;
+import template.android.com.domain.crypto.provider.SymmetricKeyProviderException;
 
 @TargetApi(Build.VERSION_CODES.M)
 public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
 
-    private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
+    private static final String ANDROID_KEY_STORE = CommonCryptoConstants.ANDROID_KEY_STORE;
 
     private static final String ALGORITHM_AES = "AES";
 
@@ -32,8 +34,9 @@ public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
 
         try {
             this.keyStore.load(null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+        } catch (final Exception e) {
+            throw new SymmetricKeyProviderException(e);
         }
     }
 
@@ -46,17 +49,17 @@ public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
 
                 try {
                     final KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM_AES, ANDROID_KEY_STORE);
-                    keyGenerator.init(getAesKeyParameterSpec());
+                    keyGenerator.init(getAesKeyParameterSpec(alias));
 
                     return keyGenerator.generateKey();
 
                 } catch (final Exception e) {
-                    throw new RuntimeException(e);
+                    throw new SymmetricKeyProviderException(e);
                 }
             }
 
         } catch (final KeyStoreException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
         }
 
         try {
@@ -64,23 +67,23 @@ public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
                                                 .getSecretKey();
 
         } catch (final NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final UnrecoverableEntryException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
 
         } catch (final KeyStoreException e) {
-            throw new RuntimeException(e);
+            throw new SymmetricKeyProviderException(e);
         }
     }
 
-    private KeyGenParameterSpec getAesKeyParameterSpec() {
+    private KeyGenParameterSpec getAesKeyParameterSpec(final String alias) {
 
         final int keyPurpose = KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT;
 
-        final KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(ANDROID_KEY_STORE, keyPurpose);
+        final KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(alias, keyPurpose);
 
-        return builder.setBlockModes(KeyProperties.BLOCK_MODE_CBC, KeyProperties.BLOCK_MODE_GCM)
+        return builder.setBlockModes(KeyProperties.BLOCK_MODE_CBC, KeyProperties.BLOCK_MODE_ECB, KeyProperties.BLOCK_MODE_GCM)
                       .setKeySize(AES_KEY_SIZE)
                       .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7, KeyProperties.ENCRYPTION_PADDING_NONE)
                       .build();
@@ -88,7 +91,12 @@ public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
 
     @Override
     public void deleteSymmetricKey(final String alias) {
-        // TODO
+        try {
+            keyStore.deleteEntry(alias);
+
+        } catch (final KeyStoreException e) {
+            throw new SymmetricKeyProviderException(e);
+        }
     }
 
     @Override
