@@ -4,8 +4,6 @@ import android.content.Context;
 import android.security.KeyPairGeneratorSpec;
 import android.support.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
