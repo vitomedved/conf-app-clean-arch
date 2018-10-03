@@ -35,6 +35,7 @@ public final class SymmetricKeyProviderStorageImpl implements SymmetricKeyProvid
 
     @Override
     public byte[] getKeyFromStorage(final String alias) {
+
         if (!isKeySavedInStorage(alias)) {
             throw new KeyDoesNotExistException("Key with alias" + alias + " does not exist.");
         }
