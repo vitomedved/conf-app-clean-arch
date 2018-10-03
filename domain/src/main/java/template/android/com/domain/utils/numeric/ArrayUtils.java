@@ -142,4 +142,38 @@ public final class ArrayUtils {
             return newArray;
         }
     }
+
+    /**
+     * Concats two or more byte arrays into single array.
+     *
+     * Arrays passed to the method remain intact.
+     *
+     * @param first  array to concatenate.
+     * @param second array to concatenate.
+     * @param arrays additional arrays to concatenate.
+     * @return single byte array containing all elements from passed arrays.
+     */
+    public static byte[] concatArrays(final byte[] first, final byte[] second, final byte[]... arrays) {
+
+        int length = first.length + second.length;
+        for (byte[] array : arrays) {
+            length += array.length;
+        }
+
+        final byte[] resultArray = new byte[length];
+
+        int haystack = 0;
+
+        System.arraycopy(first, 0, resultArray, haystack, first.length);
+        haystack += first.length;
+        System.arraycopy(second, 0, resultArray, haystack, second.length);
+        haystack += second.length;
+
+        for (final byte[] array : arrays) {
+            System.arraycopy(array, 0, resultArray, haystack, array.length);
+            haystack += array.length;
+        }
+
+        return resultArray;
+    }
 }

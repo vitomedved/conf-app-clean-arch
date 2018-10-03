@@ -45,8 +45,8 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
 
     private static final String RSA_NO_DIGEST_PKCS_1_PADDING = "RSA/NONE/PKCS1Padding";
 
-    private static final int AES_KEY_SIZE = CommonCryptoConstants.AES_128_KEY_SIZE;
-    private static final int RSA_KEY_SIZE = CommonCryptoConstants.RSA_2048_KEY_SIZE;
+    private static final int AES_KEY_SIZE_BYTES = CommonCryptoConstants.AES_128_KEY_SIZE_BYTES;
+    private static final int RSA_KEY_SIZE_BITS = CommonCryptoConstants.RSA_2048_KEY_SIZE_BITS;
 
     private static final long RSA_KEY_DURATION_IN_DAYS = 10_000L;
 
@@ -188,7 +188,7 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
 
     private byte[] generateAesKey() {
 
-        final byte[] rawKey = new byte[AES_KEY_SIZE];
+        final byte[] rawKey = new byte[AES_KEY_SIZE_BYTES];
         secureRandom.nextBytes(rawKey);
 
         return rawKey;
@@ -250,7 +250,7 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
     }
 
     private RSAKeyGenParameterSpec getRsaKeyGenParameterSpec() {
-        return new RSAKeyGenParameterSpec(RSA_KEY_SIZE, RSAKeyGenParameterSpec.F0);
+        return new RSAKeyGenParameterSpec(RSA_KEY_SIZE_BITS, RSAKeyGenParameterSpec.F0);
     }
 
     private Date getStartDate() {
