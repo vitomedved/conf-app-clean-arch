@@ -8,6 +8,7 @@ public final class CommonCryptoConstants {
     public static final String ALGORITHM_RSA = "RSA";
 
     public static final int AES_128_KEY_SIZE = 1 << 7;
+    public static final int AES_256_KEY_SIZE = 1 << 8;
     public static final int RSA_2048_KEY_SIZE = 1 << 11;
 
     private CommonCryptoConstants() {
