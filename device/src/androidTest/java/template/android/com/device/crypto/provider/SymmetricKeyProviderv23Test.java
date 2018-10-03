@@ -1,6 +1,9 @@
 package template.android.com.device.crypto.provider;
 
+import android.os.Build;
+
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +26,8 @@ public final class SymmetricKeyProviderv23Test {
 
     @Test
     public void name() {
+
+        Assume.assumeTrue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M);
 
         final String alias = "alias";
 
