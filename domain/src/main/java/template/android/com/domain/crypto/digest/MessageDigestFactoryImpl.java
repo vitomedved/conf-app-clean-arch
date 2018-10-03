@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 public final class MessageDigestFactoryImpl implements MessageDigestFactory {
 
     private static final String SHA_1 = "SHA-1";
-    private static final String SHA_256 = "SHA-1";
-    private static final String SHA_512 = "SHA-1";
+    private static final String SHA_256 = "SHA-256";
+    private static final String SHA_512 = "SHA-512";
     private static final String MD5 = "MD5";
 
     @Override
