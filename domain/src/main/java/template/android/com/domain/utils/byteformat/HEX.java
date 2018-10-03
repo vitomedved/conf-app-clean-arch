@@ -16,6 +16,7 @@ public final class HEX {
      * @return HEX representation of an array.
      */
     public static String toHEX(final byte[] input) {
+
         Objects.requireNonNull(input, "input == null");
 
         final char[] output = new char[2 * input.length];
@@ -33,6 +34,7 @@ public final class HEX {
      * @return HEX representation of arrays.
      */
     public static String toHEX(final byte[]... arrays) {
+
         Objects.requireNonNull(arrays, "arrays == null");
 
         final StringBuilder sb = new StringBuilder();
@@ -49,6 +51,7 @@ public final class HEX {
      * @return HEX representation of a single byte.
      */
     public static String toHEX(final byte input) {
+
         final char[] output = new char[2];
 
         output[0] = HEX[(input & 0xF0) >>> 4];
@@ -63,6 +66,7 @@ public final class HEX {
      * @return byte array representation of HEX string input.
      */
     public static byte[] fromHEX(final String hexInput) {
+
         Objects.requireNonNull(hexInput, "hexInput == null");
 
         final int length = hexInput.length();
