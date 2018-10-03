@@ -22,7 +22,7 @@ import template.android.com.domain.crypto.obfuscator.StringObfuscatorImpl;
 import template.android.com.domain.crypto.provider.SymmetricKeyProvider;
 
 @RunWith(AndroidJUnit4.class)
-public final class AesCryptoEngineTest {
+public final class AesCryptoEngineTestV19 {
 
     private CryptoEngineFactory cryptoEngineFactory;
     private SymmetricKeyProvider symmetricKeyProvider;
@@ -48,10 +48,10 @@ public final class AesCryptoEngineTest {
     }
 
     @Test
-    public void name() {
+    public void testAesCryptoEngineEncryptingAndDecryptingUsingSymmetricKeyProviderV19() {
 
         // Given
-        final byte[] plainText = "plaintexttoencrypt".getBytes();
+        final byte[] plainText = "plain".getBytes();
 
         // When
         final byte[] cryptogram = aesCryptoEngine.encrypt(plainText);

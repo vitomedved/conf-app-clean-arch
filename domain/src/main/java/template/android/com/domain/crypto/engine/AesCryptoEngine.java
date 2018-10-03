@@ -1,7 +1,5 @@
 package template.android.com.domain.crypto.engine;
 
-import java.security.SecureRandom;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
@@ -12,7 +10,7 @@ public final class AesCryptoEngine implements CryptoEngine {
 
     private static final int IV_LENGTH = 16;
 
-    private static final String ALGORITHM_TRANSFORMATION = "AES/CBC/PKCS5PADDING";
+    private static final String ALGORITHM_TRANSFORMATION = "AES/CBC/PKCS7PADDING";
 
     private final Object encryptLock = new Object();
     private final Object decryptLock = new Object();
@@ -20,13 +18,11 @@ public final class AesCryptoEngine implements CryptoEngine {
     private final Cipher encryptCipher;
     private final Cipher decryptCipher;
 
-    private final SecureRandom secureRandom;
     private final SecretKey secretKey;
 
     public AesCryptoEngine(final SecretKey secretKey) {
 
         this.secretKey = secretKey;
-        this.secureRandom = new SecureRandom();
 
         try {
             encryptCipher = Cipher.getInstance(ALGORITHM_TRANSFORMATION);
@@ -40,15 +36,13 @@ public final class AesCryptoEngine implements CryptoEngine {
     public byte[] encrypt(final byte[] bytes) {
 
         try {
-            final IvParameterSpec ivParameterSpec = getRandomIV();
-
             final byte[] cryptogram;
             synchronized (encryptLock) {
-                encryptCipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+                encryptCipher.init(Cipher.ENCRYPT_MODE, secretKey);
                 cryptogram = encryptCipher.doFinal(bytes);
             }
 
-            final byte[] resultCryptogram = ArrayUtils.concatArrays(ivParameterSpec.getIV(), cryptogram);
+            final byte[] resultCryptogram = ArrayUtils.concatArrays(encryptCipher.getIV(), cryptogram);
 
             ArrayUtils.clearArray(cryptogram);
 
@@ -57,14 +51,6 @@ public final class AesCryptoEngine implements CryptoEngine {
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private IvParameterSpec getRandomIV() {
-
-        final byte[] iv = new byte[IV_LENGTH];
-        secureRandom.nextBytes(iv);
-
-        return new IvParameterSpec(iv);
     }
 
     public byte[] decrypt(final byte[] bytes) {

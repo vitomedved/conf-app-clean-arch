@@ -5,7 +5,6 @@ import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
-import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -79,12 +78,10 @@ public final class SymmetricKeyProviderV23Impl implements SymmetricKeyProvider {
 
     private KeyGenParameterSpec getAesKeyParameterSpec(final String alias) {
 
-        final int keyPurpose = KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT;
+        final KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(alias, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT);
 
-        final KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(alias, keyPurpose);
-
-        return builder.setBlockModes(KeyProperties.BLOCK_MODE_CBC, KeyProperties.BLOCK_MODE_ECB, KeyProperties.BLOCK_MODE_GCM)
-                      .setKeySize(AES_KEY_SIZE)
+        return builder.setKeySize(AES_KEY_SIZE)
+                      .setBlockModes(KeyProperties.BLOCK_MODE_CBC, KeyProperties.BLOCK_MODE_GCM)
                       .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7, KeyProperties.ENCRYPTION_PADDING_NONE)
                       .build();
     }
