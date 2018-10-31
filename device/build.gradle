@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.jakewharton.threetenabp:threetenabp:' + $threeTenVersion
 
     testImplementation 'junit:junit:' + $jUnitVersion
+    testImplementation 'com.android.support.test:rules:1.0.2'
 
     androidTestImplementation 'com.android.support.test:runner:' + $testRunnerVersion
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + $espressoCoreVersion
