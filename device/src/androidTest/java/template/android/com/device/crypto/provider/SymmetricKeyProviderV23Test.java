@@ -11,17 +11,16 @@ import java.security.KeyStore;
 
 import javax.crypto.SecretKey;
 
+import template.android.com.domain.crypto.CommonCryptoConstants;
 import template.android.com.domain.crypto.provider.SymmetricKeyProvider;
 
-public final class SymmetricKeyProviderv23Test {
-
-    private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
+public final class SymmetricKeyProviderV23Test {
 
     private SymmetricKeyProvider symmetricKeyProvider;
 
     @Before
     public void setUp() throws Exception {
-        symmetricKeyProvider = new SymmetricKeyProviderV23Impl(KeyStore.getInstance(ANDROID_KEY_STORE));
+        symmetricKeyProvider = new SymmetricKeyProviderV23Impl(KeyStore.getInstance(CommonCryptoConstants.ANDROID_KEY_STORE));
     }
 
     @Test

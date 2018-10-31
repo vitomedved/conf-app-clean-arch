@@ -147,11 +147,9 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
         try {
             generatePublicPrivateKeyForAliasInKeystore(alias);
 
-            final byte[] rawKey = generateAesKey();
-
             final KeyStore.PrivateKeyEntry privateKeyEntry = KeyStore.PrivateKeyEntry.class.cast(keyStore.getEntry(alias, null));
-
-            final byte[] cryptedKey = encryptKey(privateKeyEntry.getCertificate(), rawKey);
+            final byte[] rawKey = generateAesKey();
+            final byte[] cryptedKey = aesKeyWithCertificate(privateKeyEntry.getCertificate(), rawKey);
 
             ArrayUtils.clearArray(rawKey);
 
@@ -200,9 +198,9 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
         keyPairGenerator.generateKeyPair();
     }
 
-    private byte[] encryptKey(final Certificate certificate, final byte[] rawKey) throws InvalidKeyException, NoSuchPaddingException,
-                                                                                         NoSuchAlgorithmException, BadPaddingException,
-                                                                                         IllegalBlockSizeException {
+    private byte[] aesKeyWithCertificate(final Certificate certificate, final byte[] rawKey) throws InvalidKeyException, NoSuchPaddingException,
+                                                                                                    NoSuchAlgorithmException, BadPaddingException,
+                                                                                                    IllegalBlockSizeException {
 
         synchronized (encryptCipherLock) {
             if (encryptCipher == null) {
@@ -233,7 +231,7 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
     private KeyPairGeneratorSpec createKeyPairGeneratorSpe(final String alias) {
 
         return new KeyPairGeneratorSpec.Builder(context).setAlias(alias)
-                                                        .setSubject(getX509Principal(alias))
+                                                        .setSubject(getX509PrincipalForAlias(alias))
                                                         .setSerialNumber(getCertificateSerialNumber())
                                                         .setAlgorithmParameterSpec(getRsaKeyGenParameterSpec())
                                                         .setStartDate(getStartDate())
@@ -241,7 +239,7 @@ public final class SymmetricKeyProviderV19Impl implements SymmetricKeyProvider {
                                                         .build();
     }
 
-    private X500Principal getX509Principal(final String alias) {
+    private X500Principal getX509PrincipalForAlias(final String alias) {
         return new X500Principal(String.format(ALIAS_NAME_TEMPLATE, alias));
     }
 

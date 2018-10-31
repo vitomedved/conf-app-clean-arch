@@ -12,15 +12,13 @@ import java.security.KeyStore;
 import javax.crypto.SecretKey;
 
 import template.android.com.device.time.CurrentTimeProviderImpl;
+import template.android.com.domain.crypto.CommonCryptoConstants;
 import template.android.com.domain.crypto.digest.MessageDigestFactory;
 import template.android.com.domain.crypto.digest.MessageDigestFactoryImpl;
 import template.android.com.domain.crypto.obfuscator.NoOpStringObfuscator;
-import template.android.com.domain.crypto.obfuscator.StringObfuscatorImpl;
 import template.android.com.domain.crypto.provider.SymmetricKeyProvider;
 
 public final class SymmetricKeyProviderV19Test {
-
-    private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
 
     private Context context;
 
@@ -37,7 +35,7 @@ public final class SymmetricKeyProviderV19Test {
 
         symmetricKeyProvider = new SymmetricKeyProviderV19Impl(context,
                                                                new CurrentTimeProviderImpl(),
-                                                               KeyStore.getInstance(ANDROID_KEY_STORE),
+                                                               KeyStore.getInstance(CommonCryptoConstants.ANDROID_KEY_STORE),
                                                                SymmetricKeyProviderStorageImpl.create(context,
                                                                                                       new NoOpStringObfuscator()));
 
