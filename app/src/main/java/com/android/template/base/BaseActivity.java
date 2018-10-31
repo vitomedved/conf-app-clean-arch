@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import template.android.com.domain.utils.collection.ListUtils;
 
 public abstract class BaseActivity extends DaggerActivity {
 
@@ -21,6 +22,9 @@ public abstract class BaseActivity extends DaggerActivity {
 
     @Inject
     ActivityUtils activityUtils;
+
+    @Inject
+    ListUtils listUtils;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -76,11 +80,15 @@ public abstract class BaseActivity extends DaggerActivity {
     @SuppressWarnings("Convert2streamapi")
     private void clearFragments() {
         final List<Fragment> fragments = fragmentManager.getFragments();
-        if (fragments != null) {
-            for (final Fragment fragment : fragments) {
-                if (fragment instanceof BaseFragment) {
-                    ((BaseFragment) fragment).onPreDestroy();
-                }
+        if (!listUtils.isEmpty(fragments)) {
+            propagateOnPreDestroyToFragments(fragments);
+        }
+    }
+
+    private void propagateOnPreDestroyToFragments(final List<Fragment> fragments) {
+        for (final Fragment fragment : fragments) {
+            if (fragment instanceof BaseFragment) {
+                BaseFragment.class.cast(fragment).onPreDestroy();
             }
         }
     }
