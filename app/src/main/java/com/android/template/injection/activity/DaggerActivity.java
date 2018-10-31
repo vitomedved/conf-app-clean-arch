@@ -19,13 +19,13 @@ public abstract class DaggerActivity extends AppCompatActivity {
 
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
-            activityComponent = ComponentFactory.createActivityComponent(this, getGpsTrackingApplication());
+            activityComponent = ComponentFactory.createActivityComponent(this, getApp());
         }
 
         return activityComponent;
     }
 
-    private ExampleApplication getGpsTrackingApplication() {
+    private ExampleApplication getApp() {
         return ExampleApplication.from(this);
     }
 
