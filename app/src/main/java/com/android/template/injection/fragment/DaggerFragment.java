@@ -3,7 +3,7 @@ package com.android.template.injection.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.android.template.injection.ComponentFactory;
+import com.android.template.injection.factory.ComponentFactory;
 import com.android.template.injection.activity.DaggerActivity;
 
 public abstract class DaggerFragment extends Fragment {

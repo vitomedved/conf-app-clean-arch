@@ -2,7 +2,7 @@ package com.android.template.injection.application.module;
 
 import android.content.Context;
 
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;

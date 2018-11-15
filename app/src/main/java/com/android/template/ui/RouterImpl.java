@@ -32,8 +32,8 @@ public final class RouterImpl implements Router {
 
     @Override
     public boolean showPageInExternalBrowser(final String url) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
 
+        final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
         if (canIntentBeResolved(intent)) {
             activity.startActivity(intent);
             return true;
@@ -47,10 +47,14 @@ public final class RouterImpl implements Router {
     }
 
     public void goBack() {
-        if (fragmentManager.getBackStackEntryCount() == 0) {
-            activity.finish();
-        } else {
+        if (areThereFragmentsOnBackStack()) {
             fragmentManager.popBackStack();
+        } else {
+            activity.finish();
         }
+    }
+
+    private boolean areThereFragmentsOnBackStack() {
+        return fragmentManager.getBackStackEntryCount() > 0;
     }
 }

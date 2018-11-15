@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
 
-import com.android.template.injection.ForActivity;
+import com.android.template.injection.qualifier.ForActivity;
 import com.android.template.injection.activity.DaggerActivity;
 import com.android.template.injection.scope.ActivityScope;
 import com.android.template.ui.Router;

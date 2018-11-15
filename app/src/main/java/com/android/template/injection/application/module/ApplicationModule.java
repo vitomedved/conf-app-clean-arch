@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.android.template.application.ExampleApplication;
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 
 import javax.inject.Singleton;
 

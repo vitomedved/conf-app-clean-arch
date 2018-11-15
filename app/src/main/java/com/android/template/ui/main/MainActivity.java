@@ -1,7 +1,12 @@
 package com.android.template.ui.main;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +30,8 @@ import template.android.com.domain.DomainKotlinInvoker;
 
 public final class MainActivity extends BaseActivity implements MainContract.View {
 
+    private static final String CHANNEL_ID = "default";
+
     @BindView(R.id.activity_main_text_view)
     TextView textView;
 
@@ -39,6 +46,11 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
 
     @Inject
     ImageLoader imageLoader;
+
+    @Inject
+    NotificationManager notificationManager;
+
+    private int notificationId = 100;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -62,6 +74,23 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
                               imageView);
 
         presenter.init();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Test", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("Test purposes");
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            notificationManager.notify(notificationId++, new NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.drawable.ic_launcher)
+                                                                                                         .setContentTitle("Title")
+                                                                                                         .setContentText("Text")
+                                                                                                         .setColorized(true)
+                                                                                                         .setColor(Color.RED)
+                                                                                                         .build());
+        }
     }
 
     @Override

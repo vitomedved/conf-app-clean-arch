@@ -3,7 +3,7 @@ package com.android.template.injection.application.module;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

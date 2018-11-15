@@ -1,4 +1,4 @@
-package com.android.template.injection;
+package com.android.template.injection.qualifier;
 
 import javax.inject.Qualifier;
 

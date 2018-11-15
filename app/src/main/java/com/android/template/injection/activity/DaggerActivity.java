@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.android.template.application.ExampleApplication;
-import com.android.template.injection.ComponentFactory;
+import com.android.template.injection.factory.ComponentFactory;
 
 public abstract class DaggerActivity extends AppCompatActivity {
 

@@ -2,7 +2,7 @@ package com.android.template.injection.application.module;
 
 import android.content.Context;
 
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 import com.android.template.ui.ViewModelConverter;
 import com.android.template.ui.ViewModelConverterImpl;
 import com.android.template.utils.StethoInitializer;

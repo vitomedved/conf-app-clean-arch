@@ -3,7 +3,7 @@ package com.android.template.injection.application.module;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 
 import javax.inject.Singleton;
 

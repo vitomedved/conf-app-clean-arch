@@ -11,7 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
-import com.android.template.injection.ForApplication;
+import com.android.template.injection.qualifier.ForApplication;
 
 import javax.inject.Singleton;
 

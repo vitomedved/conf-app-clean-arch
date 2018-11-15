@@ -1,4 +1,4 @@
-package com.android.template.injection;
+package com.android.template.injection.factory;
 
 import com.android.template.application.ExampleApplication;
 import com.android.template.injection.activity.ActivityComponent;
