@@ -53,7 +53,7 @@ ext {
     $retrofitVersion = '2.5.0'
     $okhttpVersion = '3.12.1'
 
-    $glideVersion = '4.7.1'
+    $glideVersion = '4.8.0'
 
     $threeTenVersion = '1.1.1'
 
