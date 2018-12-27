@@ -50,8 +50,6 @@ ext {
     $rxAndroidVersion = '1.2.1'
     $rxBindingVersion = '1.0.1'
 
-    $retrolambdaVersion = '3.2.5'
-
     $retrofitVersion = '2.5.0'
     $okhttpVersion = '3.12.1'
 
