@@ -57,7 +57,7 @@ ext {
 
     $glideVersion = '4.7.1'
 
-    $threeTenVersion = '1.1.0'
+    $threeTenVersion = '1.1.1'
 
     $firebaseVersion = '11.6.2'
     $googleAnalyticsVersion = $firebaseVersion
