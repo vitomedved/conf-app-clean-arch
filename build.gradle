@@ -42,7 +42,7 @@ ext {
 
     $multiDexVersion = '1.0.3'
 
-    $daggerVersion = '2.15'
+    $daggerVersion = '2.20'
 
     $streamVersion = '1.1.9'
 
