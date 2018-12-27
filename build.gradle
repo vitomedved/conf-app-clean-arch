@@ -52,8 +52,8 @@ ext {
 
     $retrolambdaVersion = '3.2.5'
 
-    $retrofitVersion = '2.4.0'
-    $okhttpVersion = '3.10.0'
+    $retrofitVersion = '2.5.0'
+    $okhttpVersion = '3.12.1'
 
     $glideVersion = '4.7.1'
 
