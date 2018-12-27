@@ -3,6 +3,7 @@ package com.android.template.base;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
@@ -30,7 +31,7 @@ public abstract class BaseFragment extends DaggerFragment implements BackPropaga
 
     @Nullable
     @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         return bindViews(inflater.inflate(getLayoutResourceId(), container, false));
     }
 
@@ -79,7 +80,7 @@ public abstract class BaseFragment extends DaggerFragment implements BackPropaga
     }
 
     protected final void showShortToast(@StringRes final int stringResourceId) {
-        showToast(stringResourceId, Toast.LENGTH_LONG);
+        showToast(stringResourceId, Toast.LENGTH_SHORT);
     }
 
     protected final void showLongToast(@StringRes final int stringResourceId) {
