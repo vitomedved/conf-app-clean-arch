@@ -44,7 +44,7 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
 
     protected final ViewActionQueue<View> viewActionQueue = new ViewActionQueue<>();
 
-    private final CompositeDisposable subscriptions = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private final CompositeDisposable permissionSubscriptions = new CompositeDisposable();
 
     public BasePresenter(final View view) {
@@ -76,10 +76,10 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     }
 
     private void subscribeToConnectivityChange() {
-        addSubscription(connectivityReceiver.getConnectivityStatus()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(this::onConnectivityChange, this::logError));
+        addDisposable(connectivityReceiver.getConnectivityStatus()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(this::onConnectivityChange, this::logError));
     }
 
     protected void onConnectivityChange(final boolean isConnected) {
@@ -91,7 +91,7 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     public void deactivate() {
         viewActionQueue.pause();
         viewActionsSubscription.dispose();
-        subscriptions.clear();
+        disposables.clear();
     }
 
     @Override
@@ -103,7 +103,7 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     @CallSuper
     public void destroy() {
         viewActionQueue.destroy();
-        subscriptions.clear();
+        disposables.clear();
     }
 
     @Override
@@ -111,8 +111,8 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         router.goBack();
     }
 
-    protected void addSubscription(final Disposable disposable) {
-        subscriptions.add(disposable);
+    protected void addDisposable(final Disposable disposable) {
+        disposables.add(disposable);
     }
 
     protected void addPermissionSubscription(final Disposable disposable) {
@@ -120,19 +120,19 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     }
 
     protected final void doIfConnectedToInternet(final Action ifConnected, final Action ifNotConnected) {
-        addSubscription(connectivityReceiver.isConnected()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
+        addDisposable(connectivityReceiver.isConnected()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
                                                        this::logError));
     }
 
     protected final void observeInternetConnection(final Action ifConnected, final Action ifNotConnected) {
-        addSubscription(connectivityReceiver.getConnectivityStatus()
-                                            .distinctUntilChanged()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
+        addDisposable(connectivityReceiver.getConnectivityStatus()
+                                          .distinctUntilChanged()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
                                                        this::logError));
     }
 
