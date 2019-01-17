@@ -16,7 +16,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + $kotlin_version
 
     api 'com.annimon:stream:' + $streamVersion
-    api 'io.reactivex:rxjava:' + $rxJavaVersion
+    api 'io.reactivex.rxjava2:rxjava:' + $rxJavaVersion
 
     testImplementation 'junit:junit:' + $jUnitVersion
     testImplementation 'org.mockito:mockito-core:' + $mockitoCoreVersion

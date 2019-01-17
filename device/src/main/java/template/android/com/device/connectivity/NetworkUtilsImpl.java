@@ -3,7 +3,7 @@ package template.android.com.device.connectivity;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import rx.Single;
+import io.reactivex.Single;
 
 public final class NetworkUtilsImpl implements NetworkUtils {
 

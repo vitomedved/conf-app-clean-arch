@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
-import rx.Observable;
-import rx.Scheduler;
-import rx.Single;
-import rx.subjects.PublishSubject;
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
+import io.reactivex.subjects.PublishSubject;
 
 public final class ConnectivityReceiverImpl extends BroadcastReceiver implements ConnectivityReceiver {
 

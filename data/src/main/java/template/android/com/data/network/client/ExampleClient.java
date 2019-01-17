@@ -1,6 +1,6 @@
 package template.android.com.data.network.client;
 
-import rx.Single;
+import io.reactivex.Single;
 import template.android.com.domain.model.Example;
 
 public interface ExampleClient {

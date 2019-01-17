@@ -10,7 +10,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import rx.Scheduler;
+import io.reactivex.Scheduler;
 import template.android.com.device.connectivity.ConnectivityManagerWrapper;
 import template.android.com.device.connectivity.ConnectivityManagerWrapperImpl;
 import template.android.com.device.connectivity.ConnectivityReceiver;

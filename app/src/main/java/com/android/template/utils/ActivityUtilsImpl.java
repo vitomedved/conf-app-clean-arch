@@ -10,7 +10,7 @@ import com.annimon.stream.Optional;
 
 import java.util.List;
 
-import rx.functions.Func1;
+import io.reactivex.functions.Function;
 
 public final class ActivityUtilsImpl implements ActivityUtils {
 
@@ -50,11 +50,17 @@ public final class ActivityUtilsImpl implements ActivityUtils {
         return callIfPresent(findBackPropagatingFragment(fragmentManager), BackPropagatingFragment::onBack);
     }
 
-    private boolean callIfPresent(final Optional<BackPropagatingFragment> backPropagatingFragmentOptional, final Func1<BackPropagatingFragment, Boolean> action) {
+    private boolean callIfPresent(final Optional<BackPropagatingFragment> backPropagatingFragmentOptional, final Function<BackPropagatingFragment, Boolean> action) {
         if (backPropagatingFragmentOptional.isPresent()) {
             final BackPropagatingFragment backPropagatingFragment = backPropagatingFragmentOptional.get();
-            return action.call(backPropagatingFragment);
+            try {
+                return action.apply(backPropagatingFragment);
+
+            } catch (final Exception e) {
+                throw new RuntimeException(e);
+            }
         }
+
         return false;
     }
 

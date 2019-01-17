@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import rx.functions.Action0;
+import io.reactivex.functions.Action;
 
 public final class ViewUtilsImpl implements ViewUtils {
 
@@ -31,13 +31,17 @@ public final class ViewUtilsImpl implements ViewUtils {
     }
 
     @Override
-    public void doOnPreDraw(final View itemView, final Action0 actionToPerform, final boolean renderFrame) {
+    public void doOnPreDraw(final View itemView, final Action actionToPerform, final boolean renderFrame) {
         itemView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
             @Override
             public boolean onPreDraw() {
                 itemView.getViewTreeObserver().removeOnPreDrawListener(this);
-                actionToPerform.call();
+                try {
+                    actionToPerform.run();
+                } catch (final Exception e) {
+                    throw new RuntimeException(e);
+                }
 
                 return renderFrame;
             }
