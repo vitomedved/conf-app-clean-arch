@@ -3,8 +3,8 @@ package com.android.template.application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
-import com.android.template.injection.factory.ComponentFactory;
 import com.android.template.injection.application.ApplicationComponent;
+import com.android.template.injection.factory.ComponentFactory;
 import com.android.template.injection.user.UserComponent;
 import com.android.template.utils.StethoInitializer;
 
