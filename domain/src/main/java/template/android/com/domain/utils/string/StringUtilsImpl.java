@@ -7,7 +7,7 @@ import java.util.List;
 
 public final class StringUtilsImpl implements StringUtils {
 
-    private static final int MINIMUM_ARRAYLIST_CAPACITY = 1;
+    private static final int MINIMUM_ARRAY_LIST_CAPACITY = 1;
 
     private static final String EMPTY = "";
 
@@ -67,6 +67,6 @@ public final class StringUtilsImpl implements StringUtils {
     }
 
     private <T> List<T> getEmptyArrayList() {
-        return new ArrayList<>(MINIMUM_ARRAYLIST_CAPACITY);
+        return new ArrayList<>(MINIMUM_ARRAY_LIST_CAPACITY);
     }
 }
