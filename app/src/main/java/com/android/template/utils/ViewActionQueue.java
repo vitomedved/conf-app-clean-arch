@@ -22,15 +22,15 @@ public final class ViewActionQueue<View> {
     private boolean isPaused = true;
 
     public void subscribeTo(final Observable<Action1<View>> observable, final Action1<View> onCompleteAction, final Action1<Throwable> errorAction) {
-        subscriptions.add(observable.observeOn(AndroidSchedulers.mainThread()).subscribe(this::onResult, errorAction::call, () -> onResult(onCompleteAction)));
+        subscriptions.add(observable.observeOn(AndroidSchedulers.mainThread()).subscribe(this::onResult, errorAction, () -> onResult(onCompleteAction)));
     }
 
     public void subscribeTo(final Single<Action1<View>> single, final Action1<Throwable> errorAction) {
-        subscriptions.add(single.observeOn(AndroidSchedulers.mainThread()).subscribe(this::onResult, errorAction::call));
+        subscriptions.add(single.observeOn(AndroidSchedulers.mainThread()).subscribe(this::onResult, errorAction));
     }
 
     public void subscribeTo(final Completable completable, final Action1<View> onCompleteAction, final Action1<Throwable> errorAction) {
-        subscriptions.add(completable.observeOn(AndroidSchedulers.mainThread()).subscribe(() -> onResult(onCompleteAction), errorAction::call));
+        subscriptions.add(completable.observeOn(AndroidSchedulers.mainThread()).subscribe(() -> onResult(onCompleteAction), errorAction));
     }
 
     private void onResult(final Action1<View> resultAction) {
