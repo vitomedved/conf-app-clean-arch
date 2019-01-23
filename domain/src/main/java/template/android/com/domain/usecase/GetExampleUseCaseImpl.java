@@ -2,7 +2,7 @@ package template.android.com.domain.usecase;
 
 import com.annimon.stream.Optional;
 
-import rx.Observable;
+import io.reactivex.Observable;
 import template.android.com.domain.model.Example;
 import template.android.com.domain.repository.ExampleRepository;
 
@@ -29,7 +29,8 @@ public final class GetExampleUseCaseImpl implements GetExampleUseCase {
 
     private Observable<Example> fetchExample() {
         return repository.fetchExample()
-                         .toObservable()
-                         .flatMapCompletable(repository::saveExample);
+                         .flatMap(example -> repository.saveExample(example)
+                                                       .toSingleDefault(example))
+                         .toObservable();
     }
 }

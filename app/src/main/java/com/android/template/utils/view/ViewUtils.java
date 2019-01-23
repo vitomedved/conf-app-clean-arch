@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import rx.functions.Action0;
+import io.reactivex.functions.Action;
 
 public interface ViewUtils {
 
-    void doOnPreDraw(View itemView, Action0 actionToPerform, boolean renderFrame);
+    void doOnPreDraw(View itemView, Action actionToPerform, boolean renderFrame);
 
     void underlineTextView(TextView textView);
 

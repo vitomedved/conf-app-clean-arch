@@ -18,10 +18,10 @@ public final class MainPresenter extends BasePresenter<MainContract.View> implem
 
     @Override
     public void init() {
-        addSubscription(getExampleUseCase.execute()
-                                         .subscribeOn(backgroundScheduler)
-                                         .observeOn(mainThreadScheduler)
-                                         .subscribe(Actions.noOpAction1(),
+        addDisposable(getExampleUseCase.execute()
+                                       .subscribeOn(backgroundScheduler)
+                                       .observeOn(mainThreadScheduler)
+                                       .subscribe(Actions.noOpAction1(),
                                                     Actions.noOpAction1()));
     }
 }

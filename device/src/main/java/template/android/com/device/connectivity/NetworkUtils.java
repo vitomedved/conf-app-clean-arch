@@ -1,7 +1,6 @@
 package template.android.com.device.connectivity;
 
-
-import rx.Single;
+import io.reactivex.Single;
 
 public interface NetworkUtils {
 

@@ -14,14 +14,12 @@ import java.lang.ref.WeakReference;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import rx.Observable;
-import rx.Scheduler;
-import rx.Subscription;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.internal.operators.OperatorOnBackpressureBuffer;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.Scheduler;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import template.android.com.device.connectivity.ConnectivityReceiver;
 
 public abstract class BasePresenter<View extends BaseView> implements ScopedPresenter {
@@ -42,12 +40,12 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
 
     private final WeakReference<View> viewReference;
 
-    private Subscription viewActionsSubscription;
+    private Disposable viewActionsSubscription;
 
     protected final ViewActionQueue<View> viewActionQueue = new ViewActionQueue<>();
 
-    private final CompositeSubscription subscriptions = new CompositeSubscription();
-    private final CompositeSubscription permissionSubscriptions = new CompositeSubscription();
+    private final CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable permissionSubscriptions = new CompositeDisposable();
 
     public BasePresenter(final View view) {
         viewReference = new WeakReference<>(view);
@@ -62,7 +60,6 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     @CallSuper
     public void activate() {
         viewActionsSubscription = viewActionQueue.viewActionsObservable()
-                                                 .lift(getViewActionBackPressureStrategy())
                                                  .observeOn(mainThreadScheduler)
                                                  .subscribe(this::doIfViewNotNull);
         viewActionQueue.resume();
@@ -70,19 +67,19 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         subscribeToConnectivityChange();
     }
 
-    protected Observable.Operator<Action1<View>, Action1<View>> getViewActionBackPressureStrategy() {
-        return OperatorOnBackpressureBuffer.instance();
-    }
+//    protected Observable.Operator<Consumer<View>, Consumer<View>> getViewActionBackPressureStrategy() {
+//        return OperatorOnBackpressureBuffer.instance();
+//    }
 
-    protected final void onViewAction(final Action1<View> viewAction) {
+    protected final void onViewAction(final Consumer<View> viewAction) {
         viewActionQueue.scheduleViewAction(viewAction);
     }
 
     private void subscribeToConnectivityChange() {
-        addSubscription(connectivityReceiver.getConnectivityStatus()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(this::onConnectivityChange, this::logError));
+        addDisposable(connectivityReceiver.getConnectivityStatus()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(this::onConnectivityChange, this::logError));
     }
 
     protected void onConnectivityChange(final boolean isConnected) {
@@ -93,8 +90,8 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     @CallSuper
     public void deactivate() {
         viewActionQueue.pause();
-        viewActionsSubscription.unsubscribe();
-        subscriptions.clear();
+        viewActionsSubscription.dispose();
+        disposables.clear();
     }
 
     @Override
@@ -106,7 +103,7 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
     @CallSuper
     public void destroy() {
         viewActionQueue.destroy();
-        subscriptions.clear();
+        disposables.clear();
     }
 
     @Override
@@ -114,33 +111,38 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         router.goBack();
     }
 
-    protected void addSubscription(final Subscription subscription) {
-        subscriptions.add(subscription);
+    protected void addDisposable(final Disposable disposable) {
+        disposables.add(disposable);
     }
 
-    protected void addPermissionSubscription(final Subscription subscription) {
-        permissionSubscriptions.add(subscription);
+    protected void addPermissionSubscription(final Disposable disposable) {
+        permissionSubscriptions.add(disposable);
     }
 
-    protected final void doIfConnectedToInternet(final Action0 ifConnected, final Action0 ifNotConnected) {
-        addSubscription(connectivityReceiver.isConnected()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
+    protected final void doIfConnectedToInternet(final Action ifConnected, final Action ifNotConnected) {
+        addDisposable(connectivityReceiver.isConnected()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
                                                        this::logError));
     }
 
-    protected final void observeInternetConnection(final Action0 ifConnected, final Action0 ifNotConnected) {
-        addSubscription(connectivityReceiver.getConnectivityStatus()
-                                            .distinctUntilChanged()
-                                            .subscribeOn(backgroundScheduler)
-                                            .observeOn(mainThreadScheduler)
-                                            .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
+    protected final void observeInternetConnection(final Action ifConnected, final Action ifNotConnected) {
+        addDisposable(connectivityReceiver.getConnectivityStatus()
+                                          .distinctUntilChanged()
+                                          .subscribeOn(backgroundScheduler)
+                                          .observeOn(mainThreadScheduler)
+                                          .subscribe(isConnected -> onConnectedToInternet(isConnected, ifConnected, ifNotConnected),
                                                        this::logError));
     }
 
-    private void onConnectedToInternet(final boolean isConnected, final Action0 ifConnected, final Action0 ifNotConnected) {
-        (isConnected ? ifConnected : ifNotConnected).call();
+    private void onConnectedToInternet(final boolean isConnected, final Action ifConnected, final Action ifNotConnected) {
+        try {
+            (isConnected ? ifConnected : ifNotConnected).run();
+
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public final void logError(final Throwable throwable) {
@@ -149,17 +151,25 @@ public abstract class BasePresenter<View extends BaseView> implements ScopedPres
         }
     }
 
-    protected void doIfViewNotNull(final Action1<View> whenViewNotNull) {
+    protected void doIfViewNotNull(final Consumer<View> whenViewNotNull) {
         final View view = getNullableView();
         if (view != null) {
-            whenViewNotNull.call(view);
+            try {
+                whenViewNotNull.accept(view);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    protected <R> R getIfViewNotNull(final Func1<View, R> whenViewNotNull, final R defaultValue) {
+    protected <R> R getIfViewNotNull(final Function<View, R> whenViewNotNull, final R defaultValue) {
         final View view = getNullableView();
         if (view != null) {
-            return whenViewNotNull.call(view);
+            try {
+                return whenViewNotNull.apply(view);
+            } catch (final Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return defaultValue;
     }

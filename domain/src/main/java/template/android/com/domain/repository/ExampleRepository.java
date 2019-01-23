@@ -2,8 +2,8 @@ package template.android.com.domain.repository;
 
 import com.annimon.stream.Optional;
 
-import rx.Completable;
-import rx.Single;
+import io.reactivex.Completable;
+import io.reactivex.Single;
 import template.android.com.domain.model.Example;
 
 public interface ExampleRepository {

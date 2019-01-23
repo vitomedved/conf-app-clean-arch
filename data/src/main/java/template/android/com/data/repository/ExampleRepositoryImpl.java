@@ -2,8 +2,8 @@ package template.android.com.data.repository;
 
 import com.annimon.stream.Optional;
 
-import rx.Completable;
-import rx.Single;
+import io.reactivex.Completable;
+import io.reactivex.Single;
 import template.android.com.data.dao.ExampleDao;
 import template.android.com.data.network.client.ExampleClient;
 import template.android.com.domain.model.Example;
