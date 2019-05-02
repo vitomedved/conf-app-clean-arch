@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.android.template.injection.application.module.ThreadingModule;
 import com.android.template.ui.Router;
-import com.android.template.utils.ViewActionQueue;
+import com.android.template.utils.actionqueue.ViewActionQueue;
 
 import java.lang.ref.WeakReference;
 

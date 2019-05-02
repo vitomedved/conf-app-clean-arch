@@ -66,8 +66,8 @@ public final class UtilsModule {
 
     @Provides
     @Singleton
-    ViewUtils provideViewUtils() {
-        return new ViewUtilsImpl();
+    ViewUtils provideViewUtils(@ForApplication final Context context) {
+        return new ViewUtilsImpl(context);
     }
 
     @Provides

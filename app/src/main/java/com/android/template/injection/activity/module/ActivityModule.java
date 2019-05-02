@@ -1,6 +1,7 @@
 package com.android.template.injection.activity.module;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
@@ -8,6 +9,12 @@ import android.view.inputmethod.InputMethodManager;
 import com.android.template.injection.qualifier.ForActivity;
 import com.android.template.injection.activity.DaggerActivity;
 import com.android.template.injection.scope.ActivityScope;
+import com.android.template.utils.animation.AnimationFactory;
+import com.android.template.utils.animation.AnimationFactoryImpl;
+import com.android.template.utils.animation.AnimationInfoProvider;
+import com.android.template.utils.animation.AnimationInfoProviderImpl;
+import com.android.template.utils.ui.AlertDialogFactory;
+import com.android.template.utils.ui.AlertDialogFactoryImpl;
 import com.android.template.ui.Router;
 import com.android.template.ui.RouterImpl;
 import com.android.template.utils.ActivityUtils;
@@ -16,6 +23,8 @@ import com.android.template.utils.ui.ImageLoader;
 import com.android.template.utils.ui.ImageLoaderImpl;
 import com.android.template.utils.ui.KeyboardUtils;
 import com.android.template.utils.ui.KeyboardUtilsImpl;
+import com.android.template.utils.ui.ToastUtil;
+import com.android.template.utils.ui.ToastUtilImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -34,6 +43,24 @@ public final class ActivityModule {
     @ActivityScope
     ActivityUtils provideActivityUtils() {
         return new ActivityUtilsImpl();
+    }
+
+    @Provides
+    @ActivityScope
+    AlertDialogFactory provideAlertDialogFactory(@ForActivity final Context context) {
+        return new AlertDialogFactoryImpl(context);
+    }
+
+    @Provides
+    @ActivityScope
+    AnimationFactory provideAnimationProvider(@ForActivity final Context context) {
+        return new AnimationFactoryImpl(context);
+    }
+
+    @Provides
+    @ActivityScope
+    AnimationInfoProvider provideAnimationInfoProvider(final Resources resources) {
+        return new AnimationInfoProviderImpl(resources);
     }
 
     @Provides
@@ -78,9 +105,21 @@ public final class ActivityModule {
         return new RouterImpl(activity, fragmentManager, listUtils);
     }
 
+    @Provides
+    @ActivityScope
+    ToastUtil provideToastUtil(@ForActivity final Context context) {
+        return new ToastUtilImpl(context);
+    }
+
     public interface Exposes {
 
         ActivityUtils activityUtils();
+
+        AlertDialogFactory alertDialogFactory();
+
+        AnimationFactory animationFactory();
+
+        AnimationInfoProvider animationInfoProvider();
 
         @ForActivity
         Context provideActivityContext();
@@ -92,5 +131,7 @@ public final class ActivityModule {
         LayoutInflater layoutInflater();
 
         Router router();
+
+        ToastUtil toastUtil();
     }
 }

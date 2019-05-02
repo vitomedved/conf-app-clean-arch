@@ -1,5 +1,7 @@
 package template.android.com.device.connectivity;
 
+import com.annimon.stream.Optional;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -37,9 +39,10 @@ public final class NetworkUtilsImpl implements NetworkUtils {
     private boolean pingAddress(final String url) {
 
         try {
-            final InetAddress address = InetAddress.getByName(url);
-
-            return address != null && !EMPTY.equals(address.getHostAddress());
+            return Optional.ofNullable(InetAddress.getByName(url))
+                           .map(InetAddress::getHostAddress)
+                           .map(value -> !EMPTY.equals(value))
+                           .orElse(false);
 
         } catch (final UnknownHostException e) {
             return false;

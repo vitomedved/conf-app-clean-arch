@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -9,6 +11,12 @@ buildscript {
         jcenter()
     }
 }
+
+static def getDate() {
+    return new SimpleDateFormat("dd.MM.yyyy").format(new Date())
+}
+
+def TYPE_STRING = "String"
 
 android {
 
@@ -30,6 +38,8 @@ android {
         versionName '1.0'
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        buildConfigField TYPE_STRING, "VERSION_DATE", "\"${getDate()}\""
 
         multiDexEnabled true
     }
@@ -81,6 +91,16 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+
+    applicationVariants.all { variant ->
+        changeAPKName(variant)
+    }
+}
+
+def changeAPKName(variant) {
+    variant.outputs.all {output ->
+        outputFileName "Java-Project-Template_" + getDate() + "-v" + variant.versionName + "-" + variant.versionCode + "-" + variant.name + ".apk"
     }
 }
 

@@ -3,6 +3,7 @@ package com.android.template.injection.application.module;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.bluetooth.BluetoothManager;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -25,6 +26,12 @@ public final class AndroidSystemModule {
     @Singleton
     BluetoothManager provideBluetoothManager(@ForApplication final Context context) {
         return BluetoothManager.class.cast(context.getSystemService(Context.BLUETOOTH_SERVICE));
+    }
+
+    @Provides
+    @Singleton
+    ClipboardManager provideClipboardManager(@ForApplication final Context context) {
+        return ClipboardManager.class.cast(context.getSystemService(Context.CLIPBOARD_SERVICE));
     }
 
     @Provides
@@ -73,6 +80,8 @@ public final class AndroidSystemModule {
     public interface Exposes {
 
         BluetoothManager bluetoothManager();
+
+        ClipboardManager clipboardManager();
 
         ConnectivityManager connectivityManager();
 

@@ -14,7 +14,7 @@ public final class ConnectivityManagerWrapperImpl implements ConnectivityManager
     @Override
     public boolean isConnectedToNetwork() {
 
-        final NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        final NetworkInfo activeNetworkInfo = getActiveNetworkInfo();
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -22,11 +22,15 @@ public final class ConnectivityManagerWrapperImpl implements ConnectivityManager
     @Override
     public NetworkData getNetworkData() {
 
-        final NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        final NetworkInfo activeNetworkInfo = getActiveNetworkInfo();
 
         final boolean hasInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected();
         final boolean isMobileConnection = activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
 
         return new NetworkData(hasInternetConnection, isMobileConnection);
+    }
+
+    private NetworkInfo getActiveNetworkInfo() {
+        return connectivityManager.getActiveNetworkInfo();
     }
 }
