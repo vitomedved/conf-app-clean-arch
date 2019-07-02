@@ -11,7 +11,7 @@ public final class MainContract {
 
     public interface Presenter extends ScopedPresenter {
 
-        void init();
+        void showInitScreen();
     }
 
     public interface View extends BaseView {

@@ -7,4 +7,6 @@ public interface Router {
     void goBack();
 
     boolean showPageInExternalBrowser(String url);
+
+    void showWelcomeScreen();
 }

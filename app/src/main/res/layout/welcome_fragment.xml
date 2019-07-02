@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcome_fragment_text"
+        style="@style/WelcomeFragment.Margins.HelpTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/welcome_fragment_conference_input_layout"
+        style="@style/WelcomeFragment.Margins"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
+        android:layout_below="@id/welcome_fragment_text"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/welcome_fragment_conference_id_input"
+            android:layout_width="@dimen/welcome_fragment_conference_id_input_width"
+            android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
+            android:inputType="textUri"
+            android:maxLength="@integer/welcome_fragment_conference_id_input_length"
+            android:maxLines="@integer/welcome_fragment_conference_id_input_max_lines"
+            tools:ignore="Autofill,LabelFor" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            style="@style/WelcomeFragment.ImageButtonForward"
+            android:layout_width="@dimen/welcome_fragment_image_button_width"
+            android:layout_height="@dimen/welcome_fragment_image_button_height"
+            android:contentDescription="@string/forward_icon" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/welcome_fragment_qr_code_image_view"
+        style="@style/WelcomeFragment.QrCodeImageView"
+        android:layout_width="@dimen/welcome_fragment_qr_code_image_width"
+        android:layout_height="@dimen/welcome_fragment_qr_code_image_height"
+        android:layout_below="@id/welcome_fragment_conference_input_layout"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/qr_code_image" />
+
+
+</RelativeLayout>

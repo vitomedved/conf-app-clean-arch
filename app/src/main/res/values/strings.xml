@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Android Project Template</string>
+    <string name="welcome_fragment_info_text">Welcome to conference app, enter conference ID or click on QR code icon to scan conferences QR code.</string>
+    <string name="qr_code_image">QR code image</string>
+    <string name="forward_icon">Forward icon</string>
 </resources>

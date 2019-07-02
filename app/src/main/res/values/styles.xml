@@ -17,4 +17,30 @@
         <item name="cardElevation">@dimen/common_root_card_view_elevation</item>
     </style>
 
+
+    <!-- Welcome fragment -->
+    <style name="WelcomeFragment">
+
+    </style>
+
+    <style name="WelcomeFragment.Margins">
+        <item name="android:layout_marginBottom">@dimen/welcome_fragment_margin_bottom</item>
+    </style>
+
+    <style name="WelcomeFragment.Margins.HelpTextStyle">
+        <item name="android:layout_marginStart">@dimen/welcome_fragment_margin_start</item>
+        <item name="android:layout_marginEnd">@dimen/welcome_fragment_margin_end</item>
+        <item name="android:layout_marginTop">@dimen/welcome_fragment_margin_bottom</item>
+        <item name="android:text">@string/welcome_fragment_info_text</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="WelcomeFragment.ImageButtonForward">
+        <item name="android:background">@drawable/ic_forward</item>
+    </style>
+
+    <style name="WelcomeFragment.QrCodeImageView">
+        <item name="android:background">@drawable/qr_code</item>
+    </style>
+
 </resources>

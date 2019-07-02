@@ -4,4 +4,8 @@
     <!-- Animation -->
     <integer name="default_button_animation_duration">300</integer>
 
+
+    <!-- Welcome fragment -->
+    <integer name="welcome_fragment_conference_id_input_length">10</integer>
+    <integer name="welcome_fragment_conference_id_input_max_lines">1</integer>
 </resources>

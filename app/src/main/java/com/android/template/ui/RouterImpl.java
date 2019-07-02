@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
 import com.android.template.ui.main.MainActivity;
+import com.android.template.ui.welcome.WelcomeFragment;
 
 import template.android.com.domain.utils.collection.ListUtils;
 
@@ -40,6 +41,11 @@ public final class RouterImpl implements Router {
         }
 
         return false;
+    }
+
+    @Override
+    public void showWelcomeScreen() {
+        fragmentManager.beginTransaction().replace(CONTAINER_ID, WelcomeFragment.newInstance(), WelcomeFragment.TAG).commit();
     }
 
     private boolean canIntentBeResolved(final Intent intent) {
