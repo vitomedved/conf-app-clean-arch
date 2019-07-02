@@ -70,6 +70,8 @@ ext {
     $testRulesVersion = '1.0.2'
     $testRunnerVersion = '1.0.2'
     $espressoCoreVersion = '3.0.2'
+
+    $lottieVersion = '2.6.0'
 }
 
 task clean(type: Delete) {
