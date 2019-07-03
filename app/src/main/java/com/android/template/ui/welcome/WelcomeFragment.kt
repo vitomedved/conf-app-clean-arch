@@ -34,8 +34,9 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     @Inject
     lateinit var toastUtil: ToastUtil
 
+    // TODO: add functionality to QR code button to scan for ID - maybe change the way this is done
+
     // TODO: set all of the content from xml to the middle in one linear layout i guess
-    // TODO: add functionality to QR code button to scan for ID
     // TODO: connect to SQL database or firebase database for everything to work fine
 
     override fun getLayoutResourceId(): Int {
@@ -65,7 +66,6 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
 
     @OnClick(R.id.welcome_fragment_qr_code_image_view)
     fun onConferenceIdQrInputClick() {
-        //presenter.startScanningForConferenceIdQr()
         // TODO maybe move this to Router class and intent on activity from there
         // TODO maybe execute as useCase and then return a result (scanned QR code in string)
         IntentIntegrator.forSupportFragment(this).setOrientationLocked(true).setBeepEnabled(true).setPrompt("Scan conference ID").setCaptureActivity(CaptureActivityPortrait::class.java).initiateScan()

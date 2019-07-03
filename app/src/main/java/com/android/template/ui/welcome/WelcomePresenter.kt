@@ -48,8 +48,4 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     private fun processSetConferenceIdUseCaseError(throwable: Throwable) {
         Log.e("WelcomePresenter", "SetConferenceIdUseCase returned an error: $throwable")
     }
-
-    override fun startScanningForConferenceIdQr() {
-
-    }
 }
