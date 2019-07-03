@@ -8,12 +8,10 @@ import com.android.template.R
 import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
-import com.android.template.ui.main.MainActivity
 import com.android.template.ui.welcome.qr.CaptureActivityPortrait
 import com.android.template.utils.ui.ToastUtil
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
-import com.journeyapps.barcodescanner.CaptureActivity
 import javax.inject.Inject
 
 class WelcomeFragment : BaseFragment(), WelcomeContract.View {
@@ -25,7 +23,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
         fun newInstance(): WelcomeFragment = WelcomeFragment()
     }
 
-    @BindView(R.id.welcome_fragment_conference_id_input)
+    @BindView(R.id.fragment_welcome_conference_id_input)
     lateinit var conferenceIdInput: EditText
 
     @Inject
@@ -40,7 +38,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     // TODO: connect to SQL database or firebase database for everything to work fine
 
     override fun getLayoutResourceId(): Int {
-        return R.layout.welcome_fragment
+        return R.layout.fragment_welcome
     }
 
     override fun inject(component: FragmentComponent) {
@@ -59,21 +57,26 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
         toastUtil.showLongToast("Conference with entered ID does not exist. Please try again.")
     }
 
-    @OnClick(R.id.welcome_fragment_conference_id_input_submit)
+    @OnClick(R.id.fragment_welcome_conference_id_input_submit)
     fun onConferenceIdInputSubmitClick() {
         presenter.setConferenceId(conferenceIdInput.text.toString())
     }
 
-    @OnClick(R.id.welcome_fragment_qr_code_image_view)
+    @OnClick(R.id.fragment_welcome_qr_code_image_view)
     fun onConferenceIdQrInputClick() {
         // TODO maybe move this to Router class and intent on activity from there
         // TODO maybe execute as useCase and then return a result (scanned QR code in string)
-        IntentIntegrator.forSupportFragment(this).setOrientationLocked(true).setBeepEnabled(true).setPrompt("Scan conference ID").setCaptureActivity(CaptureActivityPortrait::class.java).initiateScan()
+        IntentIntegrator.forSupportFragment(this)
+                .setOrientationLocked(true)
+                .setBeepEnabled(true)
+                .setPrompt("Scan conference ID")
+                .setCaptureActivity(CaptureActivityPortrait::class.java)
+                .initiateScan()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
 
-        presenter.setConferenceId(result?.contents?: "")
+        presenter.setConferenceId(result?.contents ?: "")
     }
 }

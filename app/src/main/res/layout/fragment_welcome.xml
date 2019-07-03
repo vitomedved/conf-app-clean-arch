@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/welcome_fragment_text"
+        android:id="@+id/fragment_welcome_application_information_text"
         style="@style/WelcomeFragment.Margins.HelpTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center" />
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_welcome_conference_input_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/welcome_fragment_conference_input_layout"
+        android:id="@+id/fragment_welcome_conference_input_layout"
         style="@style/WelcomeFragment.Margins"
         android:layout_width="match_parent"
         android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
-        android:layout_below="@id/welcome_fragment_text"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_welcome_qr_code_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_welcome_application_information_text">
 
         <EditText
-            android:id="@+id/welcome_fragment_conference_id_input"
+            android:id="@+id/fragment_welcome_conference_id_input"
             android:layout_width="@dimen/welcome_fragment_conference_id_input_width"
             android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
             android:inputType="textUri"
@@ -31,7 +38,7 @@
             tools:ignore="Autofill,LabelFor" />
 
         <ImageButton
-            android:id="@+id/welcome_fragment_conference_id_input_submit"
+            android:id="@+id/fragment_welcome_conference_id_input_submit"
             style="@style/WelcomeFragment.ImageButtonForward"
             android:layout_width="@dimen/welcome_fragment_image_button_width"
             android:layout_height="@dimen/welcome_fragment_image_button_height"
@@ -39,13 +46,14 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/welcome_fragment_qr_code_image_view"
+        android:id="@+id/fragment_welcome_qr_code_image_view"
         style="@style/WelcomeFragment.QrCodeImageView"
         android:layout_width="@dimen/welcome_fragment_qr_code_image_width"
         android:layout_height="@dimen/welcome_fragment_qr_code_image_height"
-        android:layout_below="@id/welcome_fragment_conference_input_layout"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/qr_code_image" />
+        android:contentDescription="@string/qr_code_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_welcome_conference_input_layout" />
 
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

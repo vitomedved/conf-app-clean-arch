@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">Conferences application</string>
-    <string name="welcome_fragment_info_text">Welcome to conference app, enter conference ID or click on QR code icon to scan conferences QR code.</string>
+    <!-- Translatable -->
+    <string name="welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code">Welcome to conference app, enter conference ID or click on QR code icon to scan conferences QR code.</string>
+    <string name="conferences_app">Conferences app</string>
     <string name="qr_code_image">QR code image</string>
     <string name="forward_icon">Forward icon</string>
+    
+    <!-- Application strings -->
+
+    <string name="app_name">@string/conferences_app</string>
+
+    <!-- Welcome fragment -->
+    <string name="welcome_fragment_info_text">@string/welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code</string>
+
 </resources>

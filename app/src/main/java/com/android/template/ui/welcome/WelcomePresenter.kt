@@ -31,10 +31,10 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
 
     private fun executeSetConferenceIdUseCase(id: String) {
         addDisposable(setConferenceIdUseCase.execute(id)
-                .subscribeOn(backgroundScheduler)
-                .observeOn(mainThreadScheduler)
-                .subscribe(this::processSetConferenceIdUseCaseSuccess,
-                        this::processSetConferenceIdUseCaseError))
+                              .subscribeOn(backgroundScheduler)
+                              .observeOn(mainThreadScheduler)
+                              .subscribe(this::processSetConferenceIdUseCaseSuccess,
+                                         this::processSetConferenceIdUseCaseError))
     }
 
     private fun processSetConferenceIdUseCaseSuccess(doesConferenceExist: Boolean) {

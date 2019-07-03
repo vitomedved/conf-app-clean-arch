@@ -45,11 +45,14 @@ public final class RouterImpl implements Router {
 
     @Override
     public void showWelcomeScreen() {
-        fragmentManager.beginTransaction().replace(CONTAINER_ID, WelcomeFragment.newInstance(), WelcomeFragment.TAG).commit();
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, WelcomeFragment.newInstance(), WelcomeFragment.TAG)
+                       .commit();
     }
 
     private boolean canIntentBeResolved(final Intent intent) {
-        return !listUtils.isEmpty(activity.getPackageManager().queryIntentActivities(intent, 0));
+        return !listUtils.isEmpty(activity.getPackageManager()
+                                          .queryIntentActivities(intent, 0));
     }
 
     public void goBack() {

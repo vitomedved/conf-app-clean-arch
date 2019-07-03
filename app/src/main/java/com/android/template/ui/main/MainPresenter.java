@@ -10,12 +10,6 @@ import template.android.com.domain.usecase.GetExampleUseCase;
 
 public final class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
-    //@Inject
-    //GetExampleUseCase getExampleUseCase;
-
-    @Inject
-    Router router;
-
     public MainPresenter(final MainContract.View view) {
         super(view);
     }
@@ -23,10 +17,5 @@ public final class MainPresenter extends BasePresenter<MainContract.View> implem
     @Override
     public void showInitScreen() {
         router.showWelcomeScreen();
-        /*addDisposable(getExampleUseCase.execute()
-                                       .subscribeOn(backgroundScheduler)
-                                       .observeOn(mainThreadScheduler)
-                                       .subscribe(Actions.noOpAction1(),
-                                                    Actions.noOpAction1()));*/
     }
 }

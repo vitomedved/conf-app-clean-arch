@@ -19,8 +19,10 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Might change name of the method. In future, you will either be redirected to welcome fragment or some kind of initial screen.
-        presenter.showInitScreen();
+        if (null == savedInstanceState) {
+            // Might change name of the method. In future, you will either be redirected to welcome fragment or some kind of initial screen.
+            presenter.showInitScreen();
+        }
     }
 
     @Override
