@@ -72,6 +72,9 @@ ext {
     $espressoCoreVersion = '3.0.2'
 
     $lottieVersion = '2.6.0'
+
+    $zxingEmbeddedVersion = '3.6.0@aar'
+    $zxingCoreVersion = '3.3.2'
 }
 
 task clean(type: Delete) {

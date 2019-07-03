@@ -6,6 +6,9 @@
 
 
     <!-- Welcome fragment -->
-    <integer name="welcome_fragment_conference_id_input_length">10</integer>
+
+    <!-- TODO: if FireBase API changes size of their UID's, change this integer to appropriate value -->
+    <integer name="welcome_fragment_conference_id_input_length">36</integer>
     <integer name="welcome_fragment_conference_id_input_max_lines">1</integer>
+
 </resources>

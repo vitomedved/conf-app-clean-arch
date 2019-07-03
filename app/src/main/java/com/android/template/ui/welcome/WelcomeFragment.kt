@@ -1,12 +1,22 @@
 package com.android.template.ui.welcome
 
+import android.content.Intent
+import android.widget.EditText
+import butterknife.BindView
+import butterknife.OnClick
 import com.android.template.R
 import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
+import com.android.template.ui.main.MainActivity
+import com.android.template.ui.welcome.qr.CaptureActivityPortrait
+import com.android.template.utils.ui.ToastUtil
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
+import com.journeyapps.barcodescanner.CaptureActivity
 import javax.inject.Inject
 
-class WelcomeFragment: BaseFragment(), WelcomeContract.View {
+class WelcomeFragment : BaseFragment(), WelcomeContract.View {
 
     companion object {
         const val TAG = "WelcomeFragment"
@@ -15,13 +25,18 @@ class WelcomeFragment: BaseFragment(), WelcomeContract.View {
         fun newInstance(): WelcomeFragment = WelcomeFragment()
     }
 
+    @BindView(R.id.welcome_fragment_conference_id_input)
+    lateinit var conferenceIdInput: EditText
+
     @Inject
     lateinit var presenter: WelcomeContract.Presenter
 
+    @Inject
+    lateinit var toastUtil: ToastUtil
+
     // TODO: set all of the content from xml to the middle in one linear layout i guess
     // TODO: add functionality to QR code button to scan for ID
-    // TODO: add functionality to enter conference ID
-    // TODO: connect to SQL database for everything to work fine
+    // TODO: connect to SQL database or firebase database for everything to work fine
 
     override fun getLayoutResourceId(): Int {
         return R.layout.welcome_fragment
@@ -35,4 +50,30 @@ class WelcomeFragment: BaseFragment(), WelcomeContract.View {
         return presenter
     }
 
+    override fun showInvalidConferenceIdError() {
+        toastUtil.showLongToast("You have inputted invalid conference ID.")
+    }
+
+    override fun showConferenceDoesNotExistError() {
+        toastUtil.showLongToast("Conference with entered ID does not exist. Please try again.")
+    }
+
+    @OnClick(R.id.welcome_fragment_conference_id_input_submit)
+    fun onConferenceIdInputSubmitClick() {
+        presenter.setConferenceId(conferenceIdInput.text.toString())
+    }
+
+    @OnClick(R.id.welcome_fragment_qr_code_image_view)
+    fun onConferenceIdQrInputClick() {
+        //presenter.startScanningForConferenceIdQr()
+        // TODO maybe move this to Router class and intent on activity from there
+        // TODO maybe execute as useCase and then return a result (scanned QR code in string)
+        IntentIntegrator.forSupportFragment(this).setOrientationLocked(true).setBeepEnabled(true).setPrompt("Scan conference ID").setCaptureActivity(CaptureActivityPortrait::class.java).initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+        presenter.setConferenceId(result?.contents?: "")
+    }
 }

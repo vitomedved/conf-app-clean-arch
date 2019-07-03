@@ -31,7 +31,7 @@
             tools:ignore="Autofill,LabelFor" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/welcome_fragment_conference_id_input_submit"
             style="@style/WelcomeFragment.ImageButtonForward"
             android:layout_width="@dimen/welcome_fragment_image_button_width"
             android:layout_height="@dimen/welcome_fragment_image_button_height"
