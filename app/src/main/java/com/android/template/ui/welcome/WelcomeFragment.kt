@@ -50,7 +50,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     }
 
     override fun showInvalidConferenceIdError() {
-        toastUtil.showLongToast("You have inputted invalid conference ID.")
+        toastUtil.showLongToast("You have inputted invalid conference ID or canceled QR scanning.")
     }
 
     override fun showConferenceDoesNotExistError() {
@@ -77,6 +77,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
 
+        // TODO: send some kind of indication that QR scanning was canceled so this::showInvalidConferenceIdError() won't be called
         presenter.setConferenceId(result?.contents ?: "")
     }
 }
