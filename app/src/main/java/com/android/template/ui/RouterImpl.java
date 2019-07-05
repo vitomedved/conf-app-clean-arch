@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
-import com.android.template.ui.home.HomeActivity;
+//import com.android.template.ui.home.HomeActivity;
 import com.android.template.ui.main.MainActivity;
 import com.android.template.ui.welcome.WelcomeFragment;
 
@@ -53,8 +53,8 @@ public final class RouterImpl implements Router {
 
     @Override
     public void showHomeScreen() {
-        activity.startActivity(new Intent(activity, HomeActivity.class));
-        activity.finish();
+        //activity.startActivity(new Intent(activity, HomeActivity.class));
+        //activity.finish();
     }
 
     private boolean canIntentBeResolved(final Intent intent) {
