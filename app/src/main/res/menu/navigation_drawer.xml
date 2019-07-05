@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/asd123">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info"
+            android:title="@string/nav_item_about" />
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/nav_item_schedule" />
+
+        <item
+            android:id="@+id/nav_exhibitors"
+            android:icon="@drawable/ic_assignment"
+            android:title="@string/nav_item_exhibitors" />
+
+        <item
+            android:id="@+id/nav_favourite_events"
+            android:icon="@drawable/ic_star"
+            android:title="@string/nav_item_favourite_events" />
+
+        <item
+            android:id="@+id/nav_blueprint"
+            android:icon="@drawable/ic_map"
+            android:title="@string/nav_item_floor_blueprint" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="@string/nav_item_share" />
+
+        <item
+            android:id="@+id/nav_email_developers"
+            android:icon="@drawable/ic_contact_email"
+            android:title="@string/nav_item_email_developers" />
+
+    </group>
+</menu>

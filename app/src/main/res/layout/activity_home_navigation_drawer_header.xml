@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="@*android:dimen/status_bar_height"
+    android:background="@color/colorPrimary">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/activity_home_nav_drawer_avatar_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:src="@android:drawable/sym_def_app_icon"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_home_nav_drawer_name_text"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/activity_home_nav_drawer_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/activity_home_drawer_header_user_name"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/activity_home_nav_drawer_avatar_image" />
+
+    <TextView
+        android:id="@+id/activity_home_nav_drawer_not_logged_in_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_home_navigation_drawer_header_user_not_logged_in"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_home_nav_drawer_name_text"
+        app:layout_constraintStart_toStartOf="@+id/activity_home_nav_drawer_name_text"
+        app:layout_constraintTop_toTopOf="@+id/activity_home_nav_drawer_name_text" />
+
+    <Button
+        android:id="@+id/activity_home_nav_drawer_log_in_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:drawableEnd="@drawable/ic_enter"
+        android:padding="8dp"
+        android:text="@string/activity_home_navigation_drawer_header_button_text"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_home_nav_drawer_avatar_image"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintTop_toTopOf="@+id/activity_home_nav_drawer_avatar_image"
+        app:layout_constraintVertical_bias="0.24" />
+
+</android.support.constraint.ConstraintLayout>

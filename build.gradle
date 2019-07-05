@@ -76,6 +76,8 @@ ext {
 
     $zxingEmbeddedVersion = '3.6.0@aar'
     $zxingCoreVersion = '3.3.2'
+
+    $circleImageViewVersion = '3.0.0'
 }
 
 task clean(type: Delete) {

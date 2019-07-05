@@ -4,6 +4,17 @@
     <string name="conferences_app">Conferences app</string>
     <string name="qr_code_image">QR code image</string>
     <string name="forward_icon">Forward icon</string>
+
+    <string name="about">About</string>
+    <string name="schedule">Schedule</string>
+    <string name="exhibitors">Exhibitors</string>
+    <string name="favourite_events">Favourite events</string>
+    <string name="floor_blueprint">Floor blueprint</string>
+    <string name="share">Share</string>
+    <string name="email_developers">Email developers</string>
+    <string name="name_surname">Name Surname</string>
+    <string name="you_are_currently_not_logged_in">You are currently not logged in</string>
+    <string name="log_in">Log in</string>
     
     <!-- Application strings -->
 
@@ -11,5 +22,18 @@
 
     <!-- Welcome fragment -->
     <string name="welcome_fragment_info_text">@string/welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code</string>
+
+    <!-- Home activity -->
+    <!-- Navigation drawer -->
+    <string name="nav_item_about">@string/about</string>
+    <string name="nav_item_schedule">@string/schedule</string>
+    <string name="nav_item_exhibitors">@string/exhibitors</string>
+    <string name="nav_item_favourite_events">@string/favourite_events</string>
+    <string name="nav_item_floor_blueprint">@string/floor_blueprint</string>
+    <string name="nav_item_share">@string/share</string>
+    <string name="nav_item_email_developers">@string/email_developers</string>
+    <string name="activity_home_drawer_header_user_name">@string/name_surname</string>
+    <string name="activity_home_navigation_drawer_header_user_not_logged_in">@string/you_are_currently_not_logged_in</string>
+    <string name="activity_home_navigation_drawer_header_button_text">@string/log_in</string>
 
 </resources>
