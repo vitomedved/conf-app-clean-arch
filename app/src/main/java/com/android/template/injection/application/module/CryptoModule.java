@@ -19,6 +19,8 @@ import template.android.com.device.crypto.provider.SymmetricKeyProviderV19Impl;
 import template.android.com.device.crypto.provider.SymmetricKeyProviderV23Impl;
 import template.android.com.domain.crypto.digest.MessageDigestFactory;
 import template.android.com.domain.crypto.digest.MessageDigestFactoryImpl;
+import template.android.com.domain.crypto.engine.CryptoEngine;
+import template.android.com.domain.crypto.engine.CryptoEngineFactoryImpl;
 import template.android.com.domain.crypto.keystore.SecureKeystore;
 import template.android.com.domain.crypto.obfuscator.StringObfuscator;
 import template.android.com.domain.crypto.obfuscator.StringObfuscatorImpl;
@@ -81,6 +83,12 @@ public final class CryptoModule {
         } else {
             return new SymmetricKeyProviderV19Impl(context, currentTimeProvider, keyStore, symmetricKeyProviderStorage);
         }
+    }
+
+    @Provides
+    @Singleton
+    CryptoEngine provideCryptoEngine(final SymmetricKeyProvider symmetricKeyProvider) {
+        return new CryptoEngineFactoryImpl(symmetricKeyProvider).createCryptoEngineForKeyAlias("IS_THIS_GOOD?");
     }
 
     public interface Exposes {
