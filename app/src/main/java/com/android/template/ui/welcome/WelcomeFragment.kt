@@ -1,6 +1,7 @@
 package com.android.template.ui.welcome
 
 import android.content.Intent
+import android.widget.Button
 import android.widget.EditText
 import butterknife.BindView
 import butterknife.OnClick
@@ -32,10 +33,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     @Inject
     lateinit var toastUtil: ToastUtil
 
-    // TODO: add functionality to QR code button to scan for ID - maybe change the way this is done
-
-    // TODO: set all of the content from xml to the middle in one linear layout i guess
-    // TODO: connect to SQL database or firebase database for everything to work fine
+    // TODO: functionality to QR code button to scan for ID - maybe change the way this is done
 
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_welcome
@@ -59,7 +57,7 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
 
     @OnClick(R.id.fragment_welcome_conference_id_input_submit)
     fun onConferenceIdInputSubmitClick() {
-        presenter.setConferenceId(conferenceIdInput.text.toString())
+        presenter.checkIfConferenceExists(conferenceIdInput.text.toString())
     }
 
     @OnClick(R.id.fragment_welcome_qr_code_image_view)
@@ -78,6 +76,6 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
         val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
 
         // TODO: send some kind of indication that QR scanning was canceled so this::showInvalidConferenceIdError() won't be called
-        presenter.setConferenceId(result?.contents ?: "")
+        presenter.checkIfConferenceExists(result?.contents ?: "")
     }
 }

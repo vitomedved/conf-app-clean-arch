@@ -78,4 +78,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:' + $testRulesVersion
     androidTestImplementation 'com.android.support.test:runner:' + $testRunnerVersion
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + $espressoCoreVersion
+
+    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
 }

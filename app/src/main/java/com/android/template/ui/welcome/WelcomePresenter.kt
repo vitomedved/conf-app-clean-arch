@@ -2,17 +2,15 @@ package com.android.template.ui.welcome
 
 import android.content.res.Resources
 import android.util.Log
-import com.android.template.R
 import com.android.template.base.BasePresenter
-import com.google.zxing.integration.android.IntentIntegrator
-import template.android.com.domain.usecase.SetConferenceIdUseCase
+import template.android.com.domain.usecase.DoesConferenceExistUseCase
 import template.android.com.domain.utils.string.StringUtils
 import javax.inject.Inject
 
 class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContract.View>(view), WelcomeContract.Presenter {
 
     @Inject
-    lateinit var setConferenceIdUseCase: SetConferenceIdUseCase
+    lateinit var doesConferenceExistUseCase: DoesConferenceExistUseCase
 
     @Inject
     lateinit var stringUtils: StringUtils
@@ -20,32 +18,34 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     @Inject
     lateinit var resources: Resources
 
-    override fun setConferenceId(id: String) {
+    override fun checkIfConferenceExists(id: String) {
         // TODO: Is it okay for user to input UID of conference (every conference is saved in firebase database by it's UID) to set initial conference? Or should I provide him with another ID which will reference certain conference?
-        if (stringUtils.isEmpty(id) || (id.length < resources.getInteger(R.integer.welcome_fragment_conference_id_input_length))) {
+        if (stringUtils.isEmpty(id)) {
             doIfViewNotNull(WelcomeContract.View::showInvalidConferenceIdError)
         } else {
-            executeSetConferenceIdUseCase(id)
+            // TODO: open full-screen loading in fragment to disable all inputs and indicate that something is loading
+            executeDoesConferenceExistUseCase(id)
         }
     }
 
-    private fun executeSetConferenceIdUseCase(id: String) {
-        addDisposable(setConferenceIdUseCase.execute(id)
+    private fun executeDoesConferenceExistUseCase(id: String) {
+        addDisposable(doesConferenceExistUseCase.execute(id)
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
-                              .subscribe(this::processSetConferenceIdUseCaseSuccess,
-                                         this::processSetConferenceIdUseCaseError))
+                              .subscribe(this::processDoesConferenceExistUseCaseSuccess,
+                                         this::processDoesConferenceExistUseCaseError))
     }
 
-    private fun processSetConferenceIdUseCaseSuccess(doesConferenceExist: Boolean) {
+    private fun processDoesConferenceExistUseCaseSuccess(doesConferenceExist: Boolean) {
         if (doesConferenceExist) {
-            // TODO: reroute to homepage
+            router.showHomeScreen()
         } else {
             doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
+            // TODO: close full-screen loading in fragment
         }
     }
 
-    private fun processSetConferenceIdUseCaseError(throwable: Throwable) {
-        Log.e("WelcomePresenter", "SetConferenceIdUseCase returned an error: $throwable")
+    private fun processDoesConferenceExistUseCaseError(throwable: Throwable) {
+        Log.e("WelcomePresenter", "DoesConferenceExistUseCase returned an error: $throwable")
     }
 }

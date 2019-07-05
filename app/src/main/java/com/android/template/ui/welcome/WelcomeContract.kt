@@ -5,7 +5,7 @@ import com.android.template.base.ScopedPresenter
 
 class WelcomeContract private constructor() {
     interface Presenter : ScopedPresenter {
-        fun setConferenceId(id: String)
+        fun checkIfConferenceExists(id: String)
     }
 
     interface View : BaseView {

@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
 
-        applicationId 'com.android.template'
+        applicationId 'com.android.conferenceapp'
 
         minSdkVersion $minSdkVersion
         targetSdkVersion $targetSdkVersion
@@ -125,7 +125,8 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:' + $daggerVersion
 
 //    implementation 'com.google.firebase:firebase-core:' + $firebaseVersion
-//    implementation 'com.google.firebase:firebase-database:' + $firebaseVersion
+    // NOTE: Database will also include core library
+    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
 //    implementation 'com.google.firebase:firebase-auth:' + $firebaseVersion
 //    implementation 'com.firebaseui:firebase-ui-auth:' + $firebaseUiVersion
 //    implementation 'com.google.android.gms:play-services-auth:' + $googleAnalyticsVersion
@@ -149,3 +150,5 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:' + $zxingEmbeddedVersion // TODO: Use '3.0.2' if this doesn't work
     implementation 'com.google.zxing:core:' + $zxingCoreVersion// TODO: Use '3.2.0' if this doesn't work
 }
+
+apply plugin: 'com.google.gms.google-services'
