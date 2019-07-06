@@ -10,8 +10,4 @@ public interface ActivityComponentInjects {
     void inject(MainActivity activity);
 
     void inject(MainPresenter presenter);
-
-    //void inject(HomeActivity activity);
-
-    //void inject(HomePresenter presenter);
 }

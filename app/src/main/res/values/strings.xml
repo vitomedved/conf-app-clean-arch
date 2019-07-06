@@ -4,12 +4,22 @@
     <string name="conferences_app">Conferences app</string>
     <string name="qr_code_image">QR code image</string>
     <string name="forward_icon">Forward icon</string>
-    
-    <!-- Application strings -->
+    <string name="alias_key">ALIAS_KEY</string>
+    <string name="you_have_inputted_invalid_conference_id_or_canceled_qr_scanning">You have inputted invalid conference ID or canceled QR scanning.</string>
+    <string name="conference_with_entered_id_does_not_exist_lease_try_again">Conference with entered ID does not exist. Please try again.</string>
+    <string name="scan_conference_id">Scan conference ID</string>
 
+    <!-- Application strings -->
     <string name="app_name">@string/conferences_app</string>
+
+    <!-- Crypto engine -->
+    <string name="crypto_engine_alias_key">@string/alias_key</string>
+
+    <!-- QR code utils -->
+    <string name="scan_conference_id_prompt">@string/scan_conference_id</string>
 
     <!-- Welcome fragment -->
     <string name="welcome_fragment_info_text">@string/welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code</string>
-
+    <string name="conference_does_not_exist_error">@string/conference_with_entered_id_does_not_exist_lease_try_again</string>
+    <string name="invalid_conference_id_error">@string/you_have_inputted_invalid_conference_id_or_canceled_qr_scanning</string>
 </resources>

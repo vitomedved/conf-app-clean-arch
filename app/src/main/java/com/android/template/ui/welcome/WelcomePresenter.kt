@@ -23,7 +23,6 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     lateinit var resources: Resources
 
     override fun checkIfConferenceExists(id: String) {
-        // TODO: Is it okay for user to input UID of conference (every conference is saved in firebase database by it's UID) to set initial conference? Or should I provide him with another ID which will reference certain conference?
         if (stringUtils.isEmpty(id)) {
             doIfViewNotNull(WelcomeContract.View::showInvalidConferenceIdError)
         } else {
@@ -33,11 +32,13 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     }
 
     private fun executeDoesConferenceExistUseCase(id: String) {
+        // TODO: Firebase Database paths must not contain '.', '#', '$', '[', or ']', put this in stringUtils to check for current id
         addDisposable(doesConferenceExistUseCase.execute(id)
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
                               .subscribe({ conferenceExists -> processDoesConferenceExistUseCaseSuccess(conferenceExists, id) },
-                                         this::processDoesConferenceExistUseCaseError))
+                                         this::processDoesConferenceExistUseCaseError,
+                                         this::processDoesConferenceExistUseCaseComplete))
     }
 
     private fun processDoesConferenceExistUseCaseSuccess(doesConferenceExist: Boolean, id: String) {
@@ -50,7 +51,13 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     }
 
     private fun processDoesConferenceExistUseCaseError(throwable: Throwable) {
-        Log.e("WelcomePresenter", "DoesConferenceExistUseCase returned an error: $throwable")
+        Log.e("WelcomePresenter", "DoesConferenceExistUseCase returned an error (this can happen when url is scanned): $throwable")
+        doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
+    }
+
+    private fun processDoesConferenceExistUseCaseComplete() {
+        Log.e("WelcomePresenter", "Maybe returned with no result, I guess this should never happen.")
+        doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
     }
 
     private fun executeSetInitialConferenceIdUseCase(id: String) {

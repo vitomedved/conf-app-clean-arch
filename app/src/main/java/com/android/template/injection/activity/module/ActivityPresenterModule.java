@@ -28,15 +28,6 @@ public final class ActivityPresenterModule {
         return presenter;
     }
 
-    /*@Provides
-    @ActivityScope
-    HomeContract.Presenter provideHomePresenter() {
-        final HomePresenter presenter = new HomePresenter((HomeContract.View) daggerActivity);
-        daggerActivity.getActivityComponent().inject(presenter);
-
-        return presenter;
-    }*/
-
     public interface Exposes {
 
     }

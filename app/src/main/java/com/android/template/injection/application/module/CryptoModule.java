@@ -1,7 +1,9 @@
 package com.android.template.injection.application.module;
 
 import android.content.Context;
+import android.content.res.Resources;
 
+import com.android.template.R;
 import com.android.template.injection.qualifier.ForApplication;
 
 import java.security.KeyStore;
@@ -87,8 +89,8 @@ public final class CryptoModule {
 
     @Provides
     @Singleton
-    CryptoEngine provideCryptoEngine(final SymmetricKeyProvider symmetricKeyProvider) {
-        return new CryptoEngineFactoryImpl(symmetricKeyProvider).createCryptoEngineForKeyAlias("IS_THIS_GOOD?");
+    CryptoEngine provideCryptoEngine(final SymmetricKeyProvider symmetricKeyProvider, final Resources resources) {
+        return new CryptoEngineFactoryImpl(symmetricKeyProvider).createCryptoEngineForKeyAlias(resources.getString(R.string.crypto_engine_alias_key));
     }
 
     public interface Exposes {

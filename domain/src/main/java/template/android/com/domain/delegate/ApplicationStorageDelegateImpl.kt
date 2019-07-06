@@ -1,5 +1,6 @@
 package template.android.com.domain.delegate
 
+import com.annimon.stream.Optional
 import template.android.com.domain.storage.ApplicationStorage
 import template.android.com.domain.utils.string.StringUtils
 
@@ -13,7 +14,7 @@ class ApplicationStorageDelegateImpl (private val applicationStorage: Applicatio
         }
     }
 
-    override fun getConferenceId(): String {
-        return applicationStorage.getString(CONFERENCE_ID_KEY)
+    override fun getConferenceId(): Optional<String> {
+        return Optional.of(applicationStorage.getString(CONFERENCE_ID_KEY))
     }
 }

@@ -1,12 +1,15 @@
 package com.android.template.injection.application.module;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 import com.android.template.injection.qualifier.ForApplication;
 import com.android.template.ui.ViewModelConverter;
 import com.android.template.ui.ViewModelConverterImpl;
 import com.android.template.utils.StethoInitializer;
 import com.android.template.utils.StethoInitializerImpl;
+import com.android.template.utils.qr.QrCodeUtils;
+import com.android.template.utils.qr.QrCodeUtilsImpl;
 import com.android.template.utils.view.ViewUtils;
 import com.android.template.utils.view.ViewUtilsImpl;
 
@@ -76,6 +79,12 @@ public final class UtilsModule {
         return new StethoInitializerImpl(context);
     }
 
+    @Provides
+    @Singleton
+    QrCodeUtils provideQrCodeUtils(final Resources resources) {
+        return new QrCodeUtilsImpl(resources);
+    }
+
     public interface Exposes {
 
         Base64Tool base64Tool();
@@ -91,5 +100,7 @@ public final class UtilsModule {
         ViewModelConverter viewModelConverter();
 
         ViewUtils viewUtils();
+
+        QrCodeUtils qrCodeUtils();
     }
 }

@@ -5,6 +5,6 @@ import template.android.com.domain.delegate.ApplicationStorageDelegate
 
 class GetInitialConferenceIdUseCaseImpl (private val applicationStorageDelegate: ApplicationStorageDelegate) : GetInitialConferenceIdUseCase {
     override fun execute(): Single<String> {
-        return Single.fromCallable { applicationStorageDelegate.getConferenceId() }
+        return Single.fromCallable { applicationStorageDelegate.getConferenceId().get() }
     }
 }
