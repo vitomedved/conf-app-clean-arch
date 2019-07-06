@@ -27,6 +27,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -78,6 +79,8 @@ ext {
     $zxingCoreVersion = '3.3.2'
 
     $circleImageViewVersion = '3.0.0'
+
+    $rxFirebaseVersion = '1.5.6'
 }
 
 task clean(type: Delete) {

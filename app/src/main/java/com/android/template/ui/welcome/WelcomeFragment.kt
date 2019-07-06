@@ -1,7 +1,6 @@
 package com.android.template.ui.welcome
 
 import android.content.Intent
-import android.widget.Button
 import android.widget.EditText
 import butterknife.BindView
 import butterknife.OnClick
@@ -9,11 +8,14 @@ import com.android.template.R
 import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
-import com.android.template.ui.welcome.qr.CaptureActivityPortrait
+import com.android.template.utils.qr.QrCodeUtils
 import com.android.template.utils.ui.ToastUtil
+import com.google.zxing.client.android.Intents
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import template.android.com.domain.utils.string.StringUtils
 import javax.inject.Inject
+
 
 class WelcomeFragment : BaseFragment(), WelcomeContract.View {
 
@@ -33,7 +35,11 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     @Inject
     lateinit var toastUtil: ToastUtil
 
-    // TODO: functionality to QR code button to scan for ID - maybe change the way this is done
+    @Inject
+    lateinit var stringUtils: StringUtils
+
+    @Inject
+    lateinit var qrCodeUtils: QrCodeUtils
 
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_welcome
@@ -48,11 +54,11 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
     }
 
     override fun showInvalidConferenceIdError() {
-        toastUtil.showLongToast("You have inputted invalid conference ID or canceled QR scanning.")
+        toastUtil.showLongToast(resources.getString(R.string.invalid_conference_id_error))
     }
 
     override fun showConferenceDoesNotExistError() {
-        toastUtil.showLongToast("Conference with entered ID does not exist. Please try again.")
+        toastUtil.showLongToast(resources.getString(R.string.conference_does_not_exist_error))
     }
 
     @OnClick(R.id.fragment_welcome_conference_id_input_submit)
@@ -62,20 +68,14 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
 
     @OnClick(R.id.fragment_welcome_qr_code_image_view)
     fun onConferenceIdQrInputClick() {
-        // TODO maybe move this to Router class and intent on activity from there
-        // TODO maybe execute as useCase and then return a result (scanned QR code in string)
-        IntentIntegrator.forSupportFragment(this)
-                .setOrientationLocked(true)
-                .setBeepEnabled(true)
-                .setPrompt("Scan conference ID")
-                .setCaptureActivity(CaptureActivityPortrait::class.java)
-                .initiateScan()
+        qrCodeUtils.startQrScan(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-
-        // TODO: send some kind of indication that QR scanning was canceled so this::showInvalidConferenceIdError() won't be called
-        presenter.checkIfConferenceExists(result?.contents ?: "")
+        if (requestCode == qrCodeUtils.getRequestCode()) {
+            presenter.checkIfConferenceExists(stringUtils.itOrDefault(data?.getStringExtra(Intents.Scan.RESULT), ""))
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }

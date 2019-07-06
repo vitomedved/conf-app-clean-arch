@@ -3,6 +3,7 @@
 <!-- I would like to thank Luka Babić (https://github.com/lukababic1) for providing a template of clean architecture -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.template">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,10 +30,10 @@
         </activity>
 
         <activity
-            android:name=".ui.welcome.qr.CaptureActivityPortrait"
+            android:name="com.android.template.ui.qr.CaptureActivityPortrait"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            android:theme="@style/AppTheme"
+            android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity

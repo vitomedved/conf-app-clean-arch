@@ -1,7 +1,7 @@
 package template.android.com.domain.repository
 
-import io.reactivex.Observable
+import io.reactivex.Maybe
 
 interface ConferenceRepository {
-    fun fetchDoesConferenceIdExist(id: String): Observable<Boolean>
+    fun fetchDoesConferenceIdExist(id: String): Maybe<Boolean>
 }
