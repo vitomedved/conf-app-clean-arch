@@ -50,6 +50,8 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         }
 
         if (null == savedInstanceState) {
+            // TODO: presenter should check if user is logged in and render "not logged in text" in nav drawer header and conferences subsection in nav drawer
+            // After that redirect to correct fragment
             presenter.showAboutConferenceScreen()
         }
     }
