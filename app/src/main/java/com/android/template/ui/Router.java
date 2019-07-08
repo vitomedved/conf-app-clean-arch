@@ -8,7 +8,9 @@ public interface Router {
 
     boolean showPageInExternalBrowser(String url);
 
-    void showWelcomeScreen();
+    void showAddInitConferenceIdScreen();
+
+    void showAddNewConferenceScreen();
 
     void showHomeScreen();
 }

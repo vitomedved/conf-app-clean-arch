@@ -1,6 +1,13 @@
 package com.android.template.ui.main;
 
+import android.util.Log;
+
 import com.android.template.base.BasePresenter;
+
+import javax.inject.Inject;
+
+import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCase;
+import template.android.com.domain.utils.string.StringUtils;
 
 public final class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
@@ -8,9 +15,39 @@ public final class MainPresenter extends BasePresenter<MainContract.View> implem
         super(view);
     }
 
+    @Inject
+    GetInitialConferenceIdUseCase getInitialConferenceIdUseCase;
+
+    @Inject
+    StringUtils stringUtils;
+
     @Override
-    public void showInitScreen() {
-        // TODO: check if conference ID is saved in shared preferences, if it is show homeScreen, else show welcomeScreen
-        router.showWelcomeScreen();
+    public void showAddInitConferenceIdScreen() {
+        router.showAddInitConferenceIdScreen();
+    }
+
+    @Override
+    public void trySkippingAddConferenceScreen() {
+        executeGetInitialConferenceIdUseCase();
+    }
+
+    private void executeGetInitialConferenceIdUseCase() {
+        addDisposable(getInitialConferenceIdUseCase.execute()
+                                                   .subscribeOn(backgroundScheduler)
+                                                   .observeOn(mainThreadScheduler)
+                                                   .subscribe(this::processGetInitialConferenceIdUseCaseSuccess,
+                                                           this::processGetInitialConferenceIdUseCaseError));
+    }
+
+    private void processGetInitialConferenceIdUseCaseSuccess(String conferenceId) {
+        if (stringUtils.isEmpty(conferenceId)) {
+            router.showAddInitConferenceIdScreen();
+        } else {
+            router.showHomeScreen();
+        }
+    }
+
+    private void processGetInitialConferenceIdUseCaseError(Throwable throwable) {
+        Log.e("MainPresenter", "Init conference ID could not be get: " + throwable);
     }
 }

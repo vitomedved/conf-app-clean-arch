@@ -1,6 +1,8 @@
 package com.android.template.ui.welcome
 
 import android.content.Intent
+import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import butterknife.BindView
 import butterknife.OnClick
@@ -8,29 +10,37 @@ import com.android.template.R
 import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
+import com.android.template.ui.main.MainActivity
 import com.android.template.utils.qr.QrCodeUtils
 import com.android.template.utils.ui.ToastUtil
 import com.google.zxing.client.android.Intents
-import com.google.zxing.integration.android.IntentIntegrator
-import com.google.zxing.integration.android.IntentResult
 import template.android.com.domain.utils.string.StringUtils
 import javax.inject.Inject
 
 
-class WelcomeFragment : BaseFragment(), WelcomeContract.View {
+class AddConferenceFragment : BaseFragment(), AddConferenceContract.View {
 
     companion object {
-        const val TAG = "WelcomeFragment"
+        const val TAG = "AddConferenceFragment"
 
         @JvmStatic
-        fun newInstance(): WelcomeFragment = WelcomeFragment()
+        fun newInstance(isInitScreen: Boolean): AddConferenceFragment {
+            val fragment = AddConferenceFragment()
+
+            val bundle = Bundle()
+            bundle.putBoolean(MainActivity.IS_INIT_SCREEN_KEY, isInitScreen)
+
+            fragment.arguments = bundle
+
+            return fragment
+        }
     }
 
-    @BindView(R.id.fragment_welcome_conference_id_input)
+    @BindView(R.id.fragment_add_conference_conference_id_input)
     lateinit var conferenceIdInput: EditText
 
     @Inject
-    lateinit var presenter: WelcomeContract.Presenter
+    lateinit var presenter: AddConferenceContract.Presenter
 
     @Inject
     lateinit var toastUtil: ToastUtil
@@ -53,6 +63,13 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
         return presenter
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        presenter.indicateIfThisIsInitScreen(arguments?.getBoolean(MainActivity.IS_INIT_SCREEN_KEY, true)?: true)
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     override fun showInvalidConferenceIdError() {
         toastUtil.showLongToast(resources.getString(R.string.invalid_conference_id_error))
     }
@@ -61,12 +78,16 @@ class WelcomeFragment : BaseFragment(), WelcomeContract.View {
         toastUtil.showLongToast(resources.getString(R.string.conference_does_not_exist_error))
     }
 
-    @OnClick(R.id.fragment_welcome_conference_id_input_submit)
+    override fun showGetInitialConferenceError() {
+        toastUtil.showLongToast(getString(R.string.there_was_a_problem_with_getting_initial_conference_please_set_initial_conference_again))
+    }
+
+    @OnClick(R.id.fragment_add_conference_conference_id_input_submit)
     fun onConferenceIdInputSubmitClick() {
         presenter.checkIfConferenceExists(conferenceIdInput.text.toString())
     }
 
-    @OnClick(R.id.fragment_welcome_qr_code_image_view)
+    @OnClick(R.id.fragment_add_conference_qr_code_image_view)
     fun onConferenceIdQrInputClick() {
         qrCodeUtils.startQrScan(this)
     }
