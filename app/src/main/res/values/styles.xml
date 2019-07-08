@@ -44,4 +44,29 @@
         <item name="android:background">@drawable/qr_code</item>
     </style>
 
+    <!-- Home activity -->
+    <style name="HomeActivity">
+
+    </style>
+
+    <style name="HomeActivity.Margins">
+        <item name="android:layout_marginStart">@dimen/activity_home_margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/activity_home_margin_small</item>
+    </style>
+
+    <style name="HomeActivity.Margins.NavDrawerHeaderText">
+        <item name="android:layout_marginBottom">@dimen/activity_home_margin_small</item>
+        <item name="android:textSize">@dimen/activity_home_nav_bar_text_size_normal</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="HomeActivity.Margins.NavigationDrawerLoginButton">
+        <item name="android:drawableEnd">@drawable/ic_enter</item>
+        <item name="android:padding">@dimen/activity_home_padding_small</item>
+        <item name="android:text">@string/activity_home_navigation_drawer_header_button_text</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

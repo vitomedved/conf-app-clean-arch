@@ -45,20 +45,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         initActionBar()
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            menuItem.isChecked = true
-            drawerLayout.closeDrawers()
-
-            when (menuItem.itemId) {
-                // TODO: fix order and function calls when fragments are created
-                R.id.nav_about -> presenter.showAboutConferenceScreen()
-                R.id.nav_schedule -> presenter.showAboutConferenceScreen()
-                R.id.nav_exhibitors -> presenter.showAboutConferenceScreen()
-                R.id.nav_favourite_events -> presenter.showAboutConferenceScreen()
-                R.id.nav_blueprint -> presenter.showAboutConferenceScreen()
-                R.id.nav_share -> presenter.showAboutConferenceScreen()
-                R.id.nav_email_developers -> presenter.showAboutConferenceScreen()
-            }
-
+            onNavigationDrawerMenuItemSelected(menuItem)
             true
         }
 
@@ -73,6 +60,22 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+        }
+    }
+
+    private fun onNavigationDrawerMenuItemSelected(menuItem: MenuItem) {
+        menuItem.isChecked = true
+        drawerLayout.closeDrawers()
+
+        when (menuItem.itemId) {
+            // TODO: fix order and function calls when fragments are created
+            R.id.nav_about -> presenter.showAboutConferenceScreen()
+            R.id.nav_schedule -> presenter.showAboutConferenceScreen()
+            R.id.nav_exhibitors -> presenter.showAboutConferenceScreen()
+            R.id.nav_favourite_events -> presenter.showAboutConferenceScreen()
+            R.id.nav_blueprint -> presenter.showAboutConferenceScreen()
+            R.id.nav_share -> presenter.showAboutConferenceScreen()
+            R.id.nav_email_developers -> presenter.showAboutConferenceScreen()
         }
     }
 
