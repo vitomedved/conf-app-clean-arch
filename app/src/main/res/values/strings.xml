@@ -12,6 +12,10 @@
     <string name="floor_blueprint">Floor blueprint</string>
     <string name="share">Share</string>
     <string name="email_developers">Email developers</string>
+    <string name="communication">Communication</string>
+    <string name="conferences">Conferences</string>
+    <string name="add_a_new_conference">Add a new conference</string>
+    <string name="my_conferences">My conferences</string>
     <string name="name_surname">Name Surname</string>
     <string name="you_are_currently_not_logged_in">You are currently not logged in</string>
     <string name="log_in">Log in</string>
@@ -42,10 +46,13 @@
     <string name="nav_item_floor_blueprint">@string/floor_blueprint</string>
     <string name="nav_item_share">@string/share</string>
     <string name="nav_item_email_developers">@string/email_developers</string>
+    <string name="nav_item_add_new_conference">@string/add_a_new_conference</string>
+    <string name="nav_item_my_conferences">@string/my_conferences</string>
     <string name="activity_home_drawer_header_user_name">@string/name_surname</string>
     <string name="activity_home_navigation_drawer_header_user_not_logged_in">@string/you_are_currently_not_logged_in</string>
     <string name="activity_home_navigation_drawer_header_button_text">@string/log_in</string>
 
     <string name="conference_does_not_exist_error">@string/conference_with_entered_id_does_not_exist_lease_try_again</string>
     <string name="invalid_conference_id_error">@string/you_have_inputted_invalid_conference_id_or_canceled_qr_scanning</string>
+
 </resources>

@@ -76,6 +76,8 @@ class HomeActivity : BaseActivity(), HomeContract.View {
             R.id.nav_blueprint -> presenter.showAboutConferenceScreen()
             R.id.nav_share -> presenter.showAboutConferenceScreen()
             R.id.nav_email_developers -> presenter.showAboutConferenceScreen()
+            R.id.nav_add_conference -> presenter.showAboutConferenceScreen()
+            R.id.nav_my_conferences -> presenter.showAboutConferenceScreen()
         }
     }
 

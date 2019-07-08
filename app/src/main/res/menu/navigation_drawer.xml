@@ -26,16 +26,32 @@
             android:id="@+id/nav_blueprint"
             android:icon="@drawable/ic_map"
             android:title="@string/nav_item_floor_blueprint" />
-
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_share"
-            android:title="@string/nav_item_share" />
-
-        <item
-            android:id="@+id/nav_email_developers"
-            android:icon="@drawable/ic_contact_email"
-            android:title="@string/nav_item_email_developers" />
-
     </group>
+
+    <item android:title="@string/communication">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="@string/nav_item_share" />
+
+            <item
+                android:id="@+id/nav_email_developers"
+                android:icon="@drawable/ic_contact_email"
+                android:title="@string/nav_item_email_developers" />
+        </menu>
+    </item>
+
+    <item android:title="@string/conferences">
+        <menu>
+            <item
+                android:id="@+id/nav_add_conference"
+                android:icon="@drawable/ic_add_list"
+                android:title="@string/nav_item_add_new_conference" />
+            <item
+                android:id="@+id/nav_my_conferences"
+                android:icon="@drawable/ic_list"
+                android:title="@string/nav_item_my_conferences" />
+        </menu>
+    </item>
 </menu>
