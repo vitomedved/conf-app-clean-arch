@@ -2,8 +2,8 @@ package com.android.template.injection.fragment.module;
 
 import com.android.template.injection.fragment.DaggerFragment;
 import com.android.template.injection.scope.FragmentScope;
-import com.android.template.ui.welcome.WelcomeContract;
-import com.android.template.ui.welcome.WelcomePresenter;
+import com.android.template.ui.welcome.AddConferenceContract;
+import com.android.template.ui.welcome.AddConferencePresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,8 +19,8 @@ public final class FragmentPresenterModule {
 
     @Provides
     @FragmentScope
-    WelcomeContract.Presenter provideWelcomePresenter() {
-        final WelcomePresenter presenter = new WelcomePresenter((WelcomeContract.View) fragment);
+    AddConferenceContract.Presenter provideWelcomePresenter() {
+        final AddConferencePresenter presenter = new AddConferencePresenter((AddConferenceContract.View) fragment);
         fragment.getFragmentComponent().inject(presenter);
 
         return presenter;

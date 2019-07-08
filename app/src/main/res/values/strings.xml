@@ -35,7 +35,7 @@
     <string name="scan_conference_id_prompt">@string/scan_conference_id</string>
 
     <!-- Welcome fragment -->
-    <string name="welcome_fragment_info_text">@string/welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code</string>
+    <string name="fragment_add_conference_info_text">@string/welcome_to_conference_app_enter_conference_id_or_click_on_qr_code_icon_to_scan_conferences_qr_code</string>
 
     <!-- Home activity -->
     <!-- Navigation drawer -->
@@ -54,5 +54,6 @@
 
     <string name="conference_does_not_exist_error">@string/conference_with_entered_id_does_not_exist_lease_try_again</string>
     <string name="invalid_conference_id_error">@string/you_have_inputted_invalid_conference_id_or_canceled_qr_scanning</string>
+    <string name="there_was_a_problem_with_getting_initial_conference_please_set_initial_conference_again">There was a problem with getting initial conference. Please set initial conference again.</string>
 
 </resources>

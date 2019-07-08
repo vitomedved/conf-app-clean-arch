@@ -8,7 +8,7 @@ import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseC
 import template.android.com.domain.utils.string.StringUtils
 import javax.inject.Inject
 
-class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContract.View>(view), WelcomeContract.Presenter {
+class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<AddConferenceContract.View>(view), AddConferenceContract.Presenter {
 
     @Inject
     lateinit var doesConferenceExistUseCase: DoesConferenceExistUseCase
@@ -22,9 +22,16 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     @Inject
     lateinit var resources: Resources
 
+    // TODO: this variable will be used to differentiate setInitConferenceId (puts id in shared prefs) from AddNewConferenceId (saves id in database for logged in user)
+    private var isInitScreen: Boolean = true
+
+    override fun indicateIfThisIsInitScreen(isInitScreen: Boolean) {
+        this.isInitScreen = isInitScreen
+    }
+
     override fun checkIfConferenceExists(id: String) {
         if (stringUtils.isEmpty(id)) {
-            doIfViewNotNull(WelcomeContract.View::showInvalidConferenceIdError)
+            doIfViewNotNull(AddConferenceContract.View::showInvalidConferenceIdError)
         } else {
             // TODO: open full-screen loading in fragment to disable all inputs and indicate that something is loading
             executeDoesConferenceExistUseCase(id)
@@ -45,19 +52,19 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
         if (doesConferenceExist) {
             executeSetInitialConferenceIdUseCase(id)
         } else {
-            doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
+            doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
             // TODO: close full-screen loading in fragment
         }
     }
 
     private fun processDoesConferenceExistUseCaseError(throwable: Throwable) {
-        Log.e("WelcomePresenter", "DoesConferenceExistUseCase returned an error (this can happen when url is scanned): $throwable")
-        doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
+        Log.e("AddConferencePresenter", "DoesConferenceExistUseCase returned an error (this can happen when url is scanned): $throwable")
+        doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
     }
 
     private fun processDoesConferenceExistUseCaseComplete() {
-        Log.e("WelcomePresenter", "Maybe returned with no result, I guess this should never happen.")
-        doIfViewNotNull(WelcomeContract.View::showConferenceDoesNotExistError)
+        Log.e("AddConferencePresenter", "Maybe returned with no result, I guess this should never happen.")
+        doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
     }
 
     private fun executeSetInitialConferenceIdUseCase(id: String) {
@@ -74,6 +81,6 @@ class WelcomePresenter(view: WelcomeContract.View) : BasePresenter<WelcomeContra
     }
 
     private fun processSetInitialConferenceIdUseCaseError(throwable: Throwable) {
-        Log.d("WelcomePresenter", "There was a problem setting initial conference ID: $throwable")
+        Log.d("AddConferencePresenter", "There was a problem setting initial conference ID: $throwable")
     }
 }

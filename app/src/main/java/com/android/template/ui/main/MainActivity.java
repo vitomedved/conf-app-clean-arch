@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 public final class MainActivity extends BaseActivity implements MainContract.View {
 
+    public static final String IS_INIT_SCREEN_KEY = "isInitScreen";
+
     @Inject
     MainContract.Presenter presenter;
 
@@ -20,8 +22,19 @@ public final class MainActivity extends BaseActivity implements MainContract.Vie
         super.onCreate(savedInstanceState);
 
         if (null == savedInstanceState) {
-            // Might change name of the method. In future, you will either be redirected to welcome fragment or some kind of initial screen.
-            presenter.showInitScreen();
+
+            boolean isInitScreen = true;
+
+            Bundle extras = getIntent().getExtras();
+            if(null != extras) {
+                isInitScreen = extras.getBoolean(IS_INIT_SCREEN_KEY, false);
+            }
+
+            if (isInitScreen) {
+                presenter.trySkippingAddConferenceScreen();
+            } else {
+                presenter.showAddInitConferenceIdScreen();
+            }
         }
     }
 

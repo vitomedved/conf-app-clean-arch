@@ -44,4 +44,12 @@ public interface StringUtils {
      * @return List of Integers from input {@code csvList} splitted by {@code separator}.
      */
     List<Integer> parseToIntegerList(String csvList, String separator);
+
+    /**
+     * Checks whether {@code value} contains only numbers and/or letters.
+     *
+     * @param value String value that is checked for numbers and letters
+     * @return Boolean value whether string contains only numbers and/or letters
+     */
+    Boolean isAlphaNumeric(String value);
 }

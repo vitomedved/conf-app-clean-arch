@@ -41,7 +41,7 @@ public final class StringUtilsImpl implements StringUtils {
         }
 
         final StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < items.size(); i ++) {
+        for (int i = 0; i < items.size(); i++) {
             stringBuilder.append(items.get(i));
 
             if (i < items.size() - 1) {
@@ -68,5 +68,13 @@ public final class StringUtilsImpl implements StringUtils {
 
     private <T> List<T> getEmptyArrayList() {
         return new ArrayList<>(MINIMUM_ARRAY_LIST_CAPACITY);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean isAlphaNumeric(String value) {
+        return value.matches("[a-zA-Z0-9]*");
     }
 }

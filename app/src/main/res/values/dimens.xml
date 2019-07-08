@@ -18,15 +18,15 @@
     <dimen name="common_root_card_view_elevation">12dp</dimen>
 
     <!-- Welcome fragment -->
-    <dimen name="welcome_fragment_margin_bottom">16dp</dimen>
-    <dimen name="welcome_fragment_margin_start">8dp</dimen>
-    <dimen name="welcome_fragment_margin_end">8dp</dimen>
-    <dimen name="welcome_fragment_conference_id_input_height">52dp</dimen>
-    <dimen name="welcome_fragment_conference_id_input_width">280dp</dimen>
-    <dimen name="welcome_fragment_image_button_width">52dp</dimen>
-    <dimen name="welcome_fragment_image_button_height">52dp</dimen>
-    <dimen name="welcome_fragment_qr_code_image_width">100dp</dimen>
-    <dimen name="welcome_fragment_qr_code_image_height">100dp</dimen>
+    <dimen name="fragment_add_conference_margin_bottom">16dp</dimen>
+    <dimen name="fragment_add_conference_margin_start">8dp</dimen>
+    <dimen name="fragment_add_conference_margin_end">8dp</dimen>
+    <dimen name="fragment_add_conference_conference_id_input_height">52dp</dimen>
+    <dimen name="fragment_add_conference_conference_id_input_width">280dp</dimen>
+    <dimen name="fragment_add_conference_image_button_width">52dp</dimen>
+    <dimen name="fragment_add_conference_image_button_height">52dp</dimen>
+    <dimen name="fragment_add_conference_qr_code_image_width">100dp</dimen>
+    <dimen name="fragment_add_conference_qr_code_image_height">100dp</dimen>
 
     <!-- Home activity -->
     <dimen name="activity_home_margin_small">8dp</dimen>

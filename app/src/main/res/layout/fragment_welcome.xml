@@ -6,54 +6,54 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/fragment_welcome_application_information_text"
-        style="@style/WelcomeFragment.Margins.HelpTextStyle"
+        android:id="@+id/fragment_add_conference_application_information_text"
+        style="@style/AddConferenceFragment.Margins.HelpTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_welcome_conference_input_layout"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_add_conference_conference_input_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/fragment_welcome_conference_input_layout"
-        style="@style/WelcomeFragment.Margins"
+        android:id="@+id/fragment_add_conference_conference_input_layout"
+        style="@style/AddConferenceFragment.Margins"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
+        android:layout_height="@dimen/fragment_add_conference_conference_id_input_height"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_welcome_qr_code_image_view"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_add_conference_qr_code_image_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_welcome_application_information_text">
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_conference_application_information_text">
 
         <EditText
-            android:id="@+id/fragment_welcome_conference_id_input"
-            android:layout_width="@dimen/welcome_fragment_conference_id_input_width"
-            android:layout_height="@dimen/welcome_fragment_conference_id_input_height"
+            android:id="@+id/fragment_add_conference_conference_id_input"
+            android:layout_width="@dimen/fragment_add_conference_conference_id_input_width"
+            android:layout_height="@dimen/fragment_add_conference_conference_id_input_height"
             android:inputType="textUri"
-            android:maxLength="@integer/welcome_fragment_conference_id_input_length"
-            android:maxLines="@integer/welcome_fragment_conference_id_input_max_lines"
+            android:maxLength="@integer/fragment_add_conference_conference_id_input_length"
+            android:maxLines="@integer/fragment_add_conference_conference_id_input_max_lines"
             tools:ignore="Autofill,LabelFor" />
 
         <ImageButton
-            android:id="@+id/fragment_welcome_conference_id_input_submit"
-            style="@style/WelcomeFragment.ImageButtonForward"
-            android:layout_width="@dimen/welcome_fragment_image_button_width"
-            android:layout_height="@dimen/welcome_fragment_image_button_height"
+            android:id="@+id/fragment_add_conference_conference_id_input_submit"
+            style="@style/AddConferenceFragment.ImageButtonForward"
+            android:layout_width="@dimen/fragment_add_conference_image_button_width"
+            android:layout_height="@dimen/fragment_add_conference_image_button_height"
             android:contentDescription="@string/forward_icon" />
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/fragment_welcome_qr_code_image_view"
-        style="@style/WelcomeFragment.QrCodeImageView"
-        android:layout_width="@dimen/welcome_fragment_qr_code_image_width"
-        android:layout_height="@dimen/welcome_fragment_qr_code_image_height"
+        android:id="@+id/fragment_add_conference_qr_code_image_view"
+        style="@style/AddConferenceFragment.QrCodeImageView"
+        android:layout_width="@dimen/fragment_add_conference_qr_code_image_width"
+        android:layout_height="@dimen/fragment_add_conference_qr_code_image_height"
         android:contentDescription="@string/qr_code_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_welcome_conference_input_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_conference_conference_input_layout" />
 
 </android.support.constraint.ConstraintLayout>
