@@ -75,6 +75,10 @@ public final class StringUtilsImpl implements StringUtils {
      */
     @Override
     public Boolean isAlphaNumeric(String value) {
+        if(isEmpty(value)) {
+            return false;
+        }
+
         return value.matches("[a-zA-Z0-9]*");
     }
 }

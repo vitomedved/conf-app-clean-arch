@@ -49,7 +49,7 @@ public interface StringUtils {
      * Checks whether {@code value} contains only numbers and/or letters.
      *
      * @param value String value that is checked for numbers and letters
-     * @return Boolean value whether string contains only numbers and/or letters
+     * @return Boolean value whether string contains only numbers and/or letters. This will also return false if string is empty.
      */
     Boolean isAlphaNumeric(String value);
 }
