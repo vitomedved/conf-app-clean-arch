@@ -30,7 +30,7 @@ class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<A
     }
 
     override fun checkIfConferenceExists(id: String) {
-        if (stringUtils.isEmpty(id)) {
+        if (!stringUtils.isAlphaNumeric(id)) {
             doIfViewNotNull(AddConferenceContract.View::showInvalidConferenceIdError)
         } else {
             // TODO: open full-screen loading in fragment to disable all inputs and indicate that something is loading
@@ -39,7 +39,6 @@ class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<A
     }
 
     private fun executeDoesConferenceExistUseCase(id: String) {
-        // TODO: Firebase Database paths must not contain '.', '#', '$', '[', or ']', put this in stringUtils to check for current id
         addDisposable(doesConferenceExistUseCase.execute(id)
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
@@ -50,7 +49,10 @@ class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<A
 
     private fun processDoesConferenceExistUseCaseSuccess(doesConferenceExist: Boolean, id: String) {
         if (doesConferenceExist) {
-            executeSetInitialConferenceIdUseCase(id)
+            when(isInitScreen) {
+                true -> executeSetInitialConferenceIdUseCase(id)
+                false -> return // TODO: add AddConferenceIdUseCase
+            }
         } else {
             doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
             // TODO: close full-screen loading in fragment
