@@ -5,7 +5,11 @@ import com.android.template.base.ScopedPresenter
 
 class HomeContract private constructor() {
     interface Presenter : ScopedPresenter {
+        fun renderNavigationBar()
+
         fun showAboutConferenceScreen()
+
+        fun signOutCurrentUser()
     }
 
     interface View : BaseView {

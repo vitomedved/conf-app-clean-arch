@@ -54,14 +54,4 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toTopOf="@+id/activity_home_nav_drawer_name_text" />
 
-    <Button
-        android:id="@+id/activity_home_nav_drawer_log_in_out_button"
-        style="@style/HomeActivity.Margins.NavigationDrawerLoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_home_nav_drawer_avatar_image"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintTop_toTopOf="@+id/activity_home_nav_drawer_avatar_image"
-        app:layout_constraintVertical_bias="0.24" />
-
 </android.support.constraint.ConstraintLayout>

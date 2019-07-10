@@ -8,8 +8,12 @@ import com.android.template.ui.ViewModelConverter;
 import com.android.template.ui.ViewModelConverterImpl;
 import com.android.template.utils.StethoInitializer;
 import com.android.template.utils.StethoInitializerImpl;
+import com.android.template.utils.auth.AuthUtils;
+import com.android.template.utils.auth.AuthUtilsImpl;
 import com.android.template.utils.qr.QrCodeUtils;
 import com.android.template.utils.qr.QrCodeUtilsImpl;
+import com.android.template.utils.requestcodes.RequestCodeUtils;
+import com.android.template.utils.requestcodes.RequestCodeUtilsImpl;
 import com.android.template.utils.view.ViewUtils;
 import com.android.template.utils.view.ViewUtilsImpl;
 
@@ -80,9 +84,20 @@ public final class UtilsModule {
     }
 
     @Provides
+    RequestCodeUtils provideRequestCodeUtils() {
+        return new RequestCodeUtilsImpl();
+    }
+
+    @Provides
     @Singleton
-    QrCodeUtils provideQrCodeUtils(final Resources resources) {
-        return new QrCodeUtilsImpl(resources);
+    QrCodeUtils provideQrCodeUtils(final Resources resources, final RequestCodeUtils requestCodeUtils) {
+        return new QrCodeUtilsImpl(resources, requestCodeUtils);
+    }
+
+    @Provides
+    @Singleton
+    AuthUtils provideAuthUtils(final RequestCodeUtils requestCodeUtils) {
+        return new AuthUtilsImpl(requestCodeUtils);
     }
 
     public interface Exposes {
@@ -102,5 +117,7 @@ public final class UtilsModule {
         ViewUtils viewUtils();
 
         QrCodeUtils qrCodeUtils();
+
+        AuthUtils authUtils();
     }
 }
