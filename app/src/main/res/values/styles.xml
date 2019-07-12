@@ -21,26 +21,26 @@
 
 
     <!-- Welcome fragment -->
-    <style name="WelcomeFragment">
+    <style name="AddConferenceFragment">
 
     </style>
 
-    <style name="WelcomeFragment.Margins">
-        <item name="android:layout_marginBottom">@dimen/welcome_fragment_margin_bottom</item>
-        <item name="android:layout_marginStart">@dimen/welcome_fragment_margin_start</item>
-        <item name="android:layout_marginEnd">@dimen/welcome_fragment_margin_end</item>
+    <style name="AddConferenceFragment.Margins">
+        <item name="android:layout_marginBottom">@dimen/fragment_add_conference_margin_bottom</item>
+        <item name="android:layout_marginStart">@dimen/fragment_add_conference_margin_start</item>
+        <item name="android:layout_marginEnd">@dimen/fragment_add_conference_margin_end</item>
     </style>
 
-    <style name="WelcomeFragment.Margins.HelpTextStyle">
-        <item name="android:text">@string/welcome_fragment_info_text</item>
+    <style name="AddConferenceFragment.Margins.HelpTextStyle">
+        <item name="android:text">@string/fragment_add_conference_info_text</item>
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="WelcomeFragment.ImageButtonForward">
+    <style name="AddConferenceFragment.ImageButtonForward">
         <item name="android:background">@drawable/ic_forward</item>
     </style>
 
-    <style name="WelcomeFragment.QrCodeImageView">
+    <style name="AddConferenceFragment.QrCodeImageView">
         <item name="android:background">@drawable/qr_code</item>
     </style>
 

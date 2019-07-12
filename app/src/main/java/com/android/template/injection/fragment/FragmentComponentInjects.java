@@ -1,11 +1,11 @@
 package com.android.template.injection.fragment;
 
-import com.android.template.ui.welcome.WelcomeFragment;
-import com.android.template.ui.welcome.WelcomePresenter;
+import com.android.template.ui.welcome.AddConferenceFragment;
+import com.android.template.ui.welcome.AddConferencePresenter;
 
 public interface FragmentComponentInjects {
 
-    void inject(WelcomeFragment fragment);
+    void inject(AddConferenceFragment fragment);
 
-    void inject(WelcomePresenter presenter);
+    void inject(AddConferencePresenter presenter);
 }
