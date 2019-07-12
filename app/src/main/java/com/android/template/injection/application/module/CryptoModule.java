@@ -1,7 +1,9 @@
 package com.android.template.injection.application.module;
 
 import android.content.Context;
+import android.content.res.Resources;
 
+import com.android.template.R;
 import com.android.template.injection.qualifier.ForApplication;
 
 import java.security.KeyStore;
@@ -19,6 +21,8 @@ import template.android.com.device.crypto.provider.SymmetricKeyProviderV19Impl;
 import template.android.com.device.crypto.provider.SymmetricKeyProviderV23Impl;
 import template.android.com.domain.crypto.digest.MessageDigestFactory;
 import template.android.com.domain.crypto.digest.MessageDigestFactoryImpl;
+import template.android.com.domain.crypto.engine.CryptoEngine;
+import template.android.com.domain.crypto.engine.CryptoEngineFactoryImpl;
 import template.android.com.domain.crypto.keystore.SecureKeystore;
 import template.android.com.domain.crypto.obfuscator.StringObfuscator;
 import template.android.com.domain.crypto.obfuscator.StringObfuscatorImpl;
@@ -81,6 +85,12 @@ public final class CryptoModule {
         } else {
             return new SymmetricKeyProviderV19Impl(context, currentTimeProvider, keyStore, symmetricKeyProviderStorage);
         }
+    }
+
+    @Provides
+    @Singleton
+    CryptoEngine provideCryptoEngine(final SymmetricKeyProvider symmetricKeyProvider, final Resources resources) {
+        return new CryptoEngineFactoryImpl(symmetricKeyProvider).createCryptoEngineForKeyAlias(resources.getString(R.string.crypto_engine_alias_key));
     }
 
     public interface Exposes {

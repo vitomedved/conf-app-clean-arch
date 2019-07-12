@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
 import com.android.template.ui.main.MainActivity;
+import com.android.template.ui.welcome.AddConferenceFragment;
 
 import template.android.com.domain.utils.collection.ListUtils;
 
@@ -42,8 +43,27 @@ public final class RouterImpl implements Router {
         return false;
     }
 
+    @Override
+    public void showAddInitConferenceIdScreen() {
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, AddConferenceFragment.newInstance(true), AddConferenceFragment.TAG)
+                       .commit();
+    }
+
+    @Override
+    public void showAddNewConferenceScreen() {
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, AddConferenceFragment.newInstance(false), AddConferenceFragment.TAG)
+                       .commit();
+    }
+
+    @Override
+    public void showHomeScreen() {
+    }
+
     private boolean canIntentBeResolved(final Intent intent) {
-        return !listUtils.isEmpty(activity.getPackageManager().queryIntentActivities(intent, 0));
+        return !listUtils.isEmpty(activity.getPackageManager()
+                                          .queryIntentActivities(intent, 0));
     }
 
     public void goBack() {

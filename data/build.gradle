@@ -78,4 +78,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:' + $testRulesVersion
     androidTestImplementation 'com.android.support.test:runner:' + $testRunnerVersion
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + $espressoCoreVersion
+
+    // TODO: direct firebase dependency might not be needed because i'm using RxFirebase dependency. Check this out later.
+    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
+
+    implementation 'com.github.FrangSierra:RxFirebase:' + $rxFirebaseVersion
 }

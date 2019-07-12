@@ -4,4 +4,11 @@
     <!-- Animation -->
     <integer name="default_button_animation_duration">300</integer>
 
+
+    <!-- Welcome fragment -->
+
+    <!-- TODO: if FireBase API changes size of their UID's, change this integer to appropriate value -->
+    <integer name="fragment_add_conference_conference_id_input_length">36</integer>
+    <integer name="fragment_add_conference_conference_id_input_max_lines">1</integer>
+
 </resources>

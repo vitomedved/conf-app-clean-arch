@@ -1,5 +1,7 @@
 package com.android.template.injection.activity;
 
+//import com.android.template.ui.home.HomeActivity;
+//import com.android.template.ui.home.HomePresenter;
 import com.android.template.ui.main.MainActivity;
 import com.android.template.ui.main.MainPresenter;
 

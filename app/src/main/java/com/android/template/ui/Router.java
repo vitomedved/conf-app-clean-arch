@@ -7,4 +7,10 @@ public interface Router {
     void goBack();
 
     boolean showPageInExternalBrowser(String url);
+
+    void showAddInitConferenceIdScreen();
+
+    void showAddNewConferenceScreen();
+
+    void showHomeScreen();
 }

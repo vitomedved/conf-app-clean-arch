@@ -27,6 +27,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -57,6 +58,7 @@ ext {
 
     $threeTenVersion = '1.1.1'
 
+    $firebaseDatabaseVersion = '16.0.4'
     $firebaseVersion = '11.6.2'
     $googleAnalyticsVersion = $firebaseVersion
     $firebaseUiVersion = '3.1.0'
@@ -72,6 +74,11 @@ ext {
     $espressoCoreVersion = '3.0.2'
 
     $lottieVersion = '2.6.0'
+
+    $zxingEmbeddedVersion = '3.6.0@aar'
+    $zxingCoreVersion = '3.3.2'
+
+    $rxFirebaseVersion = '1.5.6'
 }
 
 task clean(type: Delete) {

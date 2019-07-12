@@ -9,12 +9,39 @@
     </style>
 
     <style name="CommonRootCardViewStyle">
-        <item name="android:layout_marginStart">@dimen/common_root_card_view_layout_margin_start</item>
+        <item name="android:layout_marginStart">@dimen/common_root_card_view_layout_margin_start
+        </item>
         <item name="android:layout_marginTop">@dimen/common_root_card_view_layout_margin_top</item>
         <item name="android:layout_marginEnd">@dimen/common_root_card_view_layout_margin_end</item>
-        <item name="android:layout_marginBottom">@dimen/common_root_card_view_layout_margin_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/common_root_card_view_layout_margin_bottom
+        </item>
         <item name="cardCornerRadius">@dimen/common_root_card_view_corner_radius</item>
         <item name="cardElevation">@dimen/common_root_card_view_elevation</item>
+    </style>
+
+
+    <!-- Welcome fragment -->
+    <style name="AddConferenceFragment">
+
+    </style>
+
+    <style name="AddConferenceFragment.Margins">
+        <item name="android:layout_marginBottom">@dimen/fragment_add_conference_margin_bottom</item>
+        <item name="android:layout_marginStart">@dimen/fragment_add_conference_margin_start</item>
+        <item name="android:layout_marginEnd">@dimen/fragment_add_conference_margin_end</item>
+    </style>
+
+    <style name="AddConferenceFragment.Margins.HelpTextStyle">
+        <item name="android:text">@string/fragment_add_conference_info_text</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="AddConferenceFragment.ImageButtonForward">
+        <item name="android:background">@drawable/ic_forward</item>
+    </style>
+
+    <style name="AddConferenceFragment.QrCodeImageView">
+        <item name="android:background">@drawable/qr_code</item>
     </style>
 
 </resources>

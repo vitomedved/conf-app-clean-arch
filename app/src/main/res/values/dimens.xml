@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TODO: don't forget to use numbers as -> x where x%4 == 0 -->
+
     <dimen name="min_touchable_width">56dp</dimen>
     <dimen name="min_touchable_height">56dp</dimen>
     <dimen name="baseline_distance">4dp</dimen>
@@ -14,5 +16,14 @@
     <dimen name="common_root_card_view_layout_margin_bottom">@dimen/baseline_distance</dimen>
     <dimen name="common_root_card_view_corner_radius">8dp</dimen>
     <dimen name="common_root_card_view_elevation">12dp</dimen>
+    <dimen name="fragment_add_conference_margin_bottom">16dp</dimen>
+    <dimen name="fragment_add_conference_margin_start">8dp</dimen>
+    <dimen name="fragment_add_conference_margin_end">8dp</dimen>
+    <dimen name="fragment_add_conference_conference_id_input_height">52dp</dimen>
+    <dimen name="fragment_add_conference_conference_id_input_width">280dp</dimen>
+    <dimen name="fragment_add_conference_image_button_width">52dp</dimen>
+    <dimen name="fragment_add_conference_image_button_height">52dp</dimen>
+    <dimen name="fragment_add_conference_qr_code_image_width">100dp</dimen>
+    <dimen name="fragment_add_conference_qr_code_image_height">100dp</dimen>
 
 </resources>
