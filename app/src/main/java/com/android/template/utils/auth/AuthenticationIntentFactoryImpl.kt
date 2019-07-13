@@ -1,19 +1,15 @@
 package com.android.template.utils.auth
 
 import android.content.Intent
+import android.content.res.Resources
 import com.android.template.R
-import com.android.template.utils.requestcodes.RequestCodeUtils
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.common.Scopes
 
-class AuthUtilsImpl (requestCodeUtils: RequestCodeUtils) : AuthUtils {
-
-    private val SIGN_IN_REQUEST_CODE = requestCodeUtils.getSignInRequestCode()
+class AuthenticationIntentFactoryImpl (private val resources: Resources) : AuthenticationIntentFactory {
 
     private var allowEmailLogin = false
     private var allowGoogleLogin = false
-
-    override fun getRequestCode(): Int = SIGN_IN_REQUEST_CODE
 
     override fun buildSignInIntent(): Intent {
         return buildSignInIntentInternal()
@@ -73,7 +69,7 @@ class AuthUtilsImpl (requestCodeUtils: RequestCodeUtils) : AuthUtils {
     private fun getGoogleScopes(): List<String> {
         val result: MutableList<String> = mutableListOf()
 
-        result.add("https://www.googleapis.com/auth/youtube.readonly")
+        result.add(resources.getString(R.string.google_sign_in_scope_youtube))
 
         result.add(Scopes.DRIVE_FILE)
 

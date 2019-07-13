@@ -15,12 +15,16 @@ import com.android.template.R
 import com.android.template.base.BaseActivity
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.activity.ActivityComponent
-import com.android.template.utils.auth.AuthUtils
+import com.android.template.utils.auth.AuthenticationIntentFactory
 import com.android.template.utils.ui.ToastUtil
 import com.firebase.ui.auth.IdpResponse
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity(), HomeContract.View {
+
+    companion object {
+        private const val SIGN_IN_REQUEST_CODE = 100
+    }
 
     @BindView(R.id.activity_home_toolbar)
     lateinit var toolbar: Toolbar
@@ -35,7 +39,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
     lateinit var presenter: HomeContract.Presenter
 
     @Inject
-    lateinit var authUtils: AuthUtils
+    lateinit var authenticationIntentFactory: AuthenticationIntentFactory
 
     @Inject
     lateinit var toastUtil: ToastUtil
@@ -109,11 +113,11 @@ class HomeActivity : BaseActivity(), HomeContract.View {
     }
 
     private fun showSignInScreen() {
-        startActivityForResult(authUtils.buildSignInIntent(), authUtils.getRequestCode())
+        startActivityForResult(authenticationIntentFactory.buildSignInIntent(), SIGN_IN_REQUEST_CODE)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 drawerLayout.openDrawer(GravityCompat.START)
                 true
@@ -126,7 +130,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == authUtils.getRequestCode()) {
+        if (SIGN_IN_REQUEST_CODE == requestCode) {
             handleSignInResponse(resultCode, data)
         }
     }
@@ -135,7 +139,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
     private fun handleSignInResponse(resultCode: Int, data: Intent?) {
         val response: IdpResponse = IdpResponse.fromResultIntent(data) ?: return
 
-        if(Activity.RESULT_OK == resultCode) {
+        if (Activity.RESULT_OK == resultCode) {
             // TODO: do something with the response
             toastUtil.showShortToast("Welcome, ${response.user.name}")
         } else {
