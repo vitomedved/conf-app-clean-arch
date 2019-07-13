@@ -8,7 +8,7 @@
     tools:context="com.android.template.ui.main.MainActivity">
 
     <FrameLayout
-        android:id="@+id/activity_main_fragment_container"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

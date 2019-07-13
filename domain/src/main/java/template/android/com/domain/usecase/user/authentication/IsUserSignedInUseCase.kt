@@ -1,4 +1,4 @@
-package template.android.com.domain.usecase.userauthentication
+package template.android.com.domain.usecase.user.authentication
 
 import io.reactivex.Single
 

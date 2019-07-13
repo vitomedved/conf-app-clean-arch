@@ -2,9 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/activity_home_navigation_drawer_header_height"
     android:layout_marginTop="@*android:dimen/status_bar_height"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:id="@+id/activity_home_nav_drawer_header">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineStart"
@@ -23,19 +24,19 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/activity_home_nav_drawer_avatar_image"
         style="@style/HomeActivity.Margins"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/circle_image_view_width"
+        android:layout_height="@dimen/circle_image_view_height"
         android:src="@android:drawable/sym_def_app_icon"
         app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_home_nav_drawer_name_text"
+        app:civ_border_width="@dimen/circle_image_view_border_size"
+        app:layout_constraintBottom_toTopOf="@+id/activity_home_nav_drawer_title_text_view"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
 
-        android:id="@+id/activity_home_nav_drawer_name_text"
+        android:id="@+id/activity_home_nav_drawer_title_text_view"
         style="@style/HomeActivity.Margins.NavDrawerHeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,15 +44,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@+id/activity_home_nav_drawer_avatar_image" />
-
-    <TextView
-        android:id="@+id/activity_home_nav_drawer_not_logged_in_text"
-        style="@style/HomeActivity.Margins.NavDrawerHeaderText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_home_navigation_drawer_header_user_not_logged_in"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_home_nav_drawer_name_text"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toTopOf="@+id/activity_home_nav_drawer_name_text" />
 
 </android.support.constraint.ConstraintLayout>

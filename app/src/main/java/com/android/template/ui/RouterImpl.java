@@ -14,8 +14,7 @@ import template.android.com.domain.utils.collection.ListUtils;
 
 public final class RouterImpl implements Router {
 
-    public static final int ACTIVITY_MAIN_CONTAINER_ID = R.id.activity_main_fragment_container;
-    public static final int ACTIVITY_HOME_CONTAINER_ID = R.id.activity_home_fragment_container;
+    public static final int CONTAINER_ID = R.id.fragment_container;
 
     private final Activity activity;
     private final FragmentManager fragmentManager;
@@ -48,14 +47,14 @@ public final class RouterImpl implements Router {
     @Override
     public void showAddInitConferenceIdScreen() {
         fragmentManager.beginTransaction()
-                       .replace(ACTIVITY_MAIN_CONTAINER_ID, AddConferenceFragment.newInstance(true), AddConferenceFragment.TAG)
+                       .replace(CONTAINER_ID, AddConferenceFragment.newInstance(true), AddConferenceFragment.TAG)
                        .commit();
     }
 
     @Override
     public void showAddNewConferenceScreen() {
         fragmentManager.beginTransaction()
-                       .replace(ACTIVITY_MAIN_CONTAINER_ID, AddConferenceFragment.newInstance(false), AddConferenceFragment.TAG)
+                       .replace(CONTAINER_ID, AddConferenceFragment.newInstance(false), AddConferenceFragment.TAG)
                        .commit();
     }
 

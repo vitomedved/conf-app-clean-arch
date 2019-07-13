@@ -25,6 +25,9 @@
     <string name="conference_with_entered_id_does_not_exist_lease_try_again">Conference with entered ID does not exist. Please try again.</string>
     <string name="scan_conference_id">Scan conference ID</string>
 
+
+
+    <string name="empty"/>
     <!-- Application strings -->
     <string name="app_name">@string/conferences_app</string>
 
@@ -51,7 +54,7 @@
     <string name="nav_item_add_new_conference">@string/add_a_new_conference</string>
     <string name="nav_item_my_conferences">@string/my_conferences</string>
 
-    <string name="activity_home_drawer_header_user_name">@string/name_surname</string>
+    <string name="activity_home_drawer_header_user_name">@string/empty</string>
     <string name="activity_home_navigation_drawer_header_user_not_logged_in">@string/you_are_currently_not_logged_in</string>
     <string name="activity_home_navigation_drawer_header_button_text">@string/log_in</string>
 
