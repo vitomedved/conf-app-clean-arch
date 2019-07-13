@@ -28,8 +28,8 @@ class ConferenceRepositoryImpl(private val firebaseMapper: FirebaseMapper) : Con
                 .getReference(CONFERENCE_DATA_KEY)
                 .child(id)
 
-        return RxFirebaseDatabase.observeSingleValueEvent(reference) { conference: DataSnapshot ->
-            firebaseMapper.mapToConference(conference.getValue(FirebaseConference::class.java))
+        return RxFirebaseDatabase.observeSingleValueEvent(reference) { conferenceDataSnapshot: DataSnapshot ->
+            firebaseMapper.mapToConference(conferenceDataSnapshot.getValue(FirebaseConference::class.java))
         }
                 .toObservable()
     }
