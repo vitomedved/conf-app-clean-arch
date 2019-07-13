@@ -34,6 +34,8 @@ class AddConferenceFragment : BaseFragment(), AddConferenceContract.View {
 
             return fragment
         }
+
+        private const val QR_REQUEST_CODE = 101
     }
 
     @BindView(R.id.fragment_add_conference_conference_id_input)
@@ -89,11 +91,11 @@ class AddConferenceFragment : BaseFragment(), AddConferenceContract.View {
 
     @OnClick(R.id.fragment_add_conference_qr_code_image_view)
     fun onConferenceIdQrInputClick() {
-        qrCodeUtils.startQrScan(this)
+        qrCodeUtils.startQrScan(this, QR_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == qrCodeUtils.getRequestCode()) {
+        if (requestCode == QR_REQUEST_CODE) {
             presenter.checkIfConferenceExists(stringUtils.itOrDefault(data?.getStringExtra(Intents.Scan.RESULT), ""))
         } else {
             super.onActivityResult(requestCode, resultCode, data)

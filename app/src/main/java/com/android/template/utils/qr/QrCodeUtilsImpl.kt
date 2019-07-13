@@ -8,19 +8,13 @@ import com.journeyapps.barcodescanner.CaptureActivity
 
 class QrCodeUtilsImpl (private val resources: Resources) : QrCodeUtils {
 
-    private val REQUEST_CODE = 100
-
-    override fun getRequestCode(): Int {
-        return REQUEST_CODE
-    }
-
-    override fun startQrScan(fragment: Fragment) {
+    override fun startQrScan(fragment: Fragment, QR_REQUEST_CODE: Int) {
         // TODO: orientation of scanner is horizontal, fix this later or add another library
         IntentIntegrator.forSupportFragment(fragment)
                 .setPrompt(resources.getString(R.string.scan_conference_id_prompt))
                 .setOrientationLocked(true)
                 .setBeepEnabled(true)
-                .setRequestCode(REQUEST_CODE)
+                .setRequestCode(QR_REQUEST_CODE)
                 .setCaptureActivity(CaptureActivity::class.java)
                 .initiateScan()
     }

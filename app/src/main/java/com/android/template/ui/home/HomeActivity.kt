@@ -1,19 +1,30 @@
 package com.android.template.ui.home
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import butterknife.BindView
 import com.android.template.R
 import com.android.template.base.BaseActivity
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.activity.ActivityComponent
+import com.android.template.utils.auth.AuthenticationIntentFactory
+import com.android.template.utils.ui.ToastUtil
+import com.firebase.ui.auth.IdpResponse
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity(), HomeContract.View {
+
+    companion object {
+        private const val SIGN_IN_REQUEST_CODE = 100
+    }
 
     @BindView(R.id.activity_home_toolbar)
     lateinit var toolbar: Toolbar
@@ -26,6 +37,12 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
     @Inject
     lateinit var presenter: HomeContract.Presenter
+
+    @Inject
+    lateinit var authenticationIntentFactory: AuthenticationIntentFactory
+
+    @Inject
+    lateinit var toastUtil: ToastUtil
 
     override fun inject(component: ActivityComponent) {
         component.inject(this)
@@ -44,13 +61,9 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
         initActionBar()
 
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            onNavigationDrawerMenuItemSelected(menuItem)
-            true
-        }
+        initNavigationDrawer()
 
         if (null == savedInstanceState) {
-            // TODO: presenter should check if user is logged in and render "not logged in text" in nav drawer header and conferences subsection in nav drawer
             // After that redirect to correct fragment
             presenter.showAboutConferenceScreen()
         }
@@ -62,6 +75,15 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+        }
+    }
+
+    private fun initNavigationDrawer() {
+        presenter.renderNavigationBar()
+
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            onNavigationDrawerMenuItemSelected(menuItem)
+            true
         }
     }
 
@@ -80,17 +102,49 @@ class HomeActivity : BaseActivity(), HomeContract.View {
             R.id.nav_email_developers -> presenter.showAboutConferenceScreen()
             R.id.nav_add_conference -> presenter.showAboutConferenceScreen()
             R.id.nav_my_conferences -> presenter.showAboutConferenceScreen()
+            R.id.nav_login -> handleLoginClicked(menuItem)
+            R.id.nav_logout -> presenter.signOutCurrentUser()
         }
     }
 
+    private fun handleLoginClicked(menuItem: MenuItem) {
+        menuItem.isChecked = false
+        showSignInScreen()
+    }
+
+    private fun showSignInScreen() {
+        startActivityForResult(authenticationIntentFactory.buildSignInIntent(), SIGN_IN_REQUEST_CODE)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 drawerLayout.openDrawer(GravityCompat.START)
                 true
             }
 
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (SIGN_IN_REQUEST_CODE == requestCode) {
+            handleSignInResponse(resultCode, data)
+        }
+    }
+
+    @SuppressLint("RestrictedApi") // Suppress for line 138 where user name is accessed from response which is 2 different APIs, probably nothing to worry about.
+    private fun handleSignInResponse(resultCode: Int, data: Intent?) {
+        val response: IdpResponse = IdpResponse.fromResultIntent(data) ?: return
+
+        if (Activity.RESULT_OK == resultCode) {
+            // TODO: do something with the response
+            toastUtil.showShortToast("Welcome, ${response.user.name}")
+        } else {
+            toastUtil.showLongToast("There was a problem with signing in. Please try again.")
+            Log.d("HomeActivity", "Firebase log in error: ${response.error?.errorCode}")
         }
     }
 }

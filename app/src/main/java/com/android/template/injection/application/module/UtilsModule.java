@@ -8,6 +8,8 @@ import com.android.template.ui.ViewModelConverter;
 import com.android.template.ui.ViewModelConverterImpl;
 import com.android.template.utils.StethoInitializer;
 import com.android.template.utils.StethoInitializerImpl;
+import com.android.template.utils.auth.AuthenticationIntentFactory;
+import com.android.template.utils.auth.AuthenticationIntentFactoryImpl;
 import com.android.template.utils.qr.QrCodeUtils;
 import com.android.template.utils.qr.QrCodeUtilsImpl;
 import com.android.template.utils.view.ViewUtils;
@@ -85,6 +87,12 @@ public final class UtilsModule {
         return new QrCodeUtilsImpl(resources);
     }
 
+    @Provides
+    @Singleton
+    AuthenticationIntentFactory provideAuthUtils(final Resources resources) {
+        return new AuthenticationIntentFactoryImpl(resources);
+    }
+
     public interface Exposes {
 
         Base64Tool base64Tool();
@@ -102,5 +110,7 @@ public final class UtilsModule {
         ViewUtils viewUtils();
 
         QrCodeUtils qrCodeUtils();
+
+        AuthenticationIntentFactory authUtils();
     }
 }

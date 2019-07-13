@@ -39,6 +39,10 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".ui.authentication.UserAuthenticationActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

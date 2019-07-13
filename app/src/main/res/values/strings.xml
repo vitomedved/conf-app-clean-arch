@@ -57,4 +57,7 @@
 
     <string name="there_was_a_problem_with_getting_initial_conference_please_set_initial_conference_again">There was a problem with getting initial conference. Please set initial conference again.</string>
 
+    <!-- User authentication -->
+    <string name="google_sign_in_scope_youtube">https://www.googleapis.com/auth/youtube.readonly</string>
+
 </resources>
