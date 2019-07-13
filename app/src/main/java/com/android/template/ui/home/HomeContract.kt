@@ -23,5 +23,7 @@ class HomeContract private constructor() {
         fun renderUserNotSignedInNavigationDrawer()
 
         fun showSignOutError()
+
+        fun renderAboutConferenceAsSelectedNavDrawerItem()
     }
 }

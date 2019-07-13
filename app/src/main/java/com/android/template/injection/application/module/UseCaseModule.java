@@ -5,12 +5,14 @@ import dagger.Provides;
 import template.android.com.domain.delegate.ApplicationStorageDelegate;
 import template.android.com.domain.repository.ConferenceRepository;
 import template.android.com.domain.repository.UserRepository;
-import template.android.com.domain.usecase.conference.DoesConferenceExistUseCase;
-import template.android.com.domain.usecase.conference.DoesConferenceExistUseCaseImpl;
-import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCase;
-import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCaseImpl;
-import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCase;
-import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCase;
+import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCaseImpl;
+import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCase;
+import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCaseImpl;
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCase;
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.conference.initial.SetInitialConferenceIdUseCase;
+import template.android.com.domain.usecase.conference.initial.SetInitialConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCase;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.SignOutUseCase;
@@ -51,6 +53,11 @@ public final class UseCaseModule {
         return new SignOutUseCaseImpl(userRepository);
     }
 
+    @Provides
+    GetConferenceDataUseCase provideGetConferenceDataUseCase(final ConferenceRepository conferenceRepository) {
+        return new GetConferenceDataUseCaseImpl(conferenceRepository);
+    }
+
     public interface Exposes {
         DoesConferenceExistUseCase doesConferenceExistUseCase();
 
@@ -63,5 +70,7 @@ public final class UseCaseModule {
         GetCurrentUserUseCase getCurrentUserUseCase();
 
         SignOutUseCase signOutUseCase();
+
+        GetConferenceDataUseCase getConferenceDataUseCase();
     }
 }
