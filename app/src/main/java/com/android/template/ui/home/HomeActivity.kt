@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import butterknife.BindView
 import com.android.template.R
 import com.android.template.base.BaseActivity
@@ -18,7 +17,6 @@ import com.android.template.base.ScopedPresenter
 import com.android.template.injection.activity.ActivityComponent
 import com.android.template.utils.auth.AuthUtils
 import com.android.template.utils.ui.ToastUtil
-import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import javax.inject.Inject
 

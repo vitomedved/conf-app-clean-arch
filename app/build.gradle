@@ -130,7 +130,7 @@ dependencies {
     // NOTE: Database will also include core library
 //    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
 //    implementation 'com.google.firebase:firebase-auth:' + $firebaseAuthVersion
-//    implementation 'com.firebaseui:firebase-ui-auth:' + $firebaseUiAuthVersion
+    implementation 'com.firebaseui:firebase-ui-auth:' + $firebaseUiAuthVersion
 //    implementation 'com.google.android.gms:play-services-auth:' + $playServicesAuthVersion
 
     implementation 'com.jakewharton:butterknife:' + $butterknifeVersion
