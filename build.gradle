@@ -59,6 +59,11 @@ ext {
     $threeTenVersion = '1.1.1'
 
     $firebaseDatabaseVersion = '16.0.4'
+    $firebaseAuthVersion = '16.0.5'
+    $firebaseUiAuthVersion = '4.2.1'
+
+    $playServicesAuthVersion = '16.0.1'
+
     $firebaseVersion = '11.6.2'
     $googleAnalyticsVersion = $firebaseVersion
     $firebaseUiVersion = '3.1.0'
@@ -77,6 +82,8 @@ ext {
 
     $zxingEmbeddedVersion = '3.6.0@aar'
     $zxingCoreVersion = '3.3.2'
+
+    $circleImageViewVersion = '3.0.0'
 
     $rxFirebaseVersion = '1.5.6'
 }

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
+import com.android.template.ui.home.HomeActivity;
 import com.android.template.ui.main.MainActivity;
 import com.android.template.ui.welcome.AddConferenceFragment;
 
@@ -13,7 +14,7 @@ import template.android.com.domain.utils.collection.ListUtils;
 
 public final class RouterImpl implements Router {
 
-    public static final int CONTAINER_ID = R.id.activity_main_fragment_container;
+    public static final int CONTAINER_ID = R.id.fragment_container;
 
     private final Activity activity;
     private final FragmentManager fragmentManager;
@@ -59,6 +60,13 @@ public final class RouterImpl implements Router {
 
     @Override
     public void showHomeScreen() {
+        activity.startActivity(new Intent(activity, HomeActivity.class));
+        activity.finish();
+    }
+
+    @Override
+    public void showAboutConferenceScreen() {
+        // TODO
     }
 
     private boolean canIntentBeResolved(final Intent intent) {

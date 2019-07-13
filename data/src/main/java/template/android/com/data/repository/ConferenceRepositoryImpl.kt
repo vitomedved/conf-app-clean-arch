@@ -18,18 +18,5 @@ class ConferenceRepositoryImpl : ConferenceRepository {
                 .getReference(CONFERENCE_IDS_KEY)
                 .child(id)
         return RxFirebaseDatabase.observeSingleValueEvent(reference) { it.exists() }
-
-        /*return Observable.create { emitter ->
-            FirebaseDatabase.getInstance().getReference(CONFERENCE_IDS_KEY).child(id).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    emitter.onNext(dataSnapshot.exists())
-                    emitter.onComplete()
-                }
-
-                override fun onCancelled(dataSnapshot: DatabaseError) {
-                    emitter.onError(dataSnapshot.toException())
-                }
-            })
-        }*/
     }
 }

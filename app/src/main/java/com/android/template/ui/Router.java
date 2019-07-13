@@ -13,4 +13,6 @@ public interface Router {
     void showAddNewConferenceScreen();
 
     void showHomeScreen();
+
+    void showAboutConferenceScreen();
 }

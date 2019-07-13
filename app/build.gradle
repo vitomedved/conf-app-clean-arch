@@ -116,6 +116,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:' + $constraintLayoutVersion
     implementation 'com.android.support:recyclerview-v7:' + $supportLibVersion
     implementation 'com.android.support:support-core-utils:' + $supportLibVersion
+    implementation 'com.android.support:design:' + $supportLibVersion
+    implementation "com.android.support:customtabs:" + $supportLibVersion
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + $kotlin_version
 
@@ -126,10 +128,10 @@ dependencies {
 
 //    implementation 'com.google.firebase:firebase-core:' + $firebaseVersion
     // NOTE: Database will also include core library
-    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
-//    implementation 'com.google.firebase:firebase-auth:' + $firebaseVersion
-//    implementation 'com.firebaseui:firebase-ui-auth:' + $firebaseUiVersion
-//    implementation 'com.google.android.gms:play-services-auth:' + $googleAnalyticsVersion
+//    implementation 'com.google.firebase:firebase-database:' + $firebaseDatabaseVersion
+//    implementation 'com.google.firebase:firebase-auth:' + $firebaseAuthVersion
+    implementation 'com.firebaseui:firebase-ui-auth:' + $firebaseUiAuthVersion
+//    implementation 'com.google.android.gms:play-services-auth:' + $playServicesAuthVersion
 
     implementation 'com.jakewharton:butterknife:' + $butterknifeVersion
     kapt 'com.jakewharton:butterknife-compiler:' + $butterknifeVersion
@@ -148,7 +150,9 @@ dependencies {
     implementation 'com.airbnb.android:lottie:' + $lottieVersion
 
     implementation 'com.journeyapps:zxing-android-embedded:' + $zxingEmbeddedVersion // TODO: Use '3.0.2' if this doesn't work
-    implementation 'com.google.zxing:core:' + $zxingCoreVersion// TODO: Use '3.2.0' if this doesn't work
+    implementation 'com.google.zxing:core:' + $zxingCoreVersion // TODO: Use '3.2.0' if this doesn't work
+
+    implementation 'de.hdodenhof:circleimageview:' + $circleImageViewVersion
 }
 
 apply plugin: 'com.google.gms.google-services'
