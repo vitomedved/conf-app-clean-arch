@@ -6,6 +6,7 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
 
     override fun renderNavigationBar() {
         // TODO (log in, log out buttons, conferences submenu, etc.)
+
     }
 
     override fun showAboutConferenceScreen() {
