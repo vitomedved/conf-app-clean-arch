@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import template.android.com.domain.delegate.ApplicationStorageDelegate;
 import template.android.com.domain.repository.ConferenceRepository;
+import template.android.com.domain.repository.EventRepository;
 import template.android.com.domain.repository.UserRepository;
 import template.android.com.domain.usecase.conference.DoesConferenceExistUseCase;
 import template.android.com.domain.usecase.conference.DoesConferenceExistUseCaseImpl;
@@ -11,6 +12,8 @@ import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseC
 import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCase;
 import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCase;
+import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCase;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.SignOutUseCase;
@@ -51,6 +54,11 @@ public final class UseCaseModule {
         return new SignOutUseCaseImpl(userRepository);
     }
 
+    @Provides
+    GetEventsByConferenceIdUseCase provideGetEventsByConferenceIdUseCase(final EventRepository eventRepository) {
+        return new GetEventsByConferenceIdUseCaseImpl(eventRepository);
+    }
+
     public interface Exposes {
         DoesConferenceExistUseCase doesConferenceExistUseCase();
 
@@ -63,5 +71,7 @@ public final class UseCaseModule {
         GetCurrentUserUseCase getCurrentUserUseCase();
 
         SignOutUseCase signOutUseCase();
+
+        GetEventsByConferenceIdUseCase getEventsByConferenceIdUseCase();
     }
 }
