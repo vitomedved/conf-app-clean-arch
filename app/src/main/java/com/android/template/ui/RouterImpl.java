@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import com.android.template.R;
 import com.android.template.ui.home.HomeActivity;
 import com.android.template.ui.main.MainActivity;
+import com.android.template.ui.schedule.ScheduleFragment;
 import com.android.template.ui.welcome.AddConferenceFragment;
 
 import template.android.com.domain.utils.collection.ListUtils;
@@ -67,6 +68,13 @@ public final class RouterImpl implements Router {
     @Override
     public void showAboutConferenceScreen() {
         // TODO
+    }
+
+    @Override
+    public void showScheduleScreen() {
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, ScheduleFragment.newInstance(), ScheduleFragment.TAG)
+                       .commit();
     }
 
     private boolean canIntentBeResolved(final Intent intent) {

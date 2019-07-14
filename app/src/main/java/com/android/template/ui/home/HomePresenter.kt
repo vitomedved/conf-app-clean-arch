@@ -88,4 +88,8 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
     override fun showAboutConferenceScreen() {
         router.showAboutConferenceScreen()
     }
+
+    override fun showScheduleScreen() {
+        router.showScheduleScreen()
+    }
 }

@@ -108,7 +108,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         when (menuItem.itemId) {
             // TODO: fix order and function calls when fragments are created
             R.id.nav_about -> presenter.showAboutConferenceScreen()
-            R.id.nav_schedule -> assert(false)
+            R.id.nav_schedule -> presenter.showScheduleScreen()
             R.id.nav_exhibitors -> assert(false)
             R.id.nav_favourite_events -> assert(false)
             R.id.nav_blueprint -> assert(false)
