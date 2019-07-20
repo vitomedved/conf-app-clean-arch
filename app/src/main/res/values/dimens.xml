@@ -39,6 +39,8 @@
     <dimen name="margin_default">8dp</dimen>
     <dimen name="lottie_animation_loading_width">150dp</dimen>
     <dimen name="lottie_animation_loading_height">150dp</dimen>
+    <dimen name="lottie_animation_loading_width">150dp</dimen>
+    <dimen name="lottie_animation_loading_height">150dp</dimen>
 
 
 </resources>

@@ -14,6 +14,14 @@ import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseC
 import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCase;
 import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCase;
+import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCaseImpl;
+import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCase;
+import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCaseImpl;
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCase;
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.conference.initial.SetInitialConferenceIdUseCase;
+import template.android.com.domain.usecase.conference.initial.SetInitialConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCase;
 import template.android.com.domain.usecase.user.authentication.IsUserSignedInUseCaseImpl;
 import template.android.com.domain.usecase.user.authentication.SignOutUseCase;
@@ -55,6 +63,11 @@ public final class UseCaseModule {
     }
 
     @Provides
+    GetConferenceDataUseCase provideGetConferenceDataUseCase(final ConferenceRepository conferenceRepository) {
+        return new GetConferenceDataUseCaseImpl(conferenceRepository);
+    }
+
+    @Provides
     GetEventsByConferenceIdUseCase provideGetEventsByConferenceIdUseCase(final EventRepository eventRepository) {
         return new GetEventsByConferenceIdUseCaseImpl(eventRepository);
     }
@@ -71,6 +84,8 @@ public final class UseCaseModule {
         GetCurrentUserUseCase getCurrentUserUseCase();
 
         SignOutUseCase signOutUseCase();
+
+        GetConferenceDataUseCase getConferenceDataUseCase();
 
         GetEventsByConferenceIdUseCase getEventsByConferenceIdUseCase();
     }

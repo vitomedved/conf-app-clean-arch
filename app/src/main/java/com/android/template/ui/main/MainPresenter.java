@@ -6,7 +6,7 @@ import com.android.template.base.BasePresenter;
 
 import javax.inject.Inject;
 
-import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCase;
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCase;
 import template.android.com.domain.utils.string.StringUtils;
 
 public final class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {

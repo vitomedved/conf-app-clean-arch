@@ -1,7 +1,11 @@
 package com.android.template.injection.application.module;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
+import template.android.com.data.firebase.mapper.FirebaseMapper;
+import template.android.com.data.firebase.mapper.FirebaseMapperImpl;
 import template.android.com.data.repository.ConferenceRepositoryImpl;
 import template.android.com.data.repository.EventRepositoryImpl;
 import template.android.com.data.repository.UserRepositoryImpl;
@@ -14,8 +18,8 @@ import template.android.com.domain.utils.string.StringUtils;
 public final class RepositoryModule {
 
     @Provides
-    ConferenceRepository provideConferenceRepository() {
-        return new ConferenceRepositoryImpl();
+    ConferenceRepository provideConferenceRepository(final FirebaseMapper firebaseMapper) {
+        return new ConferenceRepositoryImpl(firebaseMapper);
     }
 
     @Provides
@@ -26,6 +30,12 @@ public final class RepositoryModule {
     @Provides
     EventRepository provideEventRepository() {
         return new EventRepositoryImpl();
+    }
+
+    @Provides
+    @Singleton
+    FirebaseMapper provideFirebaseMapper() {
+        return new FirebaseMapperImpl();
     }
 
     public interface Exposes {

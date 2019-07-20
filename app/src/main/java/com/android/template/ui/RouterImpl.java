@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
+import com.android.template.ui.about.AboutFragment;
 import com.android.template.ui.home.HomeActivity;
 import com.android.template.ui.main.MainActivity;
 import com.android.template.ui.schedule.ScheduleFragment;
@@ -67,7 +68,9 @@ public final class RouterImpl implements Router {
 
     @Override
     public void showAboutConferenceScreen() {
-        // TODO
+        fragmentManager.beginTransaction()
+                       .replace(CONTAINER_ID, AboutFragment.newInstance(), AboutFragment.TAG)
+                       .commit();
     }
 
     @Override

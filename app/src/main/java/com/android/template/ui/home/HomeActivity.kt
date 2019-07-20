@@ -106,7 +106,6 @@ class HomeActivity : BaseActivity(), HomeContract.View {
         drawerLayout.closeDrawers()
 
         when (menuItem.itemId) {
-            // TODO: fix order and function calls when fragments are created
             R.id.nav_about -> presenter.showAboutConferenceScreen()
             R.id.nav_schedule -> presenter.showScheduleScreen()
             R.id.nav_exhibitors -> assert(false)
@@ -188,5 +187,9 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
     override fun showSignOutError() {
         toastUtil.showLongToast("There was an error with signing out, please try again.")
+    }
+
+    override fun renderAboutConferenceAsSelectedNavDrawerItem() {
+        navigationView.menu.findItem(R.id.nav_about).isChecked = true
     }
 }
