@@ -16,6 +16,10 @@ class AboutPresenter(view: AboutContract.View) : BasePresenter<AboutContract.Vie
     lateinit var getConferenceDataUseCase: GetConferenceDataUseCase
 
     override fun init() {
+        executeGetInitialConferenceIdUseCase()
+    }
+
+    private fun executeGetInitialConferenceIdUseCase() {
         addDisposable(getInitialConferenceIdUseCase.execute()
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
@@ -28,7 +32,7 @@ class AboutPresenter(view: AboutContract.View) : BasePresenter<AboutContract.Vie
     }
 
     private fun processGetInitialConferenceIdUseCaseError(throwable: Throwable) {
-        // TODO: maybe show some kind of toast saying data can not be loaded
+        doIfViewNotNull(AboutContract.View::showGetInitialConferenceIdError)
         Log.e("AboutPresenter", "Error with getting current initial conference id: $throwable")
     }
 
@@ -47,7 +51,7 @@ class AboutPresenter(view: AboutContract.View) : BasePresenter<AboutContract.Vie
     }
 
     private fun processGetConferenceDataUseCaseError(throwable: Throwable) {
-        // TODO: maybe show some toast message
+        doIfViewNotNull(AboutContract.View::showGetConferenceDataError)
         Log.e("AboutPresenter", "Error with getting conference data: $throwable")
     }
 }

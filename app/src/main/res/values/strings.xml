@@ -25,6 +25,10 @@
     <string name="conference_with_entered_id_does_not_exist_lease_try_again">Conference with entered ID does not exist. Please try again.</string>
     <string name="scan_conference_id">Scan conference ID</string>
 
+    <string name="unable_to_get_initial_conference_id_please_restart_the_app_or_contact_developers">Unable to get initial conference ID, please restart the app or contact developers.</string>
+    <string name="unable_to_get_conference_data_please_restart_the_app_or_contact_developers">Unable to get conference data, please restart the app or contact developers.</string>
+
+
 
 
     <string name="empty"/>
@@ -62,5 +66,9 @@
 
     <!-- User authentication -->
     <string name="google_sign_in_scope_youtube">https://www.googleapis.com/auth/youtube.readonly</string>
+
+    <!-- About fragment -->
+    <string name="get_initial_conference_id_error">@string/unable_to_get_initial_conference_id_please_restart_the_app_or_contact_developers</string>
+    <string name="get_conference_data_error">@string/unable_to_get_conference_data_please_restart_the_app_or_contact_developers</string>
 
 </resources>

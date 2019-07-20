@@ -11,5 +11,9 @@ class AboutContract private constructor() {
 
     interface View : BaseView {
         fun render(conference: Conference)
+
+        fun showGetInitialConferenceIdError()
+
+        fun showGetConferenceDataError()
     }
 }

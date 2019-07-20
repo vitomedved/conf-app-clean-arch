@@ -1,5 +1,6 @@
 package com.android.template.ui.about
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -9,6 +10,7 @@ import com.android.template.R
 import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
+import com.android.template.utils.ui.ToastUtil
 import com.android.template.utils.view.ViewUtils
 import template.android.com.domain.model.Conference
 import javax.inject.Inject
@@ -33,6 +35,9 @@ class AboutFragment : BaseFragment(), AboutContract.View {
 
     @Inject
     lateinit var viewUtils: ViewUtils
+
+    @Inject
+    lateinit var toastUtil: ToastUtil
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,5 +65,13 @@ class AboutFragment : BaseFragment(), AboutContract.View {
 
         viewUtils.makeGone(loadingAnimation)
         viewUtils.makeVisible(conferenceNameTextView)
+    }
+
+    override fun showGetInitialConferenceIdError() {
+        toastUtil.showLongToast(resources.getString(R.string.get_initial_conference_id_error))
+    }
+
+    override fun showGetConferenceDataError() {
+        toastUtil.showLongToast(resources.getString(R.string.get_conference_data_error))
     }
 }
