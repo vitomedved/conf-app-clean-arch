@@ -37,6 +37,7 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
             executeGetCurrentUserUseCase()
         } else {
             doIfViewNotNull(HomeContract.View::renderUserNotSignedInNavigationDrawer)
+            showAboutConferenceScreen()
         }
     }
 
@@ -57,6 +58,8 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
         doIfViewNotNull {view ->
             view.renderUserSignedInNavigationDrawer(user)
         }
+
+        showAboutConferenceScreen()
     }
 
     private fun processGetCurrentUserUseCaseError(throwable: Throwable) {
@@ -86,6 +89,7 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
     }
 
     override fun showAboutConferenceScreen() {
+        doIfViewNotNull(HomeContract.View::renderAboutConferenceAsSelectedNavDrawerItem)
         router.showAboutConferenceScreen()
     }
 }

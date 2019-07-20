@@ -3,8 +3,8 @@ package com.android.template.ui.welcome
 import android.content.res.Resources
 import android.util.Log
 import com.android.template.base.BasePresenter
-import template.android.com.domain.usecase.conference.DoesConferenceExistUseCase
-import template.android.com.domain.usecase.conference.SetInitialConferenceIdUseCase
+import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCase
+import template.android.com.domain.usecase.conference.initial.SetInitialConferenceIdUseCase
 import template.android.com.domain.utils.string.StringUtils
 import javax.inject.Inject
 
@@ -43,8 +43,7 @@ class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<A
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
                               .subscribe({ conferenceExists -> processDoesConferenceExistUseCaseSuccess(conferenceExists, id) },
-                                         this::processDoesConferenceExistUseCaseError,
-                                         this::processDoesConferenceExistUseCaseComplete))
+                                         this::processDoesConferenceExistUseCaseError))
     }
 
     private fun processDoesConferenceExistUseCaseSuccess(doesConferenceExist: Boolean, id: String) {
@@ -61,11 +60,6 @@ class AddConferencePresenter(view: AddConferenceContract.View) : BasePresenter<A
 
     private fun processDoesConferenceExistUseCaseError(throwable: Throwable) {
         Log.e("AddConferencePresenter", "DoesConferenceExistUseCase returned an error (this can happen when url is scanned): $throwable")
-        doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
-    }
-
-    private fun processDoesConferenceExistUseCaseComplete() {
-        Log.e("AddConferencePresenter", "Maybe returned with no result, I guess this should never happen.")
         doIfViewNotNull(AddConferenceContract.View::showConferenceDoesNotExistError)
     }
 
