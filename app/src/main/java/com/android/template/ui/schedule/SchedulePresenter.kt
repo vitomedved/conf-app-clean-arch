@@ -3,7 +3,7 @@ package com.android.template.ui.schedule
 import android.util.Log
 import com.android.template.base.BasePresenter
 import template.android.com.domain.model.Event
-import template.android.com.domain.usecase.conference.GetInitialConferenceIdUseCase
+import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCase
 import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCase
 import javax.inject.Inject
 
