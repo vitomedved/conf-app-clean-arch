@@ -9,30 +9,31 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.android.template.R
+import com.android.template.utils.calendar.CalendarUtils
 import template.android.com.domain.model.EventInfo
 
-class ScheduleRecyclerAdapter (private val layoutInflater: LayoutInflater) : RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder>() {
+class ScheduleRecyclerAdapter(private val layoutInflater: LayoutInflater, private val calendarUtils: CalendarUtils) : RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder>() {
 
-    private val eventInfos: MutableList<EventInfo> = mutableListOf()
+    private val eventInfoList: MutableList<EventInfo> = mutableListOf()
 
     fun setItems(eventInfoList: List<EventInfo>) {
-        eventInfos.clear()
-        eventInfos.addAll(eventInfoList)
+        this.eventInfoList.clear()
+        this.eventInfoList.addAll(eventInfoList)
 
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = eventInfos.size
+    override fun getItemCount(): Int = eventInfoList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(layoutInflater.inflate(R.layout.list_item_event, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(layoutInflater.inflate(R.layout.list_item_event, parent, false), calendarUtils)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.render(getItem(position))
     }
 
-    private fun getItem(index: Int): EventInfo = eventInfos[index]
+    private fun getItem(index: Int): EventInfo = eventInfoList[index]
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val calendarUtils: CalendarUtils) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.list_item_event_starting_time)
         lateinit var startingTime: TextView
@@ -54,13 +55,10 @@ class ScheduleRecyclerAdapter (private val layoutInflater: LayoutInflater) : Rec
         }
 
         fun render(eventInfo: EventInfo) {
-            // TODO: time utils to parse time - check if exists, if not, create,
-            // TODO: when events are received sort them by date/time, show only current date events on recycler
-            // TODO: when loading, hide everything (header layout), show after loading is done
-            startingTime.text = "09:00"
+            startingTime.text = eventInfo.startingTime
             eventName.text = eventInfo.name
             //TODO: evt type image view
-            timeFromTo.text = "09:00 - 12:00"
+            timeFromTo.text = calendarUtils.getTimeDurationString(eventInfo.startingTime, eventInfo.durationInMinutes)
             location.text = eventInfo.hall
         }
     }

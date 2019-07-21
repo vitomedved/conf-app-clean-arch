@@ -6,6 +6,8 @@ import template.android.com.domain.delegate.ApplicationStorageDelegate;
 import template.android.com.domain.repository.ConferenceRepository;
 import template.android.com.domain.repository.EventRepository;
 import template.android.com.domain.repository.UserRepository;
+import template.android.com.domain.usecase.conference.data.GetConferenceDatesUseCase;
+import template.android.com.domain.usecase.conference.data.GetConferenceDatesUseCaseImpl;
 import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCase;
 import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCase;
@@ -66,6 +68,11 @@ public final class UseCaseModule {
         return new GetEventInfoListByConferenceIdUseCaseImpl(eventRepository);
     }
 
+    @Provides
+    GetConferenceDatesUseCase provideGetConferenceDatesUseCase(final ConferenceRepository conferenceRepository) {
+        return new GetConferenceDatesUseCaseImpl(conferenceRepository);
+    }
+
     public interface Exposes {
         DoesConferenceExistUseCase doesConferenceExistUseCase();
 
@@ -82,5 +89,7 @@ public final class UseCaseModule {
         GetConferenceDataUseCase getConferenceDataUseCase();
 
         GetEventInfoListByConferenceIdUseCase getEventsByConferenceIdUseCase();
+
+        GetConferenceDatesUseCase getConferenceDatesUseCase();
     }
 }

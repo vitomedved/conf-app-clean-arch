@@ -19,7 +19,7 @@
         app:layout_constraintGuide_percent="0.95" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/list_item_event_header_layout"
+        android:id="@+id/fragment_schedule_header_layout"
         android:layout_width="0dp"
         android:layout_height="@dimen/fragment_schedule_header_height"
         android:layout_marginTop="@dimen/margin_default"
@@ -28,44 +28,44 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/list_item_event_header_date_layout"
+            android:id="@+id/fragment_schedule_header_date_layout"
             android:layout_width="@dimen/fragment_schedule_header_date_layout_width"
             android:layout_height="@dimen/fragment_schedule_header_height"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_item_event_header_button_right"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_schedule_header_button_right"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/list_item_event_header_date_number"
+                android:id="@+id/fragment_schedule_header_date_number"
                 style="@style/FragmentSchedule.HeaderDateNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/list_item_event_header_three_letter_date_layout"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_schedule_header_three_letter_date_layout"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/list_item_event_header_three_letter_date_layout"
+                android:id="@+id/fragment_schedule_header_three_letter_date_layout"
                 android:layout_width="@dimen/fragment_schedule_header_three_letter_date_width"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/list_item_event_header_date_number"
+                app:layout_constraintStart_toEndOf="@+id/fragment_schedule_header_date_number"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/list_item_event_header_three_letter_month"
+                    android:id="@+id/fragment_schedule_header_three_letter_month"
                     style="@style/FragmentSchedule.HeaderMonth"
                     android:layout_width="@dimen/fragment_schedule_header_three_letter_date_width"
                     android:layout_height="wrap_content"
                     android:gravity="center" />
 
                 <TextView
-                    android:id="@+id/list_item_event_header_three_letter_weekday"
+                    android:id="@+id/fragment_schedule_header_three_letter_weekday"
                     style="@style/FragmentSchedule.HeaderWeekday"
                     android:layout_width="@dimen/fragment_schedule_header_three_letter_date_width"
                     android:layout_height="wrap_content"
@@ -74,17 +74,17 @@
         </android.support.constraint.ConstraintLayout>
 
         <ImageButton
-            android:id="@+id/list_item_event_header_button_left"
+            android:id="@+id/fragment_schedule_header_button_left"
             android:layout_width="@dimen/fragment_schedule_header_height"
             android:layout_height="@dimen/fragment_schedule_header_height"
             android:background="@drawable/ic_keyboard_arrow_left"
             android:contentDescription="@string/button_left"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_item_event_header_date_layout"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_schedule_header_date_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/list_item_event_header_button_right"
+            android:id="@+id/fragment_schedule_header_button_right"
             android:layout_width="@dimen/fragment_schedule_header_height"
             android:layout_height="@dimen/fragment_schedule_header_height"
             android:background="@drawable/ic_keyboard_arrow_right"
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/list_item_event_header_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_schedule_header_layout" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/fragment_schedule_loading_animation"

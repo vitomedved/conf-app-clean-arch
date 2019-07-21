@@ -9,6 +9,7 @@ import com.android.template.injection.fragment.DaggerFragment;
 import com.android.template.injection.qualifier.ForApplication;
 import com.android.template.injection.scope.FragmentScope;
 import com.android.template.ui.schedule.adapter.ScheduleRecyclerAdapter;
+import com.android.template.utils.calendar.CalendarUtils;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,7 +37,7 @@ public final class FragmentModule {
 
     @Provides
     @FragmentScope
-    ScheduleRecyclerAdapter provideScheduleRecyclerAdapter(final LayoutInflater layoutInflater) {
-        return new ScheduleRecyclerAdapter(layoutInflater);
+    ScheduleRecyclerAdapter provideScheduleRecyclerAdapter(final LayoutInflater layoutInflater, final CalendarUtils calendarUtils) {
+        return new ScheduleRecyclerAdapter(layoutInflater, calendarUtils);
     }
 }
