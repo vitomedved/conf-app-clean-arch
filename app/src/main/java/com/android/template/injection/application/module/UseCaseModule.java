@@ -6,8 +6,8 @@ import template.android.com.domain.delegate.ApplicationStorageDelegate;
 import template.android.com.domain.repository.ConferenceRepository;
 import template.android.com.domain.repository.EventRepository;
 import template.android.com.domain.repository.UserRepository;
-import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCase;
-import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCaseImpl;
+import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCase;
+import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCase;
 import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCaseImpl;
 import template.android.com.domain.usecase.conference.existence.DoesConferenceExistUseCase;
@@ -62,8 +62,8 @@ public final class UseCaseModule {
     }
 
     @Provides
-    GetEventsByConferenceIdUseCase provideGetEventsByConferenceIdUseCase(final EventRepository eventRepository) {
-        return new GetEventsByConferenceIdUseCaseImpl(eventRepository);
+    GetEventInfoListByConferenceIdUseCase provideGetEventsByConferenceIdUseCase(final EventRepository eventRepository) {
+        return new GetEventInfoListByConferenceIdUseCaseImpl(eventRepository);
     }
 
     public interface Exposes {
@@ -81,6 +81,6 @@ public final class UseCaseModule {
 
         GetConferenceDataUseCase getConferenceDataUseCase();
 
-        GetEventsByConferenceIdUseCase getEventsByConferenceIdUseCase();
+        GetEventInfoListByConferenceIdUseCase getEventsByConferenceIdUseCase();
     }
 }

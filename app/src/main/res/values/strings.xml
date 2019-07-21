@@ -8,7 +8,7 @@
     <string name="about">About</string>
     <string name="schedule">Schedule</string>
     <string name="exhibitors">Exhibitors</string>
-    <string name="favourite_events">Favourite events</string>
+    <string name="favourite_events">Favourite eventInfos</string>
     <string name="floor_blueprint">Floor blueprint</string>
     <string name="share">Share</string>
     <string name="email_developers">Email developers</string>
@@ -28,7 +28,8 @@
     <string name="unable_to_get_initial_conference_id_please_restart_the_app_or_contact_developers">Unable to get initial conference ID, please restart the app or contact developers.</string>
     <string name="unable_to_get_conference_data_please_restart_the_app_or_contact_developers">Unable to get conference data, please restart the app or contact developers.</string>
 
-
+    <string name="three_letter_january">Jan</string>
+    <string name="three_letter_monday">Mon</string>
 
 
     <string name="empty"/>
@@ -70,5 +71,21 @@
     <!-- About fragment -->
     <string name="get_initial_conference_id_error">@string/unable_to_get_initial_conference_id_please_restart_the_app_or_contact_developers</string>
     <string name="get_conference_data_error">@string/unable_to_get_conference_data_please_restart_the_app_or_contact_developers</string>
+
+    <!-- Schedule fragment -->
+
+    <string name="fragment_schedule_date_number_placeholder">31</string>
+    <string name="fragment_schedule_three_letter_month_placeholder">@string/three_letter_january</string>
+    <string name="fragment_schedule_three_letter_weekday_placeholder">@string/three_letter_monday</string>
+    <string name="button_left">Button left</string>
+    <string name="button_right">Button right</string>
+    <string name="_09_30h">09:30h</string>
+    <string name="event_name">Event name</string>
+    <string name="_10_00_12_00">10:00 - 12:00</string>
+    <string name="hall_1">Hall 1</string>
+    <string name="event_type_image_view">Event type image view</string>
+    <string name="event_location_image_view">Event location image view</string>
+    <string name="event_time_image_view">Event time image view</string>
+
 
 </resources>

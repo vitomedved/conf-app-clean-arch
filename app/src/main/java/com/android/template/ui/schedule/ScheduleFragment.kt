@@ -12,7 +12,7 @@ import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
 import com.android.template.ui.schedule.adapter.ScheduleRecyclerAdapter
 import com.android.template.utils.view.ViewUtils
-import template.android.com.domain.model.Event
+import template.android.com.domain.model.EventInfo
 import javax.inject.Inject
 
 class ScheduleFragment : BaseFragment(), ScheduleContract.View {
@@ -75,8 +75,8 @@ class ScheduleFragment : BaseFragment(), ScheduleContract.View {
         viewUtils.makeVisible(recyclerView)
     }
 
-    override fun render(events: List<Event>) {
-        scheduleRecyclerAdapter.setItems(events)
+    override fun render(eventInfos: List<EventInfo>) {
+        scheduleRecyclerAdapter.setItems(eventInfos)
     }
 
     override fun hideLoading() {

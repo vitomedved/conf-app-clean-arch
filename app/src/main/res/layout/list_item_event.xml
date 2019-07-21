@@ -3,20 +3,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp">
+    android:layout_height="@dimen/card_view_height"
+    android:layout_marginBottom="@dimen/margin_default">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/list_item_event_card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
-            android:id="@+id/list_item_event_name"
+            android:id="@+id/list_item_event_starting_time"
+            style="@style/ListItemEvent.StartingTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
 
+        <View
+            android:id="@+id/list_item_event_border"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_line_height"
+            android:layout_marginTop="@dimen/margin_default"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_event_starting_time" />
+
+        <TextView
+            android:id="@+id/list_item_event_name"
+            style="@style/ListItemEvent.EventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/list_item_event_image_view_event_type"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_event_border" />
+
+        <LinearLayout
+            android:id="@+id/list_item_event_time_layout"
+            style="@style/ListItemEvent.EventTimeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/list_item_event_image_view_event_type"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_event_name"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/list_item_event_image_view_time"
+                android:layout_width="@dimen/list_item_event_image_view_info_width"
+                android:layout_height="@dimen/list_item_event_image_view_info_height"
+                android:background="@drawable/ic_clock"
+                android:contentDescription="@string/event_time_image_view" />
+
+            <TextView
+                android:id="@+id/list_item_event_time_from_to"
+                style="@style/ListItemEvent.EventTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/list_item_event_location_layout"
+            style="@style/ListItemEvent.EventLocationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/list_item_event_image_view_event_type"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_event_time_layout"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/list_item_event_image_view_location"
+                android:layout_width="@dimen/list_item_event_image_view_info_width"
+                android:layout_height="@dimen/list_item_event_image_view_info_height"
+                android:background="@drawable/ic_pin_drop"
+                android:contentDescription="@string/event_location_image_view" />
+
+            <TextView
+                android:id="@+id/list_item_event_location"
+                style="@style/ListItemEvent.EventLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/list_item_event_image_view_event_type"
+            style="@style/ListItemEvent.EventTypeImageView"
+            android:layout_width="@dimen/list_item_event_image_view_event_type_width"
+            android:layout_height="@dimen/list_item_event_image_view_event_type_height"
+            android:contentDescription="@string/event_type_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_event_border" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

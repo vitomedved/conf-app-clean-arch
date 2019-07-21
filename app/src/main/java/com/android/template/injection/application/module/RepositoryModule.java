@@ -28,14 +28,14 @@ public final class RepositoryModule {
     }
 
     @Provides
-    EventRepository provideEventRepository() {
-        return new EventRepositoryImpl();
+    EventRepository provideEventRepository(final FirebaseMapper firebaseMapper) {
+        return new EventRepositoryImpl(firebaseMapper);
     }
 
     @Provides
     @Singleton
-    FirebaseMapper provideFirebaseMapper() {
-        return new FirebaseMapperImpl();
+    FirebaseMapper provideFirebaseMapper(final StringUtils stringUtils) {
+        return new FirebaseMapperImpl(stringUtils);
     }
 
     public interface Exposes {

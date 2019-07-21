@@ -2,9 +2,9 @@ package com.android.template.ui.schedule
 
 import android.util.Log
 import com.android.template.base.BasePresenter
-import template.android.com.domain.model.Event
+import template.android.com.domain.model.EventInfo
 import template.android.com.domain.usecase.conference.initial.GetInitialConferenceIdUseCase
-import template.android.com.domain.usecase.event.GetEventsByConferenceIdUseCase
+import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCase
 import javax.inject.Inject
 
 class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleContract.View>(view), ScheduleContract.Presenter {
@@ -13,7 +13,7 @@ class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleCon
     lateinit var getInitialConferenceIdUseCase: GetInitialConferenceIdUseCase
 
     @Inject
-    lateinit var getEventsByConferenceIdUseCase: GetEventsByConferenceIdUseCase
+    lateinit var getEventInfoListByConferenceIdUseCase: GetEventInfoListByConferenceIdUseCase
 
 
     override fun init() {
@@ -39,16 +39,16 @@ class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleCon
     }
 
     private fun executeGetEventsByConferenceIdUseCase(id: String) {
-        addDisposable(getEventsByConferenceIdUseCase.execute(id)
+        addDisposable(getEventInfoListByConferenceIdUseCase.execute(id)
                               .subscribeOn(backgroundScheduler)
                               .observeOn(mainThreadScheduler)
                               .subscribe(this::processGetEventsByConferenceIdUseCaseSuccess,
                                          this::processGetEventsByConferenceIdUseCaseError))
     }
 
-    private fun processGetEventsByConferenceIdUseCaseSuccess(events: List<Event>) {
+    private fun processGetEventsByConferenceIdUseCaseSuccess(eventInfos: List<EventInfo>) {
         doIfViewNotNull { view ->
-            view.render(events)
+            view.render(eventInfos)
             view.hideLoading()
             view.showRecyclerView()
         }
