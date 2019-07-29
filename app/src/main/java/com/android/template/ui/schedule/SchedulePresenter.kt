@@ -129,11 +129,10 @@ class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleCon
     override fun subtractDay() {
         if (!calendarUtils.subtractDayWithStringDateLimit(currentDate, conferenceDates.startDate)) {
             doIfViewNotNull(ScheduleContract.View::disableHeaderButtonLeft)
-            return
+        } else {
+            doIfViewNotNull(ScheduleContract.View::enableHeaderButtonRight)
         }
-        // RATIONALE: If I was able to subtract a day, I can 100% add 1 day therefore enable this button.
-        // The button may be disabled from special if case.
-        doIfViewNotNull(ScheduleContract.View::enableHeaderButtonRight)
+
         renderCurrentDate()
         renderCurrentEventInfoList()
     }
@@ -141,11 +140,10 @@ class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleCon
     override fun addDay() {
         if (!calendarUtils.addDayWithStringDateLimit(currentDate, conferenceDates.endDate)) {
             doIfViewNotNull(ScheduleContract.View::disableHeaderButtonRight)
-            return
+        } else {
+            doIfViewNotNull(ScheduleContract.View::enableHeaderButtonLeft)
         }
-        // RATIONALE: If I was able to add a day, I can 100% subtract 1 day therefore enable this button.
-        // The button may be disabled from special if case.
-        doIfViewNotNull(ScheduleContract.View::enableHeaderButtonLeft)
+
         renderCurrentDate()
         renderCurrentEventInfoList()
     }

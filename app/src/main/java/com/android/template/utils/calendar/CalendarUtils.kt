@@ -22,7 +22,9 @@ interface CalendarUtils {
 
     fun subtractDayWithStringDateLimit(date: Calendar, limitDateString: String, stringFormat: String): Boolean
 
+    // NOTE: This will return true only if date with added day will be lower than limit date
     fun addDayWithStringDateLimit(date: Calendar, limitDateString: String): Boolean
 
+    // NOTE: This will return true only if date with subtracted day will be higher than limit date
     fun addDayWithStringDateLimit(date: Calendar, limitDateString: String, stringFormat: String): Boolean
 }

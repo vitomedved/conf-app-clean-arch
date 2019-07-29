@@ -67,9 +67,9 @@ class CalendarUtilsImpl(private val calendarFactory: CalendarFactory) : Calendar
         val subtractedDate = Calendar.getInstance()
         subtractedDate.time = date.time
         subtractedDate.add(Calendar.DAY_OF_YEAR, -1)
+        date.time = subtractedDate.time
 
-        if (subtractedDate >= limitDate) {
-            date.time = subtractedDate.time
+        if (subtractedDate > limitDate) {
             ret = true
         }
 
@@ -92,9 +92,9 @@ class CalendarUtilsImpl(private val calendarFactory: CalendarFactory) : Calendar
         val addedDate = Calendar.getInstance()
         addedDate.time = date.time
         addedDate.add(Calendar.DAY_OF_YEAR, 1)
+        date.time = addedDate.time
 
-        if (addedDate <= limitDate) {
-            date.time = addedDate.time
+        if (addedDate < limitDate) {
             ret = true
         }
 
