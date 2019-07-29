@@ -8,7 +8,7 @@
     <string name="about">About</string>
     <string name="schedule">Schedule</string>
     <string name="exhibitors">Exhibitors</string>
-    <string name="favourite_events">Favourite eventInfos</string>
+    <string name="favourite_events">Favourite events</string>
     <string name="floor_blueprint">Floor blueprint</string>
     <string name="share">Share</string>
     <string name="email_developers">Email developers</string>
@@ -81,7 +81,7 @@
     <string name="button_right">Button right</string>
     <string name="_09_30h">09:30h</string>
     <string name="event_name">Event name</string>
-    <string name="_10_00_12_00">10:00 - 12:00</string>
+    <string name="_10_00_12_00">10:00 – 12:00</string>
     <string name="hall_1">Hall 1</string>
     <string name="event_type_image_view">Event type image view</string>
     <string name="event_location_image_view">Event location image view</string>

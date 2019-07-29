@@ -20,7 +20,6 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
     lateinit var signOutUseCase: SignOutUseCase
 
     override fun init() {
-        // TODO: check if user is logged in, show/hide elements from navbar, redirect to about screen
         executeIsUserSignedInUseCase()
     }
 
@@ -55,7 +54,7 @@ class HomePresenter(view: HomeContract.View) : HomeContract.Presenter, BasePrese
     }
 
     private fun processGetCurrentUserUseCaseSuccess(user: User) {
-        doIfViewNotNull {view ->
+        doIfViewNotNull { view ->
             view.renderUserSignedInNavigationDrawer(user)
         }
 
