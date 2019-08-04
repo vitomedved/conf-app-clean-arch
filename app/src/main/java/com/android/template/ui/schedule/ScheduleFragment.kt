@@ -15,12 +15,13 @@ import com.android.template.base.BaseFragment
 import com.android.template.base.ScopedPresenter
 import com.android.template.injection.fragment.FragmentComponent
 import com.android.template.ui.schedule.adapter.ScheduleRecyclerAdapter
+import com.android.template.utils.ui.ToastUtil
 import com.android.template.utils.view.ViewUtils
 import template.android.com.domain.model.EventInfo
 import java.util.*
 import javax.inject.Inject
 
-class ScheduleFragment : BaseFragment(), ScheduleContract.View {
+class ScheduleFragment : BaseFragment(), ScheduleContract.View, ScheduleRecyclerAdapter.EventClickListener {
 
     companion object {
         const val TAG = "ScheduleFragment"
@@ -65,16 +66,23 @@ class ScheduleFragment : BaseFragment(), ScheduleContract.View {
     @Inject
     lateinit var scheduleRecyclerAdapter: ScheduleRecyclerAdapter
 
+    @Inject
+    lateinit var toastUtils: ToastUtil
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecyclerView()
+        if(null == savedInstanceState) {
+            initRecyclerView()
+            presenter.init()
+        }
 
-        presenter.init()
     }
 
     private fun initRecyclerView() {
         recyclerView.layoutManager = linearLayoutManager
+
+        scheduleRecyclerAdapter.setEventClickListener(this)
         recyclerView.adapter = scheduleRecyclerAdapter
     }
 
@@ -107,22 +115,18 @@ class ScheduleFragment : BaseFragment(), ScheduleContract.View {
     }
 
     override fun disableHeaderButtonLeft() {
-        // TODO: when disabled, put shaded color maybe
         viewUtils.disableViews(buttonPreviousDate)
     }
 
     override fun enableHeaderButtonLeft() {
-        // TODO: when enabled, return color to normal
         viewUtils.enableViews(buttonPreviousDate)
     }
 
     override fun disableHeaderButtonRight() {
-        // TODO: when disabled, put shaded color maybe
         viewUtils.disableViews(buttonNextDate)
     }
 
     override fun enableHeaderButtonRight() {
-        // TODO: when enabled, return color to normal
         viewUtils.enableViews(buttonNextDate)
     }
 
@@ -154,5 +158,9 @@ class ScheduleFragment : BaseFragment(), ScheduleContract.View {
     @OnClick(R.id.fragment_schedule_header_button_right)
     fun onNextDayButtonClicked() {
         presenter.addDay()
+    }
+
+    override fun onEventClicked(eventId: String) {
+        toastUtils.showLongToast("Activity for event with ID: $eventId should be started here")
     }
 }

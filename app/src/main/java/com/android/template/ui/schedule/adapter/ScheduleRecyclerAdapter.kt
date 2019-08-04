@@ -8,11 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.android.template.R
 import com.android.template.utils.calendar.CalendarUtils
 import template.android.com.domain.model.EventInfo
 
 class ScheduleRecyclerAdapter(private val layoutInflater: LayoutInflater, private val calendarUtils: CalendarUtils) : RecyclerView.Adapter<ScheduleRecyclerAdapter.ViewHolder>() {
+
+    private var eventClickListener: EventClickListener? = null
 
     private val eventInfoList: MutableList<EventInfo> = mutableListOf()
 
@@ -31,9 +34,13 @@ class ScheduleRecyclerAdapter(private val layoutInflater: LayoutInflater, privat
         holder.render(getItem(position))
     }
 
+    fun setEventClickListener(eventClickListener: EventClickListener) {
+        this.eventClickListener = eventClickListener
+    }
+
     private fun getItem(index: Int): EventInfo = eventInfoList[index]
 
-    class ViewHolder(itemView: View, private val calendarUtils: CalendarUtils) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View, private val calendarUtils: CalendarUtils) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.list_item_event_starting_time)
         lateinit var startingTime: TextView
@@ -61,5 +68,14 @@ class ScheduleRecyclerAdapter(private val layoutInflater: LayoutInflater, privat
             timeFromTo.text = calendarUtils.getTimeDurationString(eventInfo.startingTime, eventInfo.durationInMinutes)
             location.text = eventInfo.hall
         }
+
+        @OnClick(R.id.list_item_event_card_view)
+        fun onClick() {
+            eventClickListener?.onEventClicked(getItem(adapterPosition).uid)
+        }
+    }
+
+    interface EventClickListener {
+        fun onEventClicked(eventId: String)
     }
 }

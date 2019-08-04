@@ -12,7 +12,7 @@ class CalendarUtilsImpl(private val calendarFactory: CalendarFactory) : Calendar
 
     override fun isCalendarDateEqualToStringDate(calendarDate: Calendar, stringDate: String): Boolean {
         resetHours(calendarDate)
-        return calendarDate.compareTo(calendarFactory.dateStringToCalendar(stringDate)) == 0
+        return calendarDate == calendarFactory.dateStringToCalendar(stringDate)
     }
 
     override fun isCalendarDateEqualToStringDate(calendarDate: Calendar, stringDate: String, dateFormat: String): Boolean {

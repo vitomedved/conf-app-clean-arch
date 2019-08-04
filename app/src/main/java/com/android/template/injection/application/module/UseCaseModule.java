@@ -64,7 +64,7 @@ public final class UseCaseModule {
     }
 
     @Provides
-    GetEventInfoListByConferenceIdUseCase provideGetEventsByConferenceIdUseCase(final EventRepository eventRepository) {
+    GetEventInfoListByConferenceIdUseCase provideGetEventInfoListByConferenceIdUseCase(final EventRepository eventRepository) {
         return new GetEventInfoListByConferenceIdUseCaseImpl(eventRepository);
     }
 
@@ -88,7 +88,7 @@ public final class UseCaseModule {
 
         GetConferenceDataUseCase getConferenceDataUseCase();
 
-        GetEventInfoListByConferenceIdUseCase getEventsByConferenceIdUseCase();
+        GetEventInfoListByConferenceIdUseCase getEventInfoListByConferenceIdUseCase();
 
         GetConferenceDatesUseCase getConferenceDatesUseCase();
     }
