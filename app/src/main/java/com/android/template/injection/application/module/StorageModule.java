@@ -1,7 +1,6 @@
 package com.android.template.injection.application.module;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.android.template.injection.qualifier.ForApplication;
 

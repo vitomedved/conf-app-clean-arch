@@ -60,4 +60,81 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <!-- Schedule fragment -->
+
+    <style name="FragmentSchedule" />
+
+    <style name="FragmentSchedule.HeaderDateNumber">
+        <item name="android:text">@string/fragment_schedule_date_number_placeholder</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/fragment_schedule_date_number_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FragmentSchedule.HeaderMonth">
+        <item name="android:text">@string/fragment_schedule_three_letter_month_placeholder</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/fragment_schedule_three_letter_month_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FragmentSchedule.HeaderWeekday">
+        <item name="android:text">@string/fragment_schedule_three_letter_weekday_placeholder</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/fragment_schedule_three_letter_weekday_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- List item event -->
+    <style name="ListItemEvent"/>
+
+    <style name="ListItemEvent.StartingTime">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:text">@string/_09_30h</item>
+    </style>
+
+    <style name="ListItemEvent.EventName">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default</item>
+        <item name="android:text">@string/event_name</item>
+        <item name="android:textSize">@dimen/list_item_event_name_text_size</item>
+    </style>
+
+    <style name="ListItemEvent.EventTimeLayout">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ListItemEvent.EventTime">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:text">@string/_10_00_12_00</item>
+        <item name="android:textSize">@dimen/list_item_event_time_text_size</item>
+    </style>
+
+
+    <style name="ListItemEvent.EventLocationLayout">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/list_item_event_location_layout_margin_top</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default</item>
+        <item name="android:layout_marginBottom">@dimen/margin_default</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ListItemEvent.EventLocation">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:text">@string/hall_1</item>
+        <item name="android:textSize">@dimen/list_item_event_location_text_size</item>
+    </style>
+
+    <style name="ListItemEvent.EventTypeImageView">
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:layout_marginBottom">@dimen/margin_default</item>
+        <item name="android:background">@drawable/ic_todo_change</item>
+    </style>
+
 </resources>

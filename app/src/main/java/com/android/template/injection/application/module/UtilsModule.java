@@ -12,6 +12,9 @@ import com.android.template.utils.auth.AuthenticationIntentFactory;
 import com.android.template.utils.auth.AuthenticationIntentFactoryImpl;
 import com.android.template.utils.qr.QrCodeUtils;
 import com.android.template.utils.qr.QrCodeUtilsImpl;
+import com.android.template.utils.calendar.CalendarFactoryImpl;
+import com.android.template.utils.calendar.CalendarUtils;
+import com.android.template.utils.calendar.CalendarUtilsImpl;
 import com.android.template.utils.view.ViewUtils;
 import com.android.template.utils.view.ViewUtilsImpl;
 
@@ -29,6 +32,7 @@ import template.android.com.domain.utils.date.DateUtils;
 import template.android.com.domain.utils.date.DateUtilsImpl;
 import template.android.com.domain.utils.string.StringUtils;
 import template.android.com.domain.utils.string.StringUtilsImpl;
+import com.android.template.utils.calendar.CalendarFactory;
 
 @Module
 public final class UtilsModule {
@@ -93,6 +97,18 @@ public final class UtilsModule {
         return new AuthenticationIntentFactoryImpl(resources);
     }
 
+    @Provides
+    @Singleton
+    CalendarFactory provideCalendarFactory() {
+        return new CalendarFactoryImpl();
+    }
+
+    @Provides
+    @Singleton
+    CalendarUtils provideCalendarUtils(final CalendarFactory calendarFactory) {
+        return new CalendarUtilsImpl(calendarFactory);
+    }
+
     public interface Exposes {
 
         Base64Tool base64Tool();
@@ -112,5 +128,9 @@ public final class UtilsModule {
         QrCodeUtils qrCodeUtils();
 
         AuthenticationIntentFactory authUtils();
+
+        CalendarFactory calendarFactory();
+
+        CalendarUtils calendarUtils();
     }
 }

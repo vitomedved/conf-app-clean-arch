@@ -2,6 +2,8 @@ package com.android.template.injection.fragment.module;
 
 import com.android.template.injection.fragment.DaggerFragment;
 import com.android.template.injection.scope.FragmentScope;
+import com.android.template.ui.schedule.ScheduleContract;
+import com.android.template.ui.schedule.SchedulePresenter;
 import com.android.template.ui.about.AboutContract;
 import com.android.template.ui.about.AboutPresenter;
 import com.android.template.ui.welcome.AddConferenceContract;
@@ -23,6 +25,15 @@ public final class FragmentPresenterModule {
     @FragmentScope
     AddConferenceContract.Presenter provideWelcomePresenter() {
         final AddConferencePresenter presenter = new AddConferencePresenter((AddConferenceContract.View) fragment);
+        fragment.getFragmentComponent().inject(presenter);
+
+        return presenter;
+    }
+
+    @Provides
+    @FragmentScope
+    ScheduleContract.Presenter provideSchedulePresenter() {
+        final SchedulePresenter presenter = new SchedulePresenter((ScheduleContract.View) fragment);
         fragment.getFragmentComponent().inject(presenter);
 
         return presenter;

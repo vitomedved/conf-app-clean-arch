@@ -17,6 +17,13 @@
     <dimen name="common_root_card_view_corner_radius">8dp</dimen>
     <dimen name="common_root_card_view_elevation">12dp</dimen>
 
+    <!-- Application (global) -->
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="lottie_animation_loading_width">150dp</dimen>
+    <dimen name="lottie_animation_loading_height">150dp</dimen>
+    <dimen name="horizontal_line_height">2dp</dimen>
+    <dimen name="card_view_height">120dp</dimen>
+
     <!-- Welcome fragment -->
     <dimen name="fragment_add_conference_margin_bottom">16dp</dimen>
     <dimen name="fragment_add_conference_margin_start">8dp</dimen>
@@ -36,8 +43,25 @@
     <dimen name="circle_image_view_height">80dp</dimen>
     <dimen name="circle_image_view_border_size">2dp</dimen>
     <dimen name="activity_home_navigation_drawer_header_height">200dp</dimen>
-    <dimen name="lottie_animation_loading_width">150dp</dimen>
-    <dimen name="lottie_animation_loading_height">150dp</dimen>
+
+
+    <!-- Schedule fragment -->
+    <dimen name="fragment_schedule_date_number_text_size">24sp</dimen>
+    <dimen name="fragment_schedule_three_letter_month_text_size">12sp</dimen>
+    <dimen name="fragment_schedule_three_letter_weekday_text_size">12sp</dimen>
+    <dimen name="fragment_schedule_header_height">32dp</dimen>
+    <dimen name="fragment_schedule_header_three_letter_date_width">30dp</dimen>
+    <dimen name="fragment_schedule_header_date_layout_width">80dp</dimen>
+
+    <!-- Event list item -->
+    <dimen name="list_item_event_image_view_info_width">20dp</dimen>
+    <dimen name="list_item_event_image_view_info_height">20dp</dimen>
+    <dimen name="list_item_event_name_text_size">16sp</dimen>
+    <dimen name="list_item_event_time_text_size">12sp</dimen>
+    <dimen name="list_item_event_location_text_size">12sp</dimen>
+    <dimen name="list_item_event_location_layout_margin_top">4dp</dimen>
+    <dimen name="list_item_event_image_view_event_type_width">48dp</dimen>
+    <dimen name="list_item_event_image_view_event_type_height">48dp</dimen>
 
 
 </resources>

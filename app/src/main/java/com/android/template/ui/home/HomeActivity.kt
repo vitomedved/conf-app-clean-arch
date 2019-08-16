@@ -20,6 +20,7 @@ import com.android.template.base.ScopedPresenter
 import com.android.template.injection.activity.ActivityComponent
 import com.android.template.utils.auth.AuthenticationIntentFactory
 import com.android.template.utils.ui.ToastUtil
+import com.android.template.utils.view.ViewUtils
 import com.firebase.ui.auth.IdpResponse
 import de.hdodenhof.circleimageview.CircleImageView
 import template.android.com.domain.model.User
@@ -48,6 +49,9 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
     @Inject
     lateinit var toastUtil: ToastUtil
+
+    @Inject
+    lateinit var viewUtils: ViewUtils
 
     private lateinit var navBarHeaderTitleTextView: TextView
     private lateinit var navBarHeaderCircleImageView: CircleImageView
@@ -107,7 +111,7 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
         when (menuItem.itemId) {
             R.id.nav_about -> presenter.showAboutConferenceScreen()
-            R.id.nav_schedule -> assert(false)
+            R.id.nav_schedule -> presenter.showScheduleScreen()
             R.id.nav_exhibitors -> assert(false)
             R.id.nav_favourite_events -> assert(false)
             R.id.nav_blueprint -> assert(false)
@@ -168,17 +172,21 @@ class HomeActivity : BaseActivity(), HomeContract.View {
     override fun renderUserSignedInNavigationDrawer(user: User) {
         navBarHeaderTitleTextView.text = user.email
 
-        navigationView.menu.findItem(R.id.nav_conferences_submenu).isVisible = true
-        navigationView.menu.findItem(R.id.nav_login).isVisible = false
         navigationView.menu.findItem(R.id.nav_logout).isVisible = true
+        navigationView.menu.findItem(R.id.nav_conferences_submenu).isVisible = true
+        navigationView.menu.findItem(R.id.nav_favourite_events).isVisible = true
+
+        navigationView.menu.findItem(R.id.nav_login).isVisible = false
     }
 
     override fun renderUserNotSignedInNavigationDrawer() {
-        navBarHeaderTitleTextView.text = "You are currently not logged in"
+        navBarHeaderTitleTextView.text = getString(R.string.you_are_currently_not_logged_in)
 
-        navigationView.menu.findItem(R.id.nav_conferences_submenu).isVisible = false
-        navigationView.menu.findItem(R.id.nav_login).isVisible = true
         navigationView.menu.findItem(R.id.nav_logout).isVisible = false
+        navigationView.menu.findItem(R.id.nav_conferences_submenu).isVisible = false
+        navigationView.menu.findItem(R.id.nav_favourite_events).isVisible = false
+
+        navigationView.menu.findItem(R.id.nav_login).isVisible = true
     }
 
     override fun showApplicationError() {

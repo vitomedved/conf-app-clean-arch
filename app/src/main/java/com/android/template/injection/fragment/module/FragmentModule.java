@@ -1,9 +1,15 @@
 package com.android.template.injection.fragment.module;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 
 import com.android.template.injection.fragment.DaggerFragment;
+import com.android.template.injection.qualifier.ForApplication;
 import com.android.template.injection.scope.FragmentScope;
+import com.android.template.ui.schedule.adapter.ScheduleRecyclerAdapter;
+import com.android.template.utils.calendar.CalendarUtils;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,5 +27,17 @@ public final class FragmentModule {
     @FragmentScope
     FragmentManager provideFragmentManager() {
         return fragment.getChildFragmentManager();
+    }
+
+    @Provides
+    @FragmentScope
+    LinearLayoutManager provideLinearLayoutManager(@ForApplication final Context context) {
+        return new LinearLayoutManager(context);
+    }
+
+    @Provides
+    @FragmentScope
+    ScheduleRecyclerAdapter provideScheduleRecyclerAdapter(final LayoutInflater layoutInflater, final CalendarUtils calendarUtils) {
+        return new ScheduleRecyclerAdapter(layoutInflater, calendarUtils);
     }
 }

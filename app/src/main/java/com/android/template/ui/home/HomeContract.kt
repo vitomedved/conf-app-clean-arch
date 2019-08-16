@@ -13,6 +13,8 @@ class HomeContract private constructor() {
         fun signOutCurrentUser()
 
         fun showAboutConferenceScreen()
+
+        fun showScheduleScreen();
     }
 
     interface View : BaseView {
