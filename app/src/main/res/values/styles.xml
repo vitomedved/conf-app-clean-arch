@@ -86,7 +86,7 @@
     </style>
 
     <!-- List item event -->
-    <style name="ListItemEvent"/>
+    <style name="ListItemEvent" />
 
     <style name="ListItemEvent.StartingTime">
         <item name="android:layout_marginStart">@dimen/margin_default</item>
@@ -118,7 +118,8 @@
 
     <style name="ListItemEvent.EventLocationLayout">
         <item name="android:layout_marginStart">@dimen/margin_default</item>
-        <item name="android:layout_marginTop">@dimen/list_item_event_location_layout_margin_top</item>
+        <item name="android:layout_marginTop">@dimen/list_item_event_location_layout_margin_top
+        </item>
         <item name="android:layout_marginEnd">@dimen/margin_default</item>
         <item name="android:layout_marginBottom">@dimen/margin_default</item>
         <item name="android:gravity">center</item>
@@ -136,5 +137,14 @@
         <item name="android:layout_marginBottom">@dimen/margin_default</item>
         <item name="android:background">@drawable/ic_todo_change</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

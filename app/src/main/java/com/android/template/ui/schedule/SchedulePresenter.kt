@@ -147,4 +147,8 @@ class SchedulePresenter(view: ScheduleContract.View) : BasePresenter<ScheduleCon
         renderCurrentDate()
         renderCurrentEventInfoList()
     }
+
+    override fun showEventActivity(eventId: String) {
+        router.showEventActivity(eventId)
+    }
 }

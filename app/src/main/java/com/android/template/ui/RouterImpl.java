@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.android.template.R;
 import com.android.template.ui.about.AboutFragment;
+import com.android.template.ui.event.EventActivity;
 import com.android.template.ui.home.HomeActivity;
 import com.android.template.ui.main.MainActivity;
 import com.android.template.ui.schedule.ScheduleFragment;
@@ -78,6 +79,14 @@ public final class RouterImpl implements Router {
         fragmentManager.beginTransaction()
                        .replace(CONTAINER_ID, ScheduleFragment.newInstance(), ScheduleFragment.TAG)
                        .commit();
+    }
+
+    @Override
+    public void showEventActivity(String eventId) {
+        // TODO: is there cleaner way to add extras? For example like I'm doing with fragments and Fragment.newInstance(someParams)
+        Intent intent = new Intent(activity, EventActivity.class);
+        intent.putExtra(EventActivity.EVENT_ID_TAG, eventId);
+        activity.startActivity(intent);
     }
 
     private boolean canIntentBeResolved(final Intent intent) {
