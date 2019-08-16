@@ -12,6 +12,8 @@ class ScheduleContract private constructor() {
         fun subtractDay()
 
         fun addDay()
+
+        fun showEventActivity(eventId: String)
     }
 
     interface View : BaseView {

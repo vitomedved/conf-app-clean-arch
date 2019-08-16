@@ -8,6 +8,10 @@ import template.android.com.domain.repository.EventRepository;
 import template.android.com.domain.repository.UserRepository;
 import template.android.com.domain.usecase.conference.data.GetConferenceDatesUseCase;
 import template.android.com.domain.usecase.conference.data.GetConferenceDatesUseCaseImpl;
+import template.android.com.domain.usecase.event.GetEventDataByConferenceIdAndEventIdUseCase;
+import template.android.com.domain.usecase.event.GetEventDataByConferenceIdAndEventIdUseCaseImpl;
+import template.android.com.domain.usecase.event.GetEventInfoByConferenceIdAndEventIdUseCase;
+import template.android.com.domain.usecase.event.GetEventInfoByConferenceIdAndEventIdUseCaseImpl;
 import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCase;
 import template.android.com.domain.usecase.event.GetEventInfoListByConferenceIdUseCaseImpl;
 import template.android.com.domain.usecase.conference.data.GetConferenceDataUseCase;
@@ -73,6 +77,16 @@ public final class UseCaseModule {
         return new GetConferenceDatesUseCaseImpl(conferenceRepository);
     }
 
+    @Provides
+    GetEventInfoByConferenceIdAndEventIdUseCase provideGetEventInfoByConferenceIdAndEventIdUseCase(final EventRepository eventRepository) {
+        return new GetEventInfoByConferenceIdAndEventIdUseCaseImpl(eventRepository);
+    }
+
+    @Provides
+    GetEventDataByConferenceIdAndEventIdUseCase provideGetEventDataByConferenceIdAndEventIdUseCase(final EventRepository eventRepository) {
+        return new GetEventDataByConferenceIdAndEventIdUseCaseImpl(eventRepository);
+    }
+
     public interface Exposes {
         DoesConferenceExistUseCase doesConferenceExistUseCase();
 
@@ -91,5 +105,9 @@ public final class UseCaseModule {
         GetEventInfoListByConferenceIdUseCase getEventInfoListByConferenceIdUseCase();
 
         GetConferenceDatesUseCase getConferenceDatesUseCase();
+
+        GetEventInfoByConferenceIdAndEventIdUseCase getEventInfoByConferenceIdAndEventIdUseCase();
+
+        GetEventDataByConferenceIdAndEventIdUseCase getEventDataByConferenceIdAndEventIdUseCase();
     }
 }

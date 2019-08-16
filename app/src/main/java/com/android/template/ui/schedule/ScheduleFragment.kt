@@ -162,5 +162,6 @@ class ScheduleFragment : BaseFragment(), ScheduleContract.View, ScheduleRecycler
 
     override fun onEventClicked(eventId: String) {
         toastUtils.showLongToast("Activity for event with ID: $eventId should be started here")
+        presenter.showEventActivity(eventId)
     }
 }

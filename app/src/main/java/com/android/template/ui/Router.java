@@ -17,4 +17,6 @@ public interface Router {
     void showAboutConferenceScreen();
 
     void showScheduleScreen();
+
+    void showEventActivity(String eventId);
 }

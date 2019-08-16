@@ -2,9 +2,11 @@ package template.android.com.data.firebase.mapper
 
 
 import template.android.com.data.firebase.model.FirebaseConference
+import template.android.com.data.firebase.model.FirebaseEventData
 import template.android.com.data.firebase.model.FirebaseEventInfo
 import template.android.com.domain.model.Conference
 import template.android.com.domain.model.ConferenceDates
+import template.android.com.domain.model.EventData
 import template.android.com.domain.model.EventInfo
 import template.android.com.domain.utils.string.StringUtils
 
@@ -37,5 +39,14 @@ class FirebaseMapperImpl(private val stringUtils: StringUtils) : FirebaseMapper 
         }
 
         return ConferenceDates(stringUtils.itOrDefault(firebaseConference.startDate, ""), stringUtils.itOrDefault(firebaseConference.endDate, ""))
+    }
+
+    override fun mapToEventData(firebaseEventData: FirebaseEventData?): EventData {
+        if(null == firebaseEventData) {
+            return EventData.empty()
+        }
+
+        // TODO: FIX LISTS OF COMMENTS AND PRESENTERS
+        return EventData(stringUtils.itOrDefault(firebaseEventData.about, ""), firebaseEventData.commentIds?.keys?.toMutableList()?: mutableListOf(), firebaseEventData.presenterIds?.keys?.toMutableList()?: mutableListOf(), stringUtils.itOrDefault(firebaseEventData.uid, ""))
     }
 }
